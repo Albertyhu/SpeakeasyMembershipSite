@@ -1,0 +1,25 @@
+2/16/23
+Goals 
+
+FrontEnd
+	Main Page 
+		message board 
+
+	Guest 
+		Create Account Page 
+		Login Page 
+
+	Members 
+		Page to be initiated into speak easy 
+
+	About Page 
+	Users
+	Contact Page 
+	Create New Message Page
+
+BackEnd 
+	Members 
+		attribute: 
+	messages 
+
+

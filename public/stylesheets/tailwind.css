@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Chapleau Bold Italic";
+    src: url("../font/Chapleau Bold Italic.otf") format('opentype');
+}
+
+@font-face {
+    font-family: "Chapleau Italic";
+    src: url("../font/Chapleau Italic.otf") format('opentype');
+}
+
+@font-face {
+    font-family: "Chapleau Bold";
+    src: url("../font/Chapleau Bold.otf") format('opentype');
+}
+
+@font-face {
+    font-family: "Chapleau";
+    src: url("../font/Chapleau.otf") format('opentype');
+}

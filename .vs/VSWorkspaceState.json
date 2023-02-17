@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\icon",
+    "\\public\\assets\\images",
+    "\\public\\font",
+    "\\public\\stylesheets",
+    "\\routes",
+    "\\views",
+    "\\views\\partials"
+  ],
+  "SelectedNode": "\\views\\partials\\header.ejs",
+  "PreviewInSolutionExplorer": false
+}
