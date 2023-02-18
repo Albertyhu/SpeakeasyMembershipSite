@@ -9,7 +9,7 @@ const User = new Schema({
     email: { type: String, required: true },
     admin: { type: Boolean, required: true },
     joinedDate: { type: Date }, 
-    profilePic: {}, 
+    profilePic: { data: Buffer, contentType: String}, 
 })
 
 module.exports = mongoose.model('User', User )

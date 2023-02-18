@@ -52,7 +52,7 @@
 <div
 	id='DesktopHeader' 
 	class = "w-full bg-[<%= BackgrounColor %>] fixed top-0 left-0 right-0 h-[100px]
-		hidden sm:flex z-30 justify-between  font-[Chapleau]"
+		hidden sm:flex z-30 justify-between  font-['DecoTech'] text-2xl uppercase"
 		>
 		<% if(typeof logoURL != "undefined") {%>
 		<a href = "/">
@@ -68,7 +68,10 @@
 			
 			<div 
 				class = "hover:underline hover:font-bold"
-				onclick="location.href='/contact'">Contact</div>
+				onclick="location.href='/'">Contact</div>
+			<div
+				class = "hover:underline hover:font-bold"
+				onclick="location.href='/register'">Create Account</div>
 		</div>
 </div>
 <script>

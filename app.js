@@ -43,6 +43,8 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use(express.json());
+
 //Exporting the routes didn't work for the authentication system
 const mainRouter = require('./routes/mainRoute')
 app.use("/", mainRouter);

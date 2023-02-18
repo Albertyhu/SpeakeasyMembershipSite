@@ -23,6 +23,16 @@
 }
 
 @font-face {
-    font-family: "Market_Deco";
+    font-family: "MarketDeco";
     src: url("../font/Market_Deco.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "DecoTechTL";
+    src: url("../font/DecoTech_TL.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "DecoTech";
+    src: url("../font/DecoTech.ttf") format('truetype');
 }

@@ -7,19 +7,28 @@
   <link rel ="stylesheet" href='stylesheets/style.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
 </head>
-<body class = "bg-[url('<%= BackgroundURL %>')] h-auto">
+<body class = "bg-[#555150] h-auto">
   <div 
   id="container"
-  class = "w-full flex flex-col relative grow min-h-[120vh]">
+  class = "w-full flex flex-col relative grow min-h-[120vh] font-['DecoTech'] text-[#f2e796]">
       <div 
         id = "contentWrapper"
         class = "pb-[6.5rem]">
-          <div class = "w-full mb-[100px]">
+          <div class = "w-full mb-[50px] sm:mb-[100px]">
             <%- include("partials/header") %>
             <%- include("partials/MobileMenu") %>
           </div>
-          <div class = "text-center">
-             <h1 class = "font-[Chapleau] text-3xl text-black">Henry's Speakeasy</h1>
+          <div class = "text-center mt-[100px]">
+            <div class = "[&>*]:inline-block [&>*]:mx-5 justify-between text-3xl">
+                <p class = "">EST.</p>
+                 <img 
+                    src = "/assets/images/HexagonShape.png" 
+                    alt = "Hexagon"
+                    class ="mx-auto my-10 w-[100px] h-[100px]"/>
+                <p>2023</p>
+            </div>
+             <h1 class = "font-['DecoTech'] text-5xl text-[#f2e796] uppercase">Henry's Speakeasy</h1>
+             <div class = "text-2xl">Exclusive Membership Club</div>
           </div>
       </div>
       <%- include('partials/footer') %>
