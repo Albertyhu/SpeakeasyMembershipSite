@@ -23,163 +23,55 @@
 		if(MobileMenu != targetEvent){
 			MobileMenu.classList.remove('opened-menu');
 			MobileMenu.classList.add('closed-menu');
-
 		}
 	} 
 	document.addEventListener("mousedown", clickEvent)
 </script>
+<% var BackgrounColor ="black" %>
 <div
 	id='MobileHeader' 
-	class = "w-full bg-black fixed top-0 left-0 right-0  
-	flex sm:hidden z-30 h-[50px] bg-black justify-between"
->
-	<a href = "/" class = "">
+	class = "w-full bg-[<%= BackgrounColor %>] fixed top-0 left-0 right-0
+		flex sm:hidden z-30 h-[50px] justify-between"
+		>
+		<a href = "/" class = "">
 		<img 
-			src = <%= typeof logoURL != 'undefined' ? logoURL : "../assets/images/speakeasylogo.png"  %>
-			class = "h-full w-auto cursor-pointer" 
-			alt = "logo"/>
-	</a>
+			src = <%= typeof logoURL != 'undefined' ? logoURL : "../assets/images/SpeakeasyLogo-JustText.png"  %>
+				class = "h-full w-auto cursor-pointer"
+				alt = "logo"/>
+			</a>
 	<% if(typeof burgerMenu != "undefined") {%>
 	<div class="my-auto cursor-pointer" onclick="openMenu()">
 		<img
 			id="MobileMenuIcon"
 			src = <%= typeof burgerMenu  != "undefined" ? burgerMenu : "/../assets/icon/hamburger_menu_white.png"  %>
-			class = " z-20 my-auto ml-auto mr-5 w-[35px] h-[35px] " 
-			alt = "logo"/>
-	</div>
+				class = " z-20 my-auto ml-auto mr-5 w-[35px] h-[35px]"
+				alt = "logo"/>
+			</div>
 	<% } %> 
 </div>
 <div
 	id='DesktopHeader' 
-	class = "w-full bg-black fixed top-0 left-0 right-0 h-[50px] hidden sm:flex z-30 justify-between"
->
-	    <% if(typeof logoURL != "undefined") {%>
+	class = "w-full bg-[<%= BackgrounColor %>] fixed top-0 left-0 right-0 h-[100px]
+		hidden sm:flex z-30 justify-between  font-[Chapleau]"
+		>
+		<% if(typeof logoURL != "undefined") {%>
 		<a href = "/">
 			<img 
-				src = <%= typeof logoURL != 'undefined' ? logoURL : "../../images/FilmDashLogo.png"  %>
+				src = <%= typeof logoURL != 'undefined' ? logoURL : "../assets/images/SpeakeasyLogo-JustText"  %>
 					class = "h-full w-auto cursor-pointer"
 					alt = "logo"/>
-	    </a>
+				</a>
 		<% } %>
 		<div 
 			id= "HeaderMenu"
 			class = "flex text-white ml-auto mr-5 [&>*]:mx-[10px] my-auto cursor-pointer">
-			<div 
-				id="GenreMenuLink"
-				class = "relative"
-				>
-				<span class = "hover:underline hover:font-bold grid">
-					<a href ="/catalog/genres">Genres</a>
-			</span>
-				<div
-					id="GenreMenu"
-				    class = "absolute z-50 text-center bg-white [&>*]:text-black [&>*]:min-w-[100px]
-					[&>*]:my-5 hidden">
-					<% if(genre_list) {%> 
-						<% genre_list.forEach(val => {%> 
-							<div 
-							class = "hover:bg-gray-300"
-							onclick ="location.href='../../../<%= val.url %>'"
-							><%= val.name %></div>
-						<%})%>
-					<%}%>
-				</div>
-			</div>
-			<div
-				id ="DirectorLink"
-				class ="relative">
-				<span 
-					class = "hover:underline hover:font-bold">
-					<a href ="/catalog/directors">Directors</a>
-				</span>
-				<div
-					id="DirectorMenu"
-					class = "absolute z-50 text-center bg-white [&>*]:text-black [&>*]:min-w-[100px]
-					[&>*]:my-5 whitespace-nowrap hidden"
-					>
-					<span class ="hover:bg-gray-300 p-1">
-						<a href ="/catalog/director/create">Add Director</a>
-					</span>
-				</div>
-			</div>
-			<div 
-				id="ActorLink"
-				class ="relative"
-				>
-				<span 
-					class = "hover:underline hover:font-bold">
-					<a href ="/catalog/actors">Actors</a>
-					<div
-						id="ActorMenu"
-						class = "absolute z-50 text-center bg-white [&>*]:text-black [&>*]:min-w-[100px]
-						[&>*]:my-5 whitespace-nowrap hidden">
-						<span class ="hover:bg-gray-300 p-1">
-							<a href ="/catalog/actor/create">Add Actor</a>
-						</span>
-					</div>
-				</span>
-			</div>
-			<div 
-				class = "hover:underline hover:font-bold"
-				onclick ="location.href='/catalog/movie/create'">Add Movie</div>
+			
 			<div 
 				class = "hover:underline hover:font-bold"
 				onclick="location.href='/contact'">Contact</div>
 		</div>
 </div>
 <script>
-	const GenreMenuLink = document.getElementById('GenreMenuLink');
-	var GenreMenu = document.getElementById('GenreMenu');
-
-	const OpenGenreMenu = evt =>{
-	GenreMenu = document.getElementById('GenreMenu');
-	GenreMenu.classList.remove('hidden')
-	GenreMenu.classList.add('block');
-	}
-
-	const CloseGenreMenu = evt =>{
-	GenreMenu = document.getElementById('GenreMenu');
-	GenreMenu.classList.remove('block')
-	GenreMenu.classList.add('hidden');
-	}
-
-	GenreMenuLink.addEventListener('mouseover', OpenGenreMenu)
-	GenreMenuLink.addEventListener('mouseout', CloseGenreMenu)
-
-	var DirectorMenu = document.getElementById('DirectorMenu');
-	var DirectorLink = document.getElementById("DirectorLink");
-
-	const OpenDirectorMenu = () =>{
-	DirectorMenu = document.getElementById('DirectorMenu');
-	DirectorMenu.classList.remove('hidden')
-	DirectorMenu.classList.add('block');
-	}
-
-	const CloseDirectorMenu = evt =>{
-	DirectorMenu = document.getElementById('DirectorMenu');
-	DirectorMenu.classList.remove('block')
-	DirectorMenu.classList.add('hidden');
-	}
-
-	DirectorLink.addEventListener('mouseover', OpenDirectorMenu)
-	DirectorLink.addEventListener('mouseout', CloseDirectorMenu)
-
-	var ActorMenu = document.getElementById('ActorMenu');
-	var ActorLink = document.getElementById("ActorLink");
-
-	const OpenActorMenu = () =>{
-	ActorMenu = document.getElementById('ActorMenu');
-	ActorMenu.classList.remove('hidden')
-	ActorMenu.classList.add('block');
-	}
-
-	const CloseActorMenu = evt =>{
-	ActorMenu = document.getElementById('ActorMenu');
-	ActorMenu.classList.remove('block')
-	ActorMenu.classList.add('hidden');
-	}
-
-	ActorLink.addEventListener('mouseover', OpenActorMenu)
-	ActorLink.addEventListener('mouseout', CloseActorMenu)
+	
 
 </script>

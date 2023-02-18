@@ -23,3 +23,15 @@ BackEnd
 	messages 
 
 
+
+
+Color pallete
+	#99cbae
+
+	#f2e798
+
+	#f9bb28
+
+	#e48f1a
+
+	#555150

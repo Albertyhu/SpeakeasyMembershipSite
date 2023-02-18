@@ -7,10 +7,11 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                Chapleau: ["Chapleau"],
-                ChapleauBold: ["ChapleauBold"],
-                ChapleauBoldItalic: ["ChapleauBoldItalic"],
-                ChapleauItalic: ["ChapleauItalic"],
+                'Chapleau': ["Chapleau"],
+                'ChapleauBold': ["Chapleau Bold"],
+                'ChapleauBoldItalic': ["Chapleau Bold Italic"],
+                'ChapleauItalic': ["Chapleau Italic"],
+                'Market_Deco': ["Market_Deco"],
             },
         },
     },

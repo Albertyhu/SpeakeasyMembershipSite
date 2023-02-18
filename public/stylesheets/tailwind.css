@@ -21,3 +21,8 @@
     font-family: "Chapleau";
     src: url("../font/Chapleau.otf") format('opentype');
 }
+
+@font-face {
+    font-family: "Market_Deco";
+    src: url("../font/Market_Deco.ttf") format('truetype');
+}

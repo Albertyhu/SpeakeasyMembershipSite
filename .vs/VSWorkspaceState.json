@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\controller",
+    "\\model",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\icon",
     "\\public\\assets\\images",
     "\\public\\font",
     "\\public\\stylesheets",
@@ -11,6 +12,6 @@
     "\\views",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\views\\partials\\header.ejs",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

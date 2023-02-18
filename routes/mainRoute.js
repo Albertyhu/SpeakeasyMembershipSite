@@ -7,12 +7,10 @@ const AuthController = require('../controller/authController.js');
 const UserController = require('../controller/userController.js'); 
 
 
-router.get("/", (req, res, next) => {
-    res.render('index'); 
-})
+router.get("/", MessageController.MessageBoard)
 
 router.get("/register", AuthController.Register_get)
 
-router.post("/register", upload.single("profile_pic"),AuthController.Register_post)
+router.post("/register", upload.single("profile_pic"), AuthController.Register_post)
 
 module.exports = router; 
