@@ -21,12 +21,12 @@
           <div class = "text-center">
              <h1 class = "font-['DecoTech'] text-5xl text-black mt-[100px] uppercase"><%= title %></h1>
              <div class = "w-11/12 mx-auto sm:w-5/12 ">
-              <% if(typeof error != 'undefined' && typeof error.error != 'undefined') {%> 
+              <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
                   <div 
                     id="ErrorDiv"
                     class = "my-[50px] text-black w-full">
                     <h2 class = "font-bold">Error: </h2>
-                    <% error.error.forEach(val => { %> 
+                    <% error.errors.forEach(val => { %> 
                         <p class = "text-white"><%= val.msg %></p>
                     <% }) %>
                   </div>

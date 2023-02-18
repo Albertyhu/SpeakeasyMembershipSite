@@ -10,6 +10,7 @@ const User = new Schema({
     admin: { type: Boolean, required: true },
     joinedDate: { type: Date }, 
     profilePic: { data: Buffer, contentType: String}, 
+  //  profilePic: {type:String}
 })
 
 module.exports = mongoose.model('User', User )

@@ -737,6 +737,14 @@ video {
   color: rgb(84 84 84 / var(--tw-text-opacity));
 }
 
+.\[\&\>div\>label\]\:font-bold>div>label {
+  font-weight: 700;
+}
+
+.\[\&\>div\>label\]\:uppercase>div>label {
+  text-transform: uppercase;
+}
+
 .\[\&\>div\>label\]\:text-black>div>label {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));

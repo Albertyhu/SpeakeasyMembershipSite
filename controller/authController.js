@@ -1,8 +1,5 @@
 const User = require('../model/Users'); 
 const { body, validationResult } = require('express-validator');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
-
 
 exports.Login_Get = (req, res, next) => {
 }
@@ -56,22 +53,33 @@ exports.Register_post = [
         .isLength({ min: 4 })
         .withMessage("Your password must be at least 4 characters long.")
         .escape(),
+   
     (req, res, next) => {
-        var image_file = null;
-        if (req.file) {
-            image_file = { data: req.file.buffer, contentType: req.file.mimetype };
-        }
-        const { username, email, password, confirm_password, profile_pic } = req.body;
-        console.log('username: ', username)
 
-        const error = validationResult(req); 
-        if (!error.isEmpty()) {
-           // console.log("error: ", error)
+        //const profilePic = req.file ? req.file : null;
+        if (req.file) {
+            profilePic = {
+                data: req.file.buffer,
+              //  data: fs.readFileSync(path.join(__dirname + '/public/uploads/' + req.file.filename + Date.now())),
+                contentType: req.file.mimetype
+            };
+        }
+        
+        const {
+            username,
+            email,
+            password,
+            confirm_password,
+        } = req.body;
+
+        const errors = validationResult(req); 
+        if (!errors.isEmpty()) {
+            console.log("errors: ", errors)
             res.render("register", {
                 username: username, 
                 email: email,
                 password: password, 
-                profile_pic: profile_pic,
+                profile_pic: null,
                 confirm_password: confirm_password, 
                 title: "Create an account",
                 logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
@@ -81,7 +89,7 @@ exports.Register_post = [
                 MobileMenuBackground: "/assets/images/frame.jpg",
                 UpperFrame: "/assets/images/frame-top.png",
                 BottomFrame: "/assets/images/frame-bottom.png",
-                error: error.array(), 
+                error: errors.array(), 
             })
             return; 
         }
@@ -91,8 +99,10 @@ exports.Register_post = [
                 email: email,
                 password: password,
                 confirm_password: confirm_password, 
-                profilePic: image_file, 
+                profilePic: profilePic, 
                 joinedDate: Date.now(), 
+                admin: false,
+                member: false,
             }
             const newUser = new User(obj); 
             newUser.save(err => {
