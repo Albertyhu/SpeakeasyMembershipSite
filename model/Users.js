@@ -9,8 +9,8 @@ const User = new Schema({
     email: { type: String, required: true },
     admin: { type: Boolean, required: true },
     joinedDate: { type: Date }, 
-    profilePic: { data: Buffer, contentType: String}, 
-  //  profilePic: {type:String}
+    profile_pic: { data: Buffer, contentType: String}, 
+    //profile_pic: {type:String}
 })
 
 module.exports = mongoose.model('User', User )

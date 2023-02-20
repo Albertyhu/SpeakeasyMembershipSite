@@ -11,8 +11,8 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         const ext = path.extname(file.originalname);
-       //const filename = `${Date.now()}-${file.fieldname}${ext}`;
-        const filename = `${file.fieldname}-${Date.now()}`
+        const filename = `${Date.now()}-${file.fieldname}${ext}`;
+        //const filename = `${file.fieldname}-${Date.now()}`
         cb(null, filename);
     }
 });
@@ -24,5 +24,11 @@ router.get("/", MessageController.MessageBoard)
 router.get("/register", AuthController.Register_get)
 
 router.post("/register", upload.single('profile_pic'), AuthController.Register_post)
+
+router.get("/login", AuthController.Login_Get);
+
+router.post("/login", AuthController.Login_Post); 
+
+router.get("/logout", AuthController.LogOut)
 
 module.exports = router; 

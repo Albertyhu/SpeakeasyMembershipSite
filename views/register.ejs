@@ -108,6 +108,15 @@
                             />
                     </div>
                     <%- include('partials/FormButtons')%>
+                    <hr class = "my-[25px] h-[2px] border-[2px]">
+                    <h2 class = "my-10 text-center text-lg">Already have an account with us?</h2>
+                    <button 
+                        type = "button"
+                        onClick = "location.href='/login'"
+                        class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                        border-white border-2 text-center w-[150px] select-none text-black mx-auto
+                        hover:bg-[#d48518] bg-[#e48f1a]"
+                    >Log In</button>
                   </form>
                   <img 
                     src = "<%= BottomFrame %>" 

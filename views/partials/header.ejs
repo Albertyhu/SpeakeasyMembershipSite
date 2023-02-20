@@ -69,9 +69,15 @@
 			<div 
 				class = "hover:underline hover:font-bold"
 				onclick="location.href='/'">Contact</div>
-			<div
-				class = "hover:underline hover:font-bold"
-				onclick="location.href='/register'">Create Account</div>
+			<% if(user) { %>
+				<div
+					class = "hover:underline hover:font-bold"
+					onclick="location.href='/logout'">Log Out</div>
+			<% } else { %>
+				<div
+					class = "hover:underline hover:font-bold"
+					onclick="location.href='/login'">Log In</div>
+			<% } %>
 		</div>
 </div>
 <script>

@@ -1,10 +1,10 @@
 const User = require('../model/Users'); 
 const { body, validationResult } = require('express-validator');
+const fs = require('fs'); 
+const path = require('path');
+const passport = require("passport");
+const bcrypt = require('bcrypt');
 
-exports.Login_Get = (req, res, next) => {
-}
-
-exports.Login_Post = {}
 
 var dummyData = {
     username: "Bob",
@@ -13,10 +13,37 @@ var dummyData = {
     confirm_password: "test123",
 }
 
+
+exports.Login_Get = (req, res, next) => {
+    const { username, email, password, confirm_password } = dummyData;  
+
+    res.render('login', {
+        user: req.user, 
+        title: "Log into your account",
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+        UpperFrame: "/assets/images/frame-top.png",
+        BottomFrame: "/assets/images/frame-bottom.png",
+
+        username: username,
+        password: password,
+    })
+}
+
+exports.Login_Post = passport.authenticate("local", {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+})
+
 exports.Register_get = (req, res, next) => {
     const { username, email, password, confirm_password } = dummyData;  
 
     res.render("register", {
+        user: req.user, 
         title: "Create an account", 
         logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
         burgerMenu: "/assets/icon/hamburger_menu_white.png",
@@ -54,13 +81,12 @@ exports.Register_post = [
         .withMessage("Your password must be at least 4 characters long.")
         .escape(),
    
-    (req, res, next) => {
-
-        //const profilePic = req.file ? req.file : null;
+    async (req, res, next) => {
+        //const profile_pic = req.file ? req.file.path : null;
+        var profile_pic = {}; 
         if (req.file) {
-            profilePic = {
-                data: req.file.buffer,
-              //  data: fs.readFileSync(path.join(__dirname + '/public/uploads/' + req.file.filename + Date.now())),
+            profile_pic = {
+                data: fs.readFileSync(path.join(__dirname, '../public/uploads/', req.file.filename)),
                 contentType: req.file.mimetype
             };
         }
@@ -76,10 +102,11 @@ exports.Register_post = [
         if (!errors.isEmpty()) {
             console.log("errors: ", errors)
             res.render("register", {
+                user: req.user, 
                 username: username, 
                 email: email,
                 password: password, 
-                profile_pic: null,
+                profile_pic: profile_pic,
                 confirm_password: confirm_password, 
                 title: "Create an account",
                 logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
@@ -94,12 +121,12 @@ exports.Register_post = [
             return; 
         }
         try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
             const obj = {
                 username: username,
                 email: email,
-                password: password,
-                confirm_password: confirm_password, 
-                profilePic: profilePic, 
+                password: hashedPassword,
+                profile_pic: profile_pic, 
                 joinedDate: Date.now(), 
                 admin: false,
                 member: false,
@@ -119,3 +146,13 @@ exports.Register_post = [
         }
     }
 ]
+
+
+exports.LogOut = (req, res, next) => {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        res.redirect("/");
+    });
+}

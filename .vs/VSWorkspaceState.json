@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\model",
     "\\public",
-    "\\public\\assets",
-    "\\public\\assets\\icon",
-    "\\public\\assets\\images",
     "\\public\\font",
     "\\public\\stylesheets",
+    "\\public\\uploads",
     "\\routes",
+    "\\uploads",
     "\\views",
     "\\views\\partials"
   ],
+  "SelectedNode": "\\public\\uploads",
   "PreviewInSolutionExplorer": false
 }

@@ -3,15 +3,17 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
-const createError = require('http-errors')
-
+const createError = require('http-errors');
+var bodyParser = require('body-parser');
 const flash = require('express-flash')
+
+const initializePassport = require('./passport-config.js')
 
 if (process.env.NODE_ENV !== 'production') {
     require("dotenv").config();
 }
 
-//initializePassport(passport)
+initializePassport(passport)
 
 const mongoDb = `${process.env.MONGOURL}`; 
 
@@ -20,13 +22,20 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
 const app = express();
+
+//This is used for catching errors 
 app.set("views", __dirname + '/views');
 app.set("view engine", "ejs");
 
+//The module “body-parser” enables reading (parsing) HTTP-POST data.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, "public")));
 
-//This is used for catching errors 
-app.use(flash())
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.json());
 
 //secret is the encryption key used to encrypt the passwords 
 //resave: Do we want to resave if nothing is changed?
@@ -41,9 +50,8 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 
-app.use(express.urlencoded({ extended: false }));
+app.use(flash())
 
-app.use(express.json());
 
 //Exporting the routes didn't work for the authentication system
 const mainRouter = require('./routes/mainRoute')
@@ -64,8 +72,14 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
 
     res.render("error", {
+        user: req.user, 
         title: "Error",
         error: err.message,
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
     });
 });
 

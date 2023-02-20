@@ -12,6 +12,7 @@ exports.MessageBoard = (req, res, next) => {
                 return next(err)
             }
             res.render("index", {
+                user: req.user, 
                 title: "Henry\'s Speakeasy", 
                 messageList: result, 
                 logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
