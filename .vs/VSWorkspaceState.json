@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
+    "\\controller",
     "\\model",
-    "\\public",
-    "\\public\\font",
-    "\\public\\stylesheets",
-    "\\public\\uploads",
     "\\routes",
     "\\uploads",
+    "\\util",
     "\\views",
     "\\views\\partials"
   ],
-  "SelectedNode": "\\public\\uploads",
+  "SelectedNode": "\\util\\checkEmail.js",
   "PreviewInSolutionExplorer": false
 }

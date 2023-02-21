@@ -7,7 +7,7 @@
   <link rel ="stylesheet" href='stylesheets/style.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
 </head>
-<body class = "bg-[url('<%= BackgroundURL %>')] h-auto">
+<body class = "bg-[url('<%= BackgroundURL %>')] h-auto font-['DecoTech'] ">
   <div 
   id="container"
   class = "w-full flex flex-col relative grow min-h-[120vh]">
@@ -18,8 +18,17 @@
             <%- include("partials/header") %>
             <%- include("partials/MobileMenu") %>
           </div>
-          <div class = "text-center">
-             <h1 class = "font-[Chapleau] text-3xl text-black">Henry's Speakeasy</h1>
+          <div class = "w-11/12 mx-auto sm:w-5/12 ">
+          <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+              <div 
+                id="ErrorDiv"
+                class = "my-[50px] text-black w-full">
+                  <h2 class = "font-bold">Error: </h2>
+                  <% error.errors.forEach(val => { %> 
+                  <p class = "text-white"><%= val.msg %></p>
+                  <% }) %>
+              </div>
+          <%}%>
           </div>
       </div>
       <%- include('partials/footer') %>

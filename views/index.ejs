@@ -6,6 +6,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel ="stylesheet" href='stylesheets/style.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+
 </head>
 <body class = "bg-[#555150] h-auto">
   <div 
@@ -30,9 +31,38 @@
              <h1 class = "font-['DecoTech'] text-5xl text-[#f2e796] uppercase">Henry's Speakeasy</h1>
              <div class = "text-2xl">Exclusive Membership Club</div>
           </div>
+          <% if(user) { %> 
+          <div 
+            id="CreateNewMessageDiv"
+            class = "w-full my-10"
+          >
+               <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+                    <div 
+                    id="ErrorDiv"
+                    class = "my-[50px] text-black w-full">
+                    <h2 class = "font-bold">Error: </h2>
+                    <% error.errors.forEach(val => { %> 
+                        <p class = "text-white"><%= val.msg %></p>
+                    <% }) %>
+                    </div>
+                <%}%>
+                <div
+                id="OpenMessageButton"
+                class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                border-white border-2 text-center w-[150px] select-none text-white mx-auto
+                hover:bg-gray-800 bg-[#99cbae] text-3xl"
+                onclick = "" 
+                >Send Message</div>
+                <%- include('partials/mainPage/newMessage')%>
+          </div>
+          <% } %>
+          <% if(typeof messageList != 'undefined' && messageList.length > 0) { %> 
+            <%- include('partials/mainPage/messageBoard')%>
+          <%}%>
       </div>
       <%- include('partials/footer') %>
   </div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="<%= MessageScript %>"></script>
 </body>
 </html>

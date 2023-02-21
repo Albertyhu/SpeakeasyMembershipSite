@@ -10,7 +10,10 @@ const User = new Schema({
     admin: { type: Boolean, required: true },
     joinedDate: { type: Date }, 
     profile_pic: { data: Buffer, contentType: String}, 
-    //profile_pic: {type:String}
+})
+
+User.virtual("url").get(function () {
+    return `/user/${this._id}`; 
 })
 
 module.exports = mongoose.model('User', User )

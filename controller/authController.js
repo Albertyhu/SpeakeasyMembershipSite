@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const passport = require("passport");
 const bcrypt = require('bcrypt');
-
+const checkEmail =require('../util/checkEmail.js')
 
 var dummyData = {
     username: "Bob",
@@ -16,7 +16,6 @@ var dummyData = {
 
 exports.Login_Get = (req, res, next) => {
     const { username, email, password, confirm_password } = dummyData;  
-
     res.render('login', {
         user: req.user, 
         title: "Log into your account",
@@ -27,9 +26,9 @@ exports.Login_Get = (req, res, next) => {
         MobileMenuBackground: "/assets/images/frame.jpg",
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
-
-        username: username,
-        password: password,
+        //username: username,
+        //email: email,
+        //password: password,
     })
 }
 
@@ -52,10 +51,10 @@ exports.Register_get = (req, res, next) => {
         MobileMenuBackground: "/assets/images/frame.jpg",
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
-        username: username,
-        email: email,
-        password: password,
-        confirm_password: confirm_password, 
+        //username: username,
+        //email: email,
+        //password: password,
+        //confirm_password: confirm_password, 
     })
 }
 
@@ -73,17 +72,15 @@ exports.Register_post = [
     body("password")
         .trim()
         .isLength({ min: 4 })
-        .withMessage("Your password must be at least 4 characters long.")
-        .escape(),
+        .withMessage("Your password must be at least 4 characters long."),
     body("confirm_password")
         .trim()
         .isLength({ min: 4 })
-        .withMessage("Your password must be at least 4 characters long.")
-        .escape(),
+        .withMessage("Your password must be at least 4 characters long."),
    
     async (req, res, next) => {
         //const profile_pic = req.file ? req.file.path : null;
-        var profile_pic = {}; 
+        var profile_pic = null; 
         if (req.file) {
             profile_pic = {
                 data: fs.readFileSync(path.join(__dirname, '../public/uploads/', req.file.filename)),
@@ -99,8 +96,13 @@ exports.Register_post = [
         } = req.body;
 
         const errors = validationResult(req); 
+        if (!checkEmail(req.body.email)) {
+            const obj = {
+                msg: "The email format is not valid. It must be something along the lines of Bob@email.com."
+            }
+            errors.errors.push(obj)
+        }
         if (!errors.isEmpty()) {
-            console.log("errors: ", errors)
             res.render("register", {
                 user: req.user, 
                 username: username, 

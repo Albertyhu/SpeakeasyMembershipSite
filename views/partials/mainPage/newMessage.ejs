@@ -1,0 +1,54 @@
+<div 
+id="NewMessageForm"
+class = "w-11/12 mx-auto md:w-7/12 lg:w-5/12 hidden">
+    <img 
+    src = "<%= UpperFrame %>" 
+        alt = "upper-frame"
+        class = "w-full h-[50px]" 
+        />
+    <form
+    action="/" 
+    method="POST"
+    class="[&>div>label]:text-black [&>div>label]:uppercase [&>div>label]:font-bold [&>div]:grid [&>div>input]:rounded-lg 
+    [&>div]:w-full [&>div]:my-[10px] [&>div>input]:pl-3 [&>div>input]:bg-[rgba(0,0,0,0)] 
+    [&>div>textarea]:text-black [&>div>input]:border-white [&>div>input]:border-[1px]
+    bg-[#f2e796] rounded-md p-3 [&>div>input]:placeholder:text-[#545454] text-2xl
+    [&>div>input]:placeholder:text-base" 
+    id = "NewMessageForm">
+    <div>
+        <label for = "message" class = "text-center text-3xl">Message</label>
+        <textarea
+            name = "message" 
+            id = "messageInput"
+            type = "message"
+            placeholder = "Type your message here" 
+            rows="5"
+            required = "true"
+            class = "resize-none rounded-lg w-full p-1 bg-[rgba(0,0,0,0)] border-[1px] 
+            border-white placeholder:text-black"
+            /></textarea>
+    </div>
+    <div class = 'w-full !my-[50px] !flex justify-between'>
+        <button 
+            type = "submit"
+            id= "SubmitMessageButton"
+            class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+            border-white border-2 text-center w-[150px] select-none text-white mx-auto
+            hover:bg-gray-800 bg-[#99cbae]"
+        >Submit</button>
+        <button 
+            type = "button"
+            id= "CancelMessageButton"
+            onClick = "location.href='/'"
+            class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+            border-white border-2 text-center w-[150px] select-none text-black mx-auto
+            hover:bg-gray-300 bg-[#dbdbdb]"
+        >Cancel</button>
+        </div>
+    </form>
+    <img 
+    src = "<%= BottomFrame %>" 
+    alt = "upper-frame"
+    class = "w-full h-[50px]" 
+        />
+</div>

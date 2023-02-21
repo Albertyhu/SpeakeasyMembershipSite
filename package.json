@@ -12,6 +12,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "express-validator": "^6.15.0",
+    "he": "^1.2.0",
     "http-errors": "^2.0.0",
     "luxon": "^3.2.1",
     "mongoose": "^6.9.2",

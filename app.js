@@ -33,9 +33,10 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
+
+app.use(flash())
 
 //secret is the encryption key used to encrypt the passwords 
 //resave: Do we want to resave if nothing is changed?
@@ -44,19 +45,21 @@ app.use(session({
     secret: `${process.env.ENCRYPT_KEY}`,
     resave: false,
     saveUninitialized: false,
+    //cookie: {
+    //    maxAge: 1000 * 60 * 60 * 24 * 30, // 1 day in milliseconds
+    //    secure: true // if using HTTPS
+    //}
 }));
 
 app.use(passport.initialize());
 
 app.use(passport.session());
 
-app.use(flash())
-
+app.use(express.urlencoded({ extended: false }));
 
 //Exporting the routes didn't work for the authentication system
 const mainRouter = require('./routes/mainRoute')
 app.use("/", mainRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

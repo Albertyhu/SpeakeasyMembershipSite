@@ -1,0 +1,48 @@
+<div
+	class = "w-11/12 sm:w-7/12 md:w-6/12 lg:w-5/12 mx-auto text-3xl"
+>
+	<% messageList.forEach((mess, index) =>{ %> 
+		<div 
+			id = "MessageDiv"
+			class="rounded-lg bg-[#99cbae] w-full my-10 mx-auto text-white
+			shadow-[0px_3px_8px_rgba(0,0,0,0.9)]"
+		>
+			<div 
+				id="wrapper"
+				class ="w-11/12 m-auto py-5 grid grid-cols-[20%_80%]"
+			>
+				<div 
+				onclick = "location.href='<%= mess.user.url%>'" 
+				class = "cursor-pointer"
+				id = "AvatarField">
+				<% if(typeof mess.user.profile_pic != 'undefined' && typeof mess.user.profile_pic.data != 'undefined' && (user && (mess.user == user.id || user.member == true))) {%>
+					<img src="data:<%= mess.user.profile_pic.contentType %>;base64,<%= mess.user.profile_pic.data.toString('base64') %>"/>
+				<%} else {%>
+				  <img src="<%= avatar %>"
+					   class="w-[100px] h-[100px] m-auto rounded-full"
+					   alt="avatar" />
+				<% } %>
+				</div>
+				<div>
+					<% if(user && (mess.user == user.id || user.member == true)){ %> 
+						<h2 class = "text-4xl font-bold"><%= mess.user.username %></h2>
+					<% } else { %> 
+					<h2 
+						id = "Author"
+						class = "text-3xl">Anonymous</h2>
+					<%} %>
+					<div><%= mess.UnescapedMessage %></div>
+					<div class = "text-[#f2e798]"><%= mess.DateFormatted %></div>
+				</div>
+			</div>
+		</div>
+	<%})%>
+	<script>
+		const Author = document.querySelector("#Author"); 
+
+		const MouseOverEvent = event =>{
+			    console.log(`client = (${event.clientX / window.innerWidth}, ${event.clientY / divHeight})`)
+		}
+		Author?.addEventListener('mouseover', MouseOverEvent)
+	</script>
+</div>

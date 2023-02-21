@@ -58,7 +58,7 @@
 		<a href = "/">
 			<img 
 				src = <%= typeof logoURL != 'undefined' ? logoURL : "../assets/images/SpeakeasyLogo-JustText"  %>
-					class = "h-full w-auto cursor-pointer"
+					class = "h-full w-auto cursor-pointer userselect-none"
 					alt = "logo"/>
 				</a>
 		<% } %>
@@ -68,7 +68,7 @@
 			
 			<div 
 				class = "hover:underline hover:font-bold"
-				onclick="location.href='/'">Contact</div>
+				onclick="location.href='/contact'">Contact</div>
 			<% if(user) { %>
 				<div
 					class = "hover:underline hover:font-bold"

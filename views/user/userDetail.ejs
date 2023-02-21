@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Henry's Speakeasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel ="stylesheet" href='../stylesheets/style.css'> 
+  <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+</head>
+<body class = "bg-[#555150] h-auto font-['DecoTech'] ">
+  <div 
+  id="container"
+  class = "w-full flex flex-col relative grow min-h-[120vh]">
+      <div 
+        id = "contentWrapper"
+        class = "pb-[6.5rem]">
+          <div class = "w-full mb-[135px]">
+            <%- include("../partials/header") %>
+            <%- include("../partials/MobileMenu") %>
+          </div>
+          <div class = "w-11/12 mx-auto sm:w-5/12 ">
+          <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+              <div 
+                id="ErrorDiv"
+                class = "my-[50px] text-black w-full">
+                  <h2 class = "font-bold">Error: </h2>
+                  <% error.errors.forEach(val => { %> 
+                  <p class = "text-white"><%= val.msg %></p>
+                  <% }) %>
+              </div>
+          <%}%>
+          <h1
+            class = "text-center text-white text-5xl"
+          ><%= title %></h1>
+          <div>
+              	<div 
+				onclick = "location.href='<%= userDetail.url%>'" 
+				class = "cursor-pointer"
+				id = "AvatarField">
+				    <% if(typeof userDetail.profile_pic != 'undefined' && typeof userDetail.profile_pic.data != 'undefined' && (user && (userDetail._id == user.id || user.member == true))) {%>
+					    <img src="data:<%= userDetail.profile_pic.contentType %>;base64,<%= userDetail.profile_pic.data.toString('base64') %>"/>
+				    <%} else {%>
+				      <img src="<%= avatar %>"
+					       class="w-[100px] h-[100px] m-auto rounded-full"
+					       alt="avatar" />
+				    <% } %>
+				</div>
+          </div>
+
+          </div>
+          <% if(typeof messageList != 'undefined' && messageList.length > 0) { %> 
+            <h2 class = "text-white text-center text-4xl">Messages Posted</h2>
+            <%- include('../partials/mainPage/messageBoard') %>
+          <%}%>
+      </div>
+      <%- include('../partials/footer') %>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</body>
+</html>
