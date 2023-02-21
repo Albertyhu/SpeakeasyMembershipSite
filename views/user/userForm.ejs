@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Henry's Speakeasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel ="stylesheet" href='../stylesheets/style.css'> 
+  <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+</head>
+<body class = "bg-[#555150] h-auto font-['DecoTech'] relative 
+    before:bg-[url('<%= BackgroundImageURL %>')] before:absolute before:h-full before:w-full
+    before:bg-cover before:top-0 before:left-0 before:right-0 before:opacity-60 before:z-[-2]
+    before:bg-no-repeat  before:brightness-50 before:bg-center">
+  <div 
+  id="container"
+  class = "w-full flex flex-col relative grow min-h-[120vh]">
+      <div 
+        id = "contentWrapper"
+        class = "pb-[6.5rem]">
+          <div class = "w-full mb-[135px]">
+            <%- include("../partials/header") %>
+            <%- include("../partials/MobileMenu") %>
+          </div>
+          <div class = "w-11/12 mx-auto sm:w-5/12 ">
+              <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+                  <div 
+                    id="ErrorDiv"
+                    class = "my-[50px] text-black w-full">
+                      <h2 class = "font-bold">Error: </h2>
+                      <% error.errors.forEach(val => { %> 
+                      <p class = "text-white"><%= val.msg %></p>
+                      <% }) %>
+                  </div>
+              <%}%>
+              <h1
+                class = "text-center text-white text-5xl"
+              ><%= title %></h1>
+                <img 
+                src = "<%= UpperFrame %>" 
+                    alt = "upper-frame"
+                    class = "w-full h-auto" 
+                    />
+                <form
+                action="/login" 
+                method="POST"
+                class="[&>div>label]:text-black [&>div>label]:uppercase [&>div>label]:font-bold [&>div]:grid [&>div>input]:rounded-lg 
+                [&>div]:w-full [&>div]:my-[10px] [&>div>input]:pl-3 [&>div>input]:bg-[rgba(0,0,0,0)] 
+                [&>div>input]:text-black [&>div>input]:border-white [&>div>input]:border-[1px]
+                bg-[#f2e798] rounded-md p-10 [&>div>input]:placeholder:text-[#545454] text-2xl
+                [&>div>input]:placeholder:text-base" 
+                id = "form">
+                <div>
+                    <label for = "username">Username</label>
+                    <input 
+                        name = "username" 
+                        id = "usernameInput"
+                        type = "text"
+                        placeholder = "Type your username here" 
+                        required = "true"
+                        class = ""
+                        value = "<%= typeof user != 'undefined' ? user.username : null %>"
+                        />
+                </div>
+                <div>
+                    <label for = "email">Your email</label>
+                    <input 
+                        name = "email" 
+                        id = "emailInput"
+                        type = "text"
+                        placeholder = "Type your email here" 
+                        required = "true"
+                        class = ""
+                        value = "<%= typeof user != 'undefined' ? user.email : null %>"
+                        />
+                </div>
+                <div>
+                    <label for = "password">Your password</label>
+                    <input 
+                        name = "password" 
+                        id = "passwordInput"
+                        type = "text"
+                        placeholder = "Type your password here" 
+                        required = "true"
+                        class = ""
+                        value = "<%= typeof user != 'undefined' ? user.password : null %>"
+                        />
+                </div>
+                <div>
+                    <label for = "confirm_password">Confirm password</label>
+                    <input 
+                        name = "confirm_password" 
+                        id = "confirm_passwordInput"
+                        type = "text"
+                        placeholder = "Confirm your password here" 
+                        required = "true"
+                        class = ""
+                        value = "<%= typeof user != 'undefined' ? user.confirm_password : null %>"
+                        />
+                </div>
+                <div>
+                    <label for = "biography">Bio</label>
+                    <textarea
+                        name = "biography" 
+                        id = "biographyInput"
+                        type = "biography"
+                        placeholder = "Type your biography here" 
+                        rows="5"
+                        required = "true"
+                        class = "resize-none rounded-lg w-full p-1 bg-[rgba(0,0,0,0)] border-[1px] 
+                        border-white placeholder:text-[#545454]"
+                        /></textarea>
+                </div>
+                <%- include('partials/FormButtons')%>
+                </form>
+                <img 
+                src = "<%= BottomFrame %>" 
+                alt = "upper-frame"
+                class = "w-full h-auto" 
+                    />
+          </div>
+      </div>
+      <%- include('../partials/footer') %>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</body>
+</html>

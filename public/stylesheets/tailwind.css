@@ -36,3 +36,9 @@
     font-family: "DecoTech";
     src: url("../font/DecoTech.ttf") format('truetype');
 }
+
+@layer components {
+    .profile-pic {
+        @apply w-[250px] h-[250px] m-auto rounded-full;
+    }
+}

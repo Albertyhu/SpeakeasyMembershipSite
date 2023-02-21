@@ -7,7 +7,11 @@
   <link rel ="stylesheet" href='../stylesheets/style.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
 </head>
-<body class = "bg-[#555150] h-auto font-['DecoTech'] ">
+<body 
+    class = "bg-[#555150] h-auto font-['DecoTech'] relative 
+    before:bg-[url('<%= BackgroundImageURL %>')] before:absolute before:h-full before:w-full
+    before:bg-cover before:top-0 before:left-0 before:right-0 before:opacity-60 before:z-[-2]
+    before:bg-no-repeat  before:brightness-50 before:bg-center">
   <div 
   id="container"
   class = "w-full flex flex-col relative grow min-h-[120vh]">
@@ -32,24 +36,60 @@
           <h1
             class = "text-center text-white text-5xl"
           ><%= title %></h1>
-          <div>
-              	<div 
-				onclick = "location.href='<%= userDetail.url%>'" 
-				class = "cursor-pointer"
-				id = "AvatarField">
-				    <% if(typeof userDetail.profile_pic != 'undefined' && typeof userDetail.profile_pic.data != 'undefined' && (user && (userDetail._id == user.id || user.member == true))) {%>
-					    <img src="data:<%= userDetail.profile_pic.contentType %>;base64,<%= userDetail.profile_pic.data.toString('base64') %>"/>
-				    <%} else {%>
-				      <img src="<%= avatar %>"
-					       class="w-[100px] h-[100px] m-auto rounded-full"
-					       alt="avatar" />
-				    <% } %>
-				</div>
-          </div>
-
+            <% var ProfilePicStyle = "w-[250px] h-[250px] m-auto rounded-full" %>
+            <div 
+		    class = ""
+		    id = "AvatarField">
+			    <% if(typeof userDetail.profile_pic != 'undefined' && typeof userDetail.profile_pic.data != 'undefined' && (user && (userDetail._id == user.id || user.member == true))) {%>
+				    <img 
+                        src="data:<%= userDetail.profile_pic.contentType %>;base64,<%= userDetail.profile_pic.data.toString('base64') %>"
+                        class = "<%= ProfilePicStyle %>"
+                        />
+			    <%} else {%>
+				    <img src="<%= avatar %>"
+					    class="<%= ProfilePicStyle %>"
+					    alt="avatar" />
+			    <% } %>
+		    </div>
+            <% if(user && userDetail._id == user.id) {%>
+                <div 
+                    onclick = `location.href='/user/${user.id}/update'`
+                    class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                    border-white border-2 text-center w-[150px] select-none text-white mx-auto
+                    hover:bg-gray-800 bg-[#f9bb28] mt-[50px] text-2xl"
+                >Edit Profile</div>
+            <% } %>
+            <% if(typeof userDetail.joinedDate != 'undefined') {%> 
+                <p class = "text-[#dbdbdb] text-2xl my-10 text-center">
+                    Date Joined: <%= userDetail.JoinDateFormatted %>
+                </p>
+            <%}%>
+            <div id = "MembershipStatus"
+                class = "text-2xl text-center"
+            >
+                <span class = "text-[#dbdbdb]">Membership status: </span>
+                <% if(userDetail.member) {%> 
+                    <% if(userDetail.admin) { %> 
+                        <span class = "text-[#e48f1a]">Admin</span>  
+                    <% } else { %> 
+                        <span class = "text-[#f9bb28]">Speakeasy Member</span>
+                    <% } %>
+                <% } else { %> 
+                    <span class = "text-white">Guest</span>
+                <%}%>
+            </div>
+            <% if(typeof userDetail.biography != 'undefined') {%> 
+            <div>
+                <h3 class = "text-3xl text-[#dbdbdb] my-10 text-center">Bio</h3>
+                <p class = "text-[#dbdbdb] text-2xl">
+                    &#09;<%= userDetail.biography %>
+                </p>
+            </div>
+            <%}%>
+            <%- include('../partials/social_media') %>
           </div>
           <% if(typeof messageList != 'undefined' && messageList.length > 0) { %> 
-            <h2 class = "text-white text-center text-4xl">Messages Posted</h2>
+            <h2 class = "text-white text-center text-4xl mt-[30px]">Messages Posted</h2>
             <%- include('../partials/mainPage/messageBoard') %>
           <%}%>
       </div>

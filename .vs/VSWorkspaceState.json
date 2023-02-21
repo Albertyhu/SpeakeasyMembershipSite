@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\controller",
-    "\\model",
+    "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\images",
+    "\\public\\script",
     "\\routes",
-    "\\uploads",
-    "\\util",
     "\\views",
-    "\\views\\partials"
+    "\\views\\partials",
+    "\\views\\partials\\mainPage",
+    "\\views\\user"
   ],
-  "SelectedNode": "\\util\\checkEmail.js",
+  "SelectedNode": "\\tailwind.config.js",
   "PreviewInSolutionExplorer": false
 }
