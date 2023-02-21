@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\controller",
+    "\\model",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\images",
-    "\\public\\script",
-    "\\routes",
+    "\\public\\assets\\social_media",
+    "\\public\\stylesheets",
+    "\\util",
     "\\views",
-    "\\views\\partials",
-    "\\views\\partials\\mainPage",
-    "\\views\\user"
+    "\\views\\partials"
   ],
-  "SelectedNode": "\\tailwind.config.js",
+  "SelectedNode": "\\views\\partials\\social_media.ejs",
   "PreviewInSolutionExplorer": false
 }

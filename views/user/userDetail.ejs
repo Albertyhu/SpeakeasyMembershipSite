@@ -53,7 +53,7 @@
 		    </div>
             <% if(user && userDetail._id == user.id) {%>
                 <div 
-                    onclick = `location.href='/user/${user.id}/update'`
+                    onclick = "location.href='/user/<%= user.id %>/update'"
                     class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
                     border-white border-2 text-center w-[150px] select-none text-white mx-auto
                     hover:bg-gray-800 bg-[#f9bb28] mt-[50px] text-2xl"
@@ -78,6 +78,16 @@
                     <span class = "text-white">Guest</span>
                 <%}%>
             </div>
+            <% if(typeof userDetail.favoriteDrink != 'undefined' && userDetail.favoriteDrink.length > 0) { %> 
+                <h2
+                    class = "text-center text-3xl text-[#dbdbdb]"
+                >Favorite Drink<h2>
+                <ul>
+                <% userDetail.favoriteDrink.forEach(drink =>{ %> 
+                    <li><%= drink %></li>
+                <%})%>
+                </ul>
+            <%}%>
             <% if(typeof userDetail.biography != 'undefined') {%> 
             <div>
                 <h3 class = "text-3xl text-[#dbdbdb] my-10 text-center">Bio</h3>

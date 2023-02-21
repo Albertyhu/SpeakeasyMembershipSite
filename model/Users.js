@@ -11,6 +11,7 @@ const User = new Schema({
     joinedDate: { type: Date }, 
     profile_pic: { data: Buffer, contentType: String }, 
     biography: { type: String },
+    favoriteDrink: [{type: String}], 
     facebook: { type: String },
     twitter: { type: String },
     instagram: { type: String },

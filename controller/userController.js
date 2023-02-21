@@ -1,7 +1,7 @@
 const User = require('../model/Users')
 const Message = require('../model/Message');
 const async = require('async'); 
-
+const Join = require('../util/join')
 exports.UserList = (req, res, next) => {
     User.find({})
         .sort({ username: 'desc' })
@@ -42,7 +42,8 @@ exports.UserDetail = (req, res, next) => {
                 return next(err)
             }
             try {
-                result.GetUser.instagram = "www.instagram.com";
+                result.GetUser.facebook = "http://www.facebook.com";
+                result.GetUser.twitter = 'http://www.twitter.com'
                 res.render('user/userDetail', {
                     user: req.user, 
                     title: `${result.GetUser.username}'s profile`, 
@@ -55,14 +56,15 @@ exports.UserDetail = (req, res, next) => {
                     MobileMenuBackground: "/assets/images/frame.jpg",
                     avatar: "/assets/images/avatar2.png",
                     BackgroundImageURL: "/assets/images/embroidery.png",
-                    facebookIcon: "/assets/social_media/facebook",
-                    discordIcon: "/assets/social_media/discord",
-                    instagramIcon: "/assets/social_media/instagram",
+                    facebookIcon: "/assets/social_media/facebook.png",
+                    discordIcon: "/assets/social_media/discord.png",
+                    instagramIcon: "/assets/social_media/instagram.png",
                     linkedinIcon: "/assets/social_media/linkedin",
-                    tumblrIcon: "/assets/social_media/tumblr",
-                    twitchIcon: "/assets/social_media/twitch",
-                    twitterIcon: "/assets/social_media/twitter",
-                    youtubeIcon: "/assets/social_media/youtube",
+                    tumblrIcon: "/assets/social_media/tumblr.png",
+                    twitchIcon: "/assets/social_media/twitch.png",
+                    twitterIcon: "/assets/social_media/twitter.png",
+                    youtubeIcon: "/assets/social_media/youtube.png",
+                   
                 })
             } catch (e) {
                 return next(e)
@@ -102,10 +104,12 @@ exports.UserUpdate_get = (req, res, next) => {
                     searchIcon: "/assets/icon/search-white.png",
                     BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
                     MobileMenuBackground: "/assets/images/frame.jpg",
-                    UpperFrame: "/assets/images/frame-top.png",
-                    BottomFrame: "/assets/images/frame-bottom.png",
+                    UpperFrame: "/assets/images/frame-top-white.png",
+                    BottomFrame: "/assets/images/frame-bottom-white.png",
                     avatar: "/assets/images/avatar2.png",
-                    BackgroundImageURL: "/assets/images/embroidery.png"
+                    BackgroundImageURL: "/assets/images/embroidery.png", 
+                    stringDrinks: result.GetUser.favoriteDrink && result.GetUser.favoriteDrink.length > 0 ? Join(result.GetUser.favoriteDrink) : null,
+
                 })
             } catch (e) {
                 return next(e)

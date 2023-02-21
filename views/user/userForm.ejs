@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Henry's Speakeasy</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel ="stylesheet" href='../stylesheets/style.css'> 
+  <link rel ="stylesheet" href='../../stylesheets/style.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
 </head>
 <body class = "bg-[#555150] h-auto font-['DecoTech'] relative 
@@ -73,30 +73,7 @@
                         value = "<%= typeof user != 'undefined' ? user.email : null %>"
                         />
                 </div>
-                <div>
-                    <label for = "password">Your password</label>
-                    <input 
-                        name = "password" 
-                        id = "passwordInput"
-                        type = "text"
-                        placeholder = "Type your password here" 
-                        required = "true"
-                        class = ""
-                        value = "<%= typeof user != 'undefined' ? user.password : null %>"
-                        />
-                </div>
-                <div>
-                    <label for = "confirm_password">Confirm password</label>
-                    <input 
-                        name = "confirm_password" 
-                        id = "confirm_passwordInput"
-                        type = "text"
-                        placeholder = "Confirm your password here" 
-                        required = "true"
-                        class = ""
-                        value = "<%= typeof user != 'undefined' ? user.confirm_password : null %>"
-                        />
-                </div>
+                <%- include('favoriteDrink')%>
                 <div>
                     <label for = "biography">Bio</label>
                     <textarea
@@ -108,9 +85,10 @@
                         required = "true"
                         class = "resize-none rounded-lg w-full p-1 bg-[rgba(0,0,0,0)] border-[1px] 
                         border-white placeholder:text-[#545454]"
-                        /></textarea>
+                        /><%=  typeof userDetail.biography != 'undefined' && userDetail.biography != "" ? userDetail.biography.trim() : null %>
+                        </textarea>
                 </div>
-                <%- include('partials/FormButtons')%>
+                <%- include('../partials/FormButtons')%>
                 </form>
                 <img 
                 src = "<%= BottomFrame %>" 

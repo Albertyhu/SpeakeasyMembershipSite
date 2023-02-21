@@ -15,36 +15,36 @@
     var SocialStyle = "w-[50px] h-[50px] m-auto"
 %>
 <div
-	class = "<%= columnStyle %>"
+	class = "<%= columnStyle %> mt-10"
 >
 	<% if (userDetail.facebook && userDetail.facebook != "") { %>
-       <a href ="<= userDetail.facebook >"><img src ="<%= facbeookIcon %>" alt="facebook" class = "<%= SocialStyle %>"/></a>;
+       <a href ="<%= userDetail.facebook %>"><img src ="<%= facebookIcon %>" alt="facebook" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.twitter && userDetail.twitter != "") { %>
-        <a href ="<= userDetail.twitter >"><img src ="<%= twitterIcon %>" alt="twitter" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.twitter %>"><img src ="<%= twitterIcon %>" alt="twitter" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.instagram && userDetail.instagram != "") { %>
-        <a href ="<= userDetail.instagram >"><img src ="<%= instagramIcon %>" alt="instagram" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.instagram %>"><img src ="<%= instagramIcon %>" alt="instagram" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.youtube && userDetail.youtube != "") { %>
-        <a href ="<= userDetail.youtube >"><img src ="<%= youtubeIcon %>" alt="youtube" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.youtube %>"><img src ="<%= youtubeIcon %>" alt="youtube" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.tiktok && userDetail.tiktok != "") { %>
-        <a href ="<= userDetail.tiktok >"><img src ="<%= tiktokIcon %>" alt="tiktok" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.tiktok %>"><img src ="<%= tiktokIcon %>" alt="tiktok" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.twitch && userDetail.twitch != "") { %>
-        <a href ="<= userDetail.twitch >"><img src ="<%= twitchIcon %>" alt="twitch" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.twitch %>"><img src ="<%= twitchIcon %>" alt="twitch" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.pinterest && userDetail.pinterest != "") { %>
-        <a href ="<= userDetail.pinterest >"><img src ="<%= pinterestIcon %>" alt="pinterest" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.pinterest %>"><img src ="<%= pinterestIcon %>" alt="pinterest" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.tumblr && userDetail.tumblr != "") { %>
-        <a href ="<= userDetail.tumblr >"><img src ="<%= tumblrIcon %>" alt="tumblr" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.tumblr %>"><img src ="<%= tumblrIcon %>" alt="tumblr" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.discord && userDetail.discord != "") { %>
-        <a href ="<= userDetail.discord >"><img src ="<%= discordIcon %>" alt="discord" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.discord %>"><img src ="<%= discordIcon %>" alt="discord" class = "<%= SocialStyle %>"/></a>
     <%}%>
     <% if (userDetail.linkedin && userDetail.linkedin != "") { %>
-        <a href ="<= userDetail.linkedin >"><img src ="<%= linkedinIcon %>" alt="linkedin" class = "<%= SocialStyle %>"/></a>;
+        <a href ="<%= userDetail.linkedin %>"><img src ="<%= linkedinIcon %>" alt="linkedin" class = "<%= SocialStyle %>"/></a>
     <%}%>
 </div>
