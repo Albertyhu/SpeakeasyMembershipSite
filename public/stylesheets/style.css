@@ -857,6 +857,18 @@ video {
   width: 100%;
 }
 
+.closed-menu {
+    transform: translateX(300px);
+    transition: transform 500ms linear;
+}
+
+.opened-menu {
+    transform: translateX(0px);
+    transition: transform 500ms linear;
+}
+
+
+/*director form*/
 .Tag {
     border-radius: 10px;
     background-color: #dbdbdb;
@@ -876,10 +888,65 @@ video {
         display: block;
     }
 
-
 .MiniDeleteButton {
     width: 15px;
     height: 15px;
     margin: auto 0;
     display: block;
+    cursor: pointer; 
+}
+
+.SocialMediaLinkInput {
+    display: grid;
+    grid-template-columns: 10% 80% 10%; 
+}
+
+.SocialInputLabel {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: inherit;
+    margin: auto;
+}
+
+.SocialInput {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px #ffffff solid;
+    padding: 0px 5px; 
+}
+
+.AddLinkButton {
+    border-radius: 15px;
+    border: 1px #ffffff solid;
+    color: #ffffff;
+    background-color: #555150;
+    padding: 0px 10px;
+    font-family: inherit;
+    font-size: 15px;
+    margin: auto;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+    .AddLinkButton:hover {
+        background-color: #7E7977;
+    }
+.AddLinkButton:active {
+    transform: translateX(5px) translateY(5px);
+}
+
+.ConfirmedText {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: inherit;
+    margin: auto;
+}
+
+.ErrorMessage {
+    color: red; 
+    font-size: 15px; 
+    font-family: inherit; 
+    text-align: center; 
+    margin: 5px 0px; 
 }

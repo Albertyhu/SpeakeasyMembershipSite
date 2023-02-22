@@ -1,0 +1,127 @@
+<div 
+id="AddSocialComponent"
+class = "mt-[50px] text-black"
+>
+   <link rel ="stylesheet" href='../../stylesheets/style.css'> 
+    <script>
+    var AddedSocialArray = [];
+	<% if( typeof actor != 'undefined' && stringAddedSocial != "") { %>
+        var temp = '<%= stringAddedSocial %>'
+		console.log("temp: ", temp);
+        AddedSocialArray = (ParseText(temp)).split('|');
+		console.log("AddedSocialArray: ", AddedSocialArray); 
+    <%}%>
+    </script>
+    <input 
+        id = "SocialHiddenInput"
+        type = 'hidden' 
+        name = "NewSocialMedia" 
+    />
+    <label>Add your social media link here</label>
+    <div 
+        id ="SocialMediaFormWrapper"
+        class = "grid grid-cols-[90%_10%]" 
+        >
+        <div>
+            <select
+                class ="block w-full rounded-mg"
+                id = "SocialSelect"
+            >
+            <% if(typeof SocialMediaArray != "undefined" && SocialMediaArray.length > 0) { %> 
+            <% SocialMediaArray.forEach(media => { %> 
+                <option 
+                    value = "<%= media %>"
+                    class ="rounded-mg">
+                        <%= media%></option>
+            <%})%>
+            <%}%>
+            </select>
+        </div>
+        <div
+            id="AddSocialButton"
+            class = "inline-block text-2xl rounded-full px-1 active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+            border-white border-2 text-center select-none text-white mx-1 bg-[#f9bb28]
+            hover:bg-gray-800 min-w-[50px] w-auto "
+            onClick = "AddSocialInput"
+        >Add</div>
+    </div>
+    <div 
+        id = "AddedSocialMediaField"
+        class = "my-[50px]"
+        >
+    </div>
+    <script>
+        var SocialSelect = document.getElementById('SocialSelect');
+	    var AddSocialButton = document.getElementById('AddSocialButton');
+	    var AddedSocialMediaField = document.getElementById('AddedSocialMediaField');
+	    var SocialHiddenInput = document.getElementById('SocialHiddenInput');
+        const AddSocialInput = () =>{
+            SocialSelect = document.getElementById('SocialSelect');
+            //social media
+            SocialSelect.value; 
+            
+            const NewSocialWrapper =document.createElement('div')
+            NewSocialWrapper.style.margin= "20px 0px"
+            AddedSocialMediaField.appendChild(NewSocialWrapper); 
+            
+            const InputWrapper = document.createElement('div'); 
+            NewSocialWrapper.appendChild(InputWrapper); 
+
+            InputWrapper.classList.add("SocialMediaLinkInput"); 
+
+            //this is for the title of the input 
+            const Label = document.createElement('div'); 
+            Label.innerHTML = `${SocialSelect.value}: `; 
+            Label.classList.add("SocialInputLabel")
+            InputWrapper.appendChild(Label)
+
+            //text input for the link 
+            const Input = document.createElement('input');
+            Input.type="text"
+            Input.placeholder=`Add ${SocialSelect.value} link here`; 
+            const InputID = `${SocialSelect.value}-input`
+            Input.setAttribute('id', InputID); 
+            Input.classList.add('SocialInput'); 
+            InputWrapper.appendChild(Input); 
+
+            //Button 
+            const Button = document.createElement('button');
+            Button.classList.add('AddLinkButton')
+            InputWrapper.appendChild(Button);
+            Button.innerHTML = "Add Link"
+            Button.type='button'
+            
+            const ConfirmLink = () =>{
+                if(Input.value == ""){
+                    Input.placeholder = "This field cannot be empty"
+                }
+                else {
+                    const ConfirmedLinkText = document.createElement('div');
+                    ConfirmedLinkText.classList.add('ConfirmedText'); 
+                    ConfirmedLinkText.innerHTML = Input.value; 
+
+                    //delete button 
+                    const DeleteButton = document.createElement('img')
+	                DeleteButton.alt = "Delete";
+	                DeleteButton.classList.add("MiniDeleteButton")
+	                DeleteButton.src = "/assets/icon/cancel.png"
+                    InputWrapper.replaceChild(ConfirmedLinkText, Input)
+                    InputWrapper.replaceChild(DeleteButton, Button)
+
+                    const DeleteLink = () =>{
+                        AddedSocialMediaField.removeChild(NewSocialWrapper)
+                    }
+
+                    DeleteButton.addEventListener('mousedown', DeleteLink)
+                }
+
+            }
+
+
+            Button.addEventListener("mousedown", ConfirmLink); 
+        }
+
+        AddSocialButton.addEventListener('mousedown', AddSocialInput)
+
+    </script>
+</div>

@@ -33,3 +33,7 @@ exports.CountSocialMedia = User => {
     }
     return count; 
 }
+
+
+exports.SocialMediaArray = ["facebook", "twitter", "instagram", "youtube", "tiktok", "twitch", "pinterest", "tumblr", "discord", "linkedin"] 
+

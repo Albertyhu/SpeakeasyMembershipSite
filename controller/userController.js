@@ -2,6 +2,9 @@ const User = require('../model/Users')
 const Message = require('../model/Message');
 const async = require('async'); 
 const Join = require('../util/join')
+const { SocialMediaArray } = require("../util/socialmedia")
+const validUrl = require('valid-url'); 
+
 exports.UserList = (req, res, next) => {
     User.find({})
         .sort({ username: 'desc' })
@@ -109,7 +112,7 @@ exports.UserUpdate_get = (req, res, next) => {
                     avatar: "/assets/images/avatar2.png",
                     BackgroundImageURL: "/assets/images/embroidery.png", 
                     stringDrinks: result.GetUser.favoriteDrink && result.GetUser.favoriteDrink.length > 0 ? Join(result.GetUser.favoriteDrink) : null,
-
+                    SocialMediaArray: SocialMediaArray, 
                 })
             } catch (e) {
                 return next(e)

@@ -88,6 +88,7 @@
                         /><%=  typeof userDetail.biography != 'undefined' && userDetail.biography != "" ? userDetail.biography.trim() : null %>
                         </textarea>
                 </div>
+                <%- include('./SocialMediaSelect')%>
                 <%- include('../partials/FormButtons')%>
                 </form>
                 <img 
