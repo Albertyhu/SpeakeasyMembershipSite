@@ -3,25 +3,30 @@ const Schema = mongoose.Schema;
 const { DateTime, toLocaleStrin } = require("luxon");
 
 const User = new Schema({
-    member: { type: Boolean, required: true }, 
+    member: { type: Boolean, required: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true },
     admin: { type: Boolean, required: true },
-    joinedDate: { type: Date }, 
-    profile_pic: { data: Buffer, contentType: String }, 
+    joinedDate: { type: Date },
+    profile_pic: { data: Buffer, contentType: String },
     biography: { type: String },
-    favoriteDrink: [{type: String}], 
-    facebook: { type: String },
-    twitter: { type: String },
-    instagram: { type: String },
-    youtube: { type: String },
-    tiktok: {type: String},
-    twitch: { type: String },
-    pinterest: { type: String }, 
-    tumblr: { type: String },
-    discord: { type: String },
-    linkedin: { type: String }, 
+    favoriteDrink: [{ type: String }],
+    facebook: [{ type: String }],
+    twitter: [{ type: String }],
+    instagram: [{ type: String }],
+    youtube: [{ type: String }],
+    tiktok: [{ type: String }],
+    twitch: [{ type: String }],
+    pinterest: [{ type: String }], 
+    tumblr: [{ type: String }],
+    discord: [{ type: String }],
+    linkedin: [{ type: String }], 
+    website: [{ type: String }],
+    SocialMediaLinks: [{
+        platform: { type: String },
+        link: {type: String}
+    }]
 })
 
 User.virtual("url").get(function () {

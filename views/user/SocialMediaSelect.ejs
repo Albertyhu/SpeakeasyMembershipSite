@@ -2,16 +2,14 @@
 id="AddSocialComponent"
 class = "mt-[50px] text-black"
 >
-   <link rel ="stylesheet" href='../../stylesheets/style.css'> 
-    <script>
+<script>
+    //Array that stores added social media links 
     var AddedSocialArray = [];
 	<% if( typeof actor != 'undefined' && stringAddedSocial != "") { %>
         var temp = '<%= stringAddedSocial %>'
-		console.log("temp: ", temp);
         AddedSocialArray = (ParseText(temp)).split('|');
-		console.log("AddedSocialArray: ", AddedSocialArray); 
     <%}%>
-    </script>
+</script>
     <input 
         id = "SocialHiddenInput"
         type = 'hidden' 
@@ -35,6 +33,7 @@ class = "mt-[50px] text-black"
                         <%= media%></option>
             <%})%>
             <%}%>
+                <option value = "website">Your website</option>
             </select>
         </div>
         <div
@@ -58,7 +57,7 @@ class = "mt-[50px] text-black"
         const AddSocialInput = () =>{
             SocialSelect = document.getElementById('SocialSelect');
             //social media
-            SocialSelect.value; 
+            const UserInput = SocialSelect.value.trim(); 
             
             const NewSocialWrapper =document.createElement('div')
             NewSocialWrapper.style.margin= "20px 0px"
@@ -71,15 +70,15 @@ class = "mt-[50px] text-black"
 
             //this is for the title of the input 
             const Label = document.createElement('div'); 
-            Label.innerHTML = `${SocialSelect.value}: `; 
+            Label.innerHTML = `${UserInput}: `; 
             Label.classList.add("SocialInputLabel")
             InputWrapper.appendChild(Label)
 
             //text input for the link 
             const Input = document.createElement('input');
             Input.type="text"
-            Input.placeholder=`Add ${SocialSelect.value} link here`; 
-            const InputID = `${SocialSelect.value}-input`
+            Input.placeholder=`Add ${UserInput} link here`; 
+            const InputID = `${UserInput}-input`
             Input.setAttribute('id', InputID); 
             Input.classList.add('SocialInput'); 
             InputWrapper.appendChild(Input); 
@@ -98,7 +97,7 @@ class = "mt-[50px] text-black"
                 else {
                     const ConfirmedLinkText = document.createElement('div');
                     ConfirmedLinkText.classList.add('ConfirmedText'); 
-                    ConfirmedLinkText.innerHTML = Input.value; 
+                    ConfirmedLinkText.innerHTML = Input.value.trim(); 
 
                     //delete button 
                     const DeleteButton = document.createElement('img')
@@ -108,20 +107,24 @@ class = "mt-[50px] text-black"
                     InputWrapper.replaceChild(ConfirmedLinkText, Input)
                     InputWrapper.replaceChild(DeleteButton, Button)
 
+                    //Add socialmedia type and link to array 
+                    const newAddedLink = {
+                        platform: UserInput,
+                        link: Input.value.trim(), 
+                    }
+                    AddedSocialArray.push(newAddedLink); 
+                    SocialHiddenInput.value = Join(AddedSocialArray)
                     const DeleteLink = () =>{
                         AddedSocialMediaField.removeChild(NewSocialWrapper)
+                        var temp = AddedSocialArray.filter(val => val.link != UserInput)
+                        AddedSocialArray = temp; 
                     }
 
                     DeleteButton.addEventListener('mousedown', DeleteLink)
                 }
-
             }
-
-
             Button.addEventListener("mousedown", ConfirmLink); 
         }
-
         AddSocialButton.addEventListener('mousedown', AddSocialInput)
-
     </script>
 </div>

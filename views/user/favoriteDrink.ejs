@@ -102,8 +102,7 @@
 	DrinksAnswers.style.display = "table"
 
 	NewInput.addEventListener('click', ()=>{
-		var tempArr = DrinksArray;
-		tempArr = DrinksArray.filter(val => val !== UserInput)
+		var tempArr = DrinksArray.filter(val => val !== UserInput)
 		DrinksArray = tempArr;
 		DrinksAnswers.removeChild(NewInput)
 		DrinksHiddenInput = document.getElementById('DrinksHiddenInput');

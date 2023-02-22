@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\controller",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\icon",
     "\\public\\assets\\social_media",
     "\\public\\stylesheets",
     "\\util",
@@ -11,6 +11,6 @@
     "\\views\\partials",
     "\\views\\user"
   ],
-  "SelectedNode": "\\views\\user\\userForm.ejs",
+  "SelectedNode": "\\controller\\userController.js",
   "PreviewInSolutionExplorer": false
 }

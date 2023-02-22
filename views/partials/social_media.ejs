@@ -1,50 +1,65 @@
 
 <% 
 	var columnStyle = "";  
-	switch(userDetail.CountSocialMedia){
-		case 1: 
-			columnStyle = "block";
-			break; 
-		case 2: 
-			columnStyle = "grid grid-cols-2";
-			break;
-		default: 
-			columnStyle = "grid grid-cols-3";
-			break; 
+	if(typeof SocialMediaLinks != 'undefined' && SocialMediaLinks.length > 0) {
+		switch(SocialMediaLinks.length){
+			case 1: 
+				columnStyle = "block";
+				break; 
+			case 2: 
+				columnStyle = "grid grid-cols-2";
+				break;
+			default: 
+				columnStyle = "grid grid-cols-3";
+				break; 
+		}
 	}
-    var SocialStyle = "w-[50px] h-[50px] m-auto"
+    var SocialStyle = "w-[100px] h-[100px] mx-auto my-[20px] cursor-pointer active:translate-x-[5px] active:translate-y-[5px]"
+
+	const ReturnIcon = (type) =>{
+		switch(type){
+			case 'facebook':
+				return facebookIcon;
+				break;
+			case 'discord':
+				return discordIcon;
+				break; 
+			case 'instagram':
+				return instagramIcon;
+				break;
+			case 'linkedin':
+				return linkedinIcon;
+				break;
+			case 'tumblr':
+				return tumblrIcon;
+				break;
+			case 'twitch':
+				return twitchIcon;
+				break;
+			case 'twitter':
+				return twitterIcon;
+				break;
+			case 'youtube':
+				return youtubeIcon;
+				break;
+			default:
+				return defaultIcon;
+				break;
+		}
+	}
+
 %>
 <div
 	class = "<%= columnStyle %> mt-10"
 >
-	<% if (userDetail.facebook && userDetail.facebook != "") { %>
-       <a href ="<%= userDetail.facebook %>"><img src ="<%= facebookIcon %>" alt="facebook" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.twitter && userDetail.twitter != "") { %>
-        <a href ="<%= userDetail.twitter %>"><img src ="<%= twitterIcon %>" alt="twitter" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.instagram && userDetail.instagram != "") { %>
-        <a href ="<%= userDetail.instagram %>"><img src ="<%= instagramIcon %>" alt="instagram" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.youtube && userDetail.youtube != "") { %>
-        <a href ="<%= userDetail.youtube %>"><img src ="<%= youtubeIcon %>" alt="youtube" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.tiktok && userDetail.tiktok != "") { %>
-        <a href ="<%= userDetail.tiktok %>"><img src ="<%= tiktokIcon %>" alt="tiktok" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.twitch && userDetail.twitch != "") { %>
-        <a href ="<%= userDetail.twitch %>"><img src ="<%= twitchIcon %>" alt="twitch" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.pinterest && userDetail.pinterest != "") { %>
-        <a href ="<%= userDetail.pinterest %>"><img src ="<%= pinterestIcon %>" alt="pinterest" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.tumblr && userDetail.tumblr != "") { %>
-        <a href ="<%= userDetail.tumblr %>"><img src ="<%= tumblrIcon %>" alt="tumblr" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.discord && userDetail.discord != "") { %>
-        <a href ="<%= userDetail.discord %>"><img src ="<%= discordIcon %>" alt="discord" class = "<%= SocialStyle %>"/></a>
-    <%}%>
-    <% if (userDetail.linkedin && userDetail.linkedin != "") { %>
-        <a href ="<%= userDetail.linkedin %>"><img src ="<%= linkedinIcon %>" alt="linkedin" class = "<%= SocialStyle %>"/></a>
-    <%}%>
+<% if(typeof SocialMediaLinks != 'undefined' && SocialMediaLinks.length > 0) { %> 
+	<% SocialMediaLinks.forEach(link =>{ %> 
+		<a href ="<%= link.link.includes('http://') || link.link.includes('https://') ? link.link : `http://${link.link}` %>">
+		<img 
+			src ="<%= ReturnIcon(link.platform) %>" 
+			alt = "<%= link.platform %> link" 
+			class = "<%= SocialStyle %>"
+			/> 
+	<%})%></a>
+<%}%>
 </div>

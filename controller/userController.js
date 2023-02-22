@@ -45,8 +45,24 @@ exports.UserDetail = (req, res, next) => {
                 return next(err)
             }
             try {
-                result.GetUser.facebook = "http://www.facebook.com";
-                result.GetUser.twitter = 'http://www.twitter.com'
+                result.GetUser.SocialMediaLinks = [
+                    {   
+                        platform: "facebook", 
+                        link: "facebook.com"
+                    },
+                    {
+                        platform: "instagram",
+                        link: "instagram.com"
+                    },
+                    {
+                        platform: "youtube",
+                        link: "youtube.com"
+                    },
+                    {
+                        platform: "website",
+                        link: "www.ladesigninitiative.com"
+                    }
+                ];
                 res.render('user/userDetail', {
                     user: req.user, 
                     title: `${result.GetUser.username}'s profile`, 
@@ -67,7 +83,10 @@ exports.UserDetail = (req, res, next) => {
                     twitchIcon: "/assets/social_media/twitch.png",
                     twitterIcon: "/assets/social_media/twitter.png",
                     youtubeIcon: "/assets/social_media/youtube.png",
-                   
+                    defaultIcon: "/assets/social_media/networking.png",
+
+                    //for testing purposes
+                    SocialMediaLinks: result.GetUser.SocialMediaLinks,
                 })
             } catch (e) {
                 return next(e)
