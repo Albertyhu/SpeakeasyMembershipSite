@@ -8,7 +8,7 @@
 			})
 			<%}%>
 		</script>
-		<label for="drinks">Favorite Drink</label>
+		<label for="drinks" class ="text-black uppercase font-bold">Favorite Drink</label>
 		<div class = "block whitespace-nowrap">
 			<input
 				id = "DrinksHiddenInput"
@@ -128,12 +128,12 @@
 			MessageDiv.innerHTML = message;
 			MessageDiv.classList.add("DeleteMessage");
 			DrinkDeleteMessageField.appendChild(MessageDiv);
-			MessageDiv.classList.add("DeleteMessageFadeIn");
-			setTimeout(()=>{DrinkDeleteMessageField.removeChild(MessageDiv)}, 2000)
+			setTimeout(()=>{MessageDiv.classList.add("DeleteMessageFadeIn")}, 1)
+			setTimeout(()=>{DrinkDeleteMessageField.removeChild(MessageDiv)}, 4000)
 			setTimeout(()=>{
 			MessageDiv.classList.remove("DeleteMessageFadeIn");
 			MessageDiv.classList.add("DeleteMessageFadeOut");
-			}, 1000)
+			}, 2000)
 			}
 		</script>
 	</div>

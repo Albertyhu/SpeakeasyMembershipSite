@@ -5,6 +5,7 @@ const Join = require('../util/join')
 const { SocialMediaArray } = require("../util/socialmedia")
 const validUrl = require('valid-url'); 
 const ParseText = require('../util/parseText')
+const {body, validationResult } = require('express-validator')
 
 exports.UserList = (req, res, next) => {
     User.find({})
@@ -145,4 +146,11 @@ exports.UserUpdate_get = (req, res, next) => {
     )
 }
 
-exports.UserUpdate_post =[]
+exports.UserUpdate_post = [
+    body("username", "You must write down your username")
+        .trim()
+        .isLength({min: 1})
+        .escape(), 
+    body("email", "You must write down your email")
+        .trim()
+]
