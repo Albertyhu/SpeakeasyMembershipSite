@@ -781,7 +781,7 @@ video {
     border-radius: 15px;
     border: 1px #ffffff solid;
     color: #ffffff;
-    background-color: #555150;
+    background-color: #555150 !important;
     padding: 0px 10px;
     font-family: inherit;
     font-size: 15px;
@@ -794,7 +794,7 @@ video {
 }
 
 .AddLinkButton:hover {
-    background-color: #7E7977;
+    background-color: #7E7977 !important;
 }
 
 .AddLinkButton:active {

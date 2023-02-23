@@ -4,6 +4,7 @@ const async = require('async');
 const Join = require('../util/join')
 const { SocialMediaArray } = require("../util/socialmedia")
 const validUrl = require('valid-url'); 
+const ParseText = require('../util/parseText')
 
 exports.UserList = (req, res, next) => {
     User.find({})
@@ -25,6 +26,25 @@ exports.UserList = (req, res, next) => {
         })
 }
 
+const SampleSocialArray = [
+    {
+        platform: "facebook",
+        link: "facebook.com"
+    },
+    {
+        platform: "instagram",
+        link: "instagram.com"
+    },
+    {
+        platform: "youtube",
+        link: "youtube.com"
+    },
+    {
+        platform: "website",
+        link: "www.ladesigninitiative.com"
+    }
+];
+
 exports.UserDetail = (req, res, next) => {
     async.parallel(
         {
@@ -45,24 +65,7 @@ exports.UserDetail = (req, res, next) => {
                 return next(err)
             }
             try {
-                result.GetUser.SocialMediaLinks = [
-                    {   
-                        platform: "facebook", 
-                        link: "facebook.com"
-                    },
-                    {
-                        platform: "instagram",
-                        link: "instagram.com"
-                    },
-                    {
-                        platform: "youtube",
-                        link: "youtube.com"
-                    },
-                    {
-                        platform: "website",
-                        link: "www.ladesigninitiative.com"
-                    }
-                ];
+                result.GetUser.SocialMediaLinks = SampleSocialArray; 
                 res.render('user/userDetail', {
                     user: req.user, 
                     title: `${result.GetUser.username}'s profile`, 
@@ -84,9 +87,9 @@ exports.UserDetail = (req, res, next) => {
                     twitterIcon: "/assets/social_media/twitter.png",
                     youtubeIcon: "/assets/social_media/youtube.png",
                     defaultIcon: "/assets/social_media/networking.png",
-
                     //for testing purposes
                     SocialMediaLinks: result.GetUser.SocialMediaLinks,
+
                 })
             } catch (e) {
                 return next(e)
@@ -115,7 +118,9 @@ exports.UserUpdate_get = (req, res, next) => {
             if (err) {
                 return next(err)
             }
+
             try {
+                result.GetUser.SocialMediaLinks = SampleSocialArray; 
                 res.render('user/userForm', {
                     user: req.user,
                     title: `Update profile`,
@@ -131,7 +136,7 @@ exports.UserUpdate_get = (req, res, next) => {
                     avatar: "/assets/images/avatar2.png",
                     BackgroundImageURL: "/assets/images/embroidery.png", 
                     stringDrinks: result.GetUser.favoriteDrink && result.GetUser.favoriteDrink.length > 0 ? Join(result.GetUser.favoriteDrink) : null,
-                    SocialMediaArray: SocialMediaArray, 
+                    SocialMediaArray: SocialMediaArray,
                 })
             } catch (e) {
                 return next(e)

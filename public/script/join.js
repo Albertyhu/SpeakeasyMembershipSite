@@ -1,13 +1,14 @@
 const Join = (arr) => {
-    var stringData = "" 
-    arr.forEach((val, ind) => {
-        if (ind < arr.length - 1)
-            stringData += val + "|";
-        else
-            stringData += val; 
-    })
-    return stringData; 
-
+    if (typeof arr != 'undefined' && arr.length > 0) {
+        var stringData = ""
+        arr.forEach((val, ind) => {
+            if (ind < arr.length - 1)
+                stringData += val + "|";
+            else
+                stringData += val;
+        })
+        return stringData;
+    }
+    return []; 
 }
 
-module.exports = Join; 

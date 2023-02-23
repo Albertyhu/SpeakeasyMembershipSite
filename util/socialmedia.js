@@ -1,3 +1,4 @@
+const Join = require('./join.js')
 
 exports.CountSocialMedia = User => {
     var count = 0; 

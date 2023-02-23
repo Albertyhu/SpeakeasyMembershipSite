@@ -9,3 +9,5 @@ const Join = (arr) => {
     return stringData; 
 
 }
+
+module.exports = Join; 

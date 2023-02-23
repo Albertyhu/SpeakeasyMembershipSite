@@ -45,10 +45,10 @@ app.use(session({
     secret: `${process.env.ENCRYPT_KEY}`,
     resave: false,
     saveUninitialized: false,
-    //cookie: {
-    //    maxAge: 1000 * 60 * 60 * 24 * 30, // 1 day in milliseconds
-    //    secure: true // if using HTTPS
-    //}
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 30 * 30, // 1 day in milliseconds
+       // secure: true // if using HTTPS
+    }
 }));
 
 app.use(passport.initialize());
