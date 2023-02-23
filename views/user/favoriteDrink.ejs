@@ -1,120 +1,140 @@
-
 <div>
-<script>
-	var DrinksArray = [];
-	<% if( typeof actor != 'undefined' && stringDrinks != "") { %>
-        var temp = '<%= stringDrinks %>'
-		console.log("temp: ", temp);
-        DrinksArray = (ParseText(temp)).split('|');
-		console.log("DrinksArray: ", DrinksArray); 
-    <%}%>
-</script>
-    <label for="drinks">Favorite Drink</label>
-    <div class = "block whitespace-nowrap">
-        <input 
-            id = "DrinksHiddenInput"
-            type = 'hidden' 
-            name = "drinks" 
-        />
-        <input 
-            id = "DrinksInput"
-            type = "text"
-            placeholder = "Enter your favorite drinks" 
-            class = "inline-block rounded-lg bg-[rgba(0,0,0,0)] text-black border-white border-[1px] 
+	<div>
+		<script>
+			var DrinksArray = [];
+			<% if( typeof userDetail.favoriteDrink != 'undefined' && userDetail.favoriteDrink.length > 0) { %>
+			userDetail.forEach(drink => {
+			DrinksArray.push(drink);
+			})
+			<%}%>
+		</script>
+		<label for="drinks">Favorite Drink</label>
+		<div class = "block whitespace-nowrap">
+			<input
+				id = "DrinksHiddenInput"
+				type = 'hidden'
+				name = "drinks"
+			/>
+			<input
+				id = "DrinksInput"
+				type = "text"
+				placeholder = "Enter your favorite drinks"
+				class = "inline-block rounded-lg bg-[rgba(0,0,0,0)] text-black border-white border-[1px] 
             pl-3 min-w-[80%]"
             />
-        <div
-            id="AddDrinksButton"
-            class = "inline-block text-2xl rounded-full px-1 active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
-            border-white border-2 text-center select-none text-white mx-1 bg-[#f9bb28]
-            hover:bg-gray-800 min-w-[50px] w-auto "
-            onClick = "AddRelatedDrinks"
-        >Add</div>
-    </div>
-</div>
-<div 
-    id = "DrinksAnswers"
-    class = 'w-full my-5 mx-auto flex h-[20px] max-w-[200px] overflow-y-auto'
+			<div
+				id="AddDrinksButton"
+				class = "inline-block text-2xl rounded-full px-1 active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+				border-white border-2 text-center select-none text-white mx-1 bg-[#f9bb28]
+				hover:bg-gray-800 min-w-[50px] w-auto "
+				onClick = "AddRelatedDrinks"
+			>Add</div>
+		</div>
+	</div>
+	<div
+		id ="DrinkDeleteMessageField"
+		class ="relative"
+		>
+	</div>
+	<div
+		id = "DrinksAnswers"
+		class = 'w-full my-5 mx-auto flex h-[20px] max-w-[200px] overflow-y-auto'
     >
-    <script>
+		<script>
 
-	var DrinksInput = document.getElementById('DrinksInput');
-	var AddDrinksButton = document.getElementById('AddDrinksButton');
-	var DrinksAnswers = document.getElementById('DrinksAnswers');
-	var DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+			var DrinksInput = document.getElementById('DrinksInput');
+			var AddDrinksButton = document.getElementById('AddDrinksButton');
+			var DrinksAnswers = document.getElementById('DrinksAnswers');
+			var DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+			var DrinkDeleteMessageField = document.getElementById('DrinkDeleteMessageField');
 
-	if(DrinksArray.length > 0){
-		DrinksAnswers = document.getElementById('DrinksAnswers');
-		DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+			if(DrinksArray.length > 0){
+			DrinksAnswers = document.getElementById('DrinksAnswers');
+			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
 
-		//Unforutnately, DrinksArray will automatically be converted as a string and not an array
-		//Thus, the method "Join" will be used combine all the values into a string to be separated by the character '|'
-		DrinksHiddenInput.value = Join(DrinksArray);
-		DrinksArray.forEach(val =>{
-		const UserInput = val;
-		const NewInput = document.createElement('div')
-		const NewInputDiv = document.createElement('div');
-		NewInputDiv.innerHTML = UserInput;
-		NewInput.classList.add('Tag');
-		NewInput.appendChild(NewInputDiv)
-		DrinksAnswers.appendChild(NewInput);
+			//Unforutnately, DrinksArray will automatically be converted as a string and not an array
+			//Thus, the method "Join" will be used combine all the values into a string to be separated by the character '|'
+			DrinksHiddenInput.value = Join(DrinksArray);
+			DrinksArray.forEach(val =>{
+			const UserInput = val;
+			const NewInput = document.createElement('div')
+			const NewInputDiv = document.createElement('div');
+			NewInputDiv.innerHTML = UserInput;
+			NewInput.classList.add('Tag');
+			NewInput.appendChild(NewInputDiv)
+			DrinksAnswers.appendChild(NewInput);
 
-		const DeleteButton = document.createElement('img')
-		DeleteButton.alt = "Delete";
-		DeleteButton.classList.add("MiniDeleteButton")
-		DeleteButton.src = "/assets/icon/cancel.png"
-		NewInput.appendChild(DeleteButton)
-		DrinksAnswers.style.display = "table"
+			const DeleteButton = document.createElement('img')
+			DeleteButton.alt = "Delete";
+			DeleteButton.classList.add("MiniDeleteButton")
+			DeleteButton.src = "/assets/icon/cancel.png"
+			NewInput.appendChild(DeleteButton)
+			DrinksAnswers.style.display = "table"
 
-		//This is allows users to delete item by clicking on it
-		NewInput.addEventListener('click', ()=>{
+			//This is allows users to delete item by clicking on it
+			NewInput.addEventListener('click', ()=>{
 			var tempArr = DrinksArray;
 			tempArr = DrinksArray.filter(val => val !== UserInput)
 			DrinksArray = tempArr;
 			DrinksAnswers.removeChild(NewInput)
+			ShowDeleteDrinkMessage("Drink removed")
+			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+			DrinksHiddenInput.value = Join(DrinksArray);
+			})
+
+			})
+			}
+
+			const AddRelatedDrinks = () => {
+			DrinksInput = document.getElementById('DrinksInput');
+			DrinksAnswers = document.getElementById('DrinksAnswers');
+			const UserInput = DrinksInput.value.trim();
+			if(UserInput.trim() != ""){
+			DrinksArray.push(UserInput)
+
+			const NewInput = document.createElement('div')
+			const NewInputDiv = document.createElement('div');
+			NewInputDiv.innerHTML = UserInput;
+			NewInput.classList.add('Tag');
+			NewInput.appendChild(NewInputDiv)
+			DrinksAnswers.appendChild(NewInput);
+
+			const DeleteButton = document.createElement('img')
+			DeleteButton.alt = "Delete";
+			DeleteButton.classList.add("MiniDeleteButton")
+			DeleteButton.src = "/assets/icon/cancel.png"
+			NewInput.appendChild(DeleteButton)
+			DrinksAnswers.style.display = "table"
+
+			NewInput.addEventListener('click', ()=>{
+			var tempArr = DrinksArray.filter(val => val !== UserInput)
+			DrinksArray = tempArr;
+			DrinksAnswers.removeChild(NewInput)
+			ShowDeleteDrinkMessage("Drink removed")
+			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+			DrinksHiddenInput.value = Join(DrinksArray);
+			})
+			DrinksInput.value = ""
+
 
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
 			DrinksHiddenInput.value = Join(DrinksArray);
-		})
+			}
+			}
+			AddDrinksButton.addEventListener('click', AddRelatedDrinks)
 
-		})
-	}
-
-	const AddRelatedDrinks = () => {
-	DrinksInput = document.getElementById('DrinksInput');
-	DrinksAnswers = document.getElementById('DrinksAnswers');
-	const UserInput = DrinksInput.value.trim();
-	if(UserInput.trim() != ""){
-	DrinksArray.push(UserInput)
-
-	const NewInput = document.createElement('div')
-	const NewInputDiv = document.createElement('div');
-	NewInputDiv.innerHTML = UserInput;
-	NewInput.classList.add('Tag');
-	NewInput.appendChild(NewInputDiv)
-	DrinksAnswers.appendChild(NewInput);
-
-	const DeleteButton = document.createElement('img')
-	DeleteButton.alt = "Delete";
-	DeleteButton.classList.add("MiniDeleteButton")
-	DeleteButton.src = "/assets/icon/cancel.png"
-	NewInput.appendChild(DeleteButton)
-	DrinksAnswers.style.display = "table"
-
-	NewInput.addEventListener('click', ()=>{
-		var tempArr = DrinksArray.filter(val => val !== UserInput)
-		DrinksArray = tempArr;
-		DrinksAnswers.removeChild(NewInput)
-		DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
-		DrinksHiddenInput.value = Join(DrinksArray);
-	})
-	DrinksInput.value = ""
-
-
-	DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
-	DrinksHiddenInput.value = Join(DrinksArray);
-	}
-	}
-	AddDrinksButton.addEventListener('click', AddRelatedDrinks)
-</script>
+			function ShowDeleteDrinkMessage(message){
+			const MessageDiv = document.createElement('div');
+			MessageDiv.innerHTML = message;
+			MessageDiv.classList.add("DeleteMessage");
+			DrinkDeleteMessageField.appendChild(MessageDiv);
+			MessageDiv.classList.add("DeleteMessageFadeIn");
+			setTimeout(()=>{DrinkDeleteMessageField.removeChild(MessageDiv)}, 2000)
+			setTimeout(()=>{
+			MessageDiv.classList.remove("DeleteMessageFadeIn");
+			MessageDiv.classList.add("DeleteMessageFadeOut");
+			}, 1000)
+			}
+		</script>
+	</div>
 </div>

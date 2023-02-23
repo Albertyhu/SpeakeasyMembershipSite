@@ -86,7 +86,15 @@
 .SocialMediaLinkInput {
     display: grid;
     grid-template-columns: 10% 80% 10%;
+    border-radius: 10px; 
+    border: 1px solid #dbdbdb;
+    cursor: pointer; 
+    padding: 0px 1px;
 }
+
+    .SocialMediaLinkInput:hover {
+        background-color: #e8de91;
+    }
 
 .SocialInputLabel {
     font-weight: bold;
@@ -137,4 +145,34 @@
     font-family: inherit;
     text-align: center;
     margin: 5px 0px;
+}
+
+.DeleteMessage {
+    position: absolute;
+    top: -10px; 
+    left: 0;
+    right: 0; 
+    color: #e48f1a; 
+    padding: 1px 5px; 
+    font-size: 25px; 
+    font-family: inherit; 
+    text-align: center; 
+    margin: 10px auto; 
+    transform: translateY(-40px);
+    transition: opacity 1s linear, transform 1s linear;
+    opacity: 0.1; 
+    background-color: #ffffff;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.DeleteMessageFadeIn {
+    transition: opacity 1s linear, transform 1s linear;
+    opacity: 1.0;
+    transform: translateY(40px);
+}
+
+.DeleteMessageFadeOut {
+    opacity: 0.1;
+    transform: translateY(-40px);
 }

@@ -9,9 +9,8 @@
     "\\public\\stylesheets",
     "\\util",
     "\\views",
-    "\\views\\partials",
     "\\views\\user"
   ],
-  "SelectedNode": "\\views\\partials\\FormButtons.ejs",
+  "SelectedNode": "\\views\\user\\userForm.ejs",
   "PreviewInSolutionExplorer": false
 }

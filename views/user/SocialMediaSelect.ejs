@@ -16,7 +16,6 @@ class = "mt-[50px] text-black"
         <%})%>
     <%}%>
 
-    console.log("AddedSocialArray: ",  AddedSocialArray)
 </script>
     <input 
         id = "SocialHiddenInput"
@@ -28,7 +27,7 @@ class = "mt-[50px] text-black"
         id ="SocialMediaFormWrapper"
         class = "grid grid-cols-[90%_10%]" 
         >
-        <div>
+        <div id = "SelectWrapper">
             <select
                 class ="block w-full rounded-mg"
                 id = "SocialSelect"
@@ -53,6 +52,9 @@ class = "mt-[50px] text-black"
         >Add</div>
     </div>
     <div 
+        id = "DeleteMessageField"
+        class = "relative"></div>
+    <div 
         id = "AddedSocialMediaField"
         class = "my-[50px]"
         >
@@ -62,7 +64,7 @@ class = "mt-[50px] text-black"
 	    var AddSocialButton = document.getElementById('AddSocialButton');
 	    var AddedSocialMediaField = document.getElementById('AddedSocialMediaField');
 	    var SocialHiddenInput = document.getElementById('SocialHiddenInput');
-
+        var DeleteMessageField = document.getElementById('DeleteMessageField');
         //Add existing links retrived from the database 
         if(AddedSocialArray.length > 0){
             SocialHiddenInput.value = Join(AddedSocialArray); 
@@ -102,8 +104,10 @@ class = "mt-[50px] text-black"
                     AddedSocialMediaField.removeChild(NewSocialWrapper)
                     var temp = AddedSocialArray.filter(val => val.link != retrieved.link)
                     AddedSocialArray = temp; 
+                    SocialHiddenInput=Join(AddedSocialArray)
+                    ShowDeleteLinkMessage("Link has been deleted.")
                 }
-                DeleteButton.addEventListener('mousedown', DeleteLink)
+                NewSocialWrapper.addEventListener('mousedown', DeleteLink)
             })
         }
 
@@ -171,13 +175,30 @@ class = "mt-[50px] text-black"
                         AddedSocialMediaField.removeChild(NewSocialWrapper)
                         var temp = AddedSocialArray.filter(val => val.link != UserInput)
                         AddedSocialArray = temp; 
+                        SocialHiddenInput=Join(AddedSocialArray)
+                        ShowDeleteLinkMessage("Link has been deleted.")
                     }
-
-                    DeleteButton.addEventListener('mousedown', DeleteLink)
+                    NewSocialWrapper.addEventListener('mousedown', DeleteLink)
                 }
             }
             Button.addEventListener("mousedown", ConfirmLink); 
         }
         AddSocialButton.addEventListener('mousedown', AddSocialInput)
+
+        function ShowDeleteLinkMessage(message){
+            const MessageDiv = document.createElement('div');
+            MessageDiv.innerHTML = message; 
+            MessageDiv.classList.add("DeleteMessage"); 
+            DeleteMessageField.appendChild(MessageDiv); 
+            
+            setTimeout(()=>{
+                MessageDiv.classList.add("DeleteMessageFadeIn");
+            }, 1)
+            setTimeout(()=>{DeleteMessageField.removeChild(MessageDiv)}, 4000)
+            setTimeout(()=>{
+               MessageDiv.classList.remove("DeleteMessageFadeIn"); 
+               MessageDiv.classList.add("DeleteMessageFadeOut"); 
+            }, 2000)
+        }
     </script>
 </div>
