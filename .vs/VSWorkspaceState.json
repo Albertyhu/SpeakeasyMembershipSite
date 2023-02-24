@@ -1,14 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\model",
+    "\\controller",
     "\\public",
-    "\\public\\assets",
-    "\\public\\assets\\social_media",
     "\\public\\script",
     "\\public\\stylesheets",
     "\\util",
     "\\views",
+    "\\views\\partials",
+    "\\views\\partials\\mainPage",
     "\\views\\user"
   ],
   "SelectedNode": "\\views\\user\\SocialMediaSelect.ejs",

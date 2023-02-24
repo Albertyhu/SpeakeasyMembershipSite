@@ -55,11 +55,12 @@
 <% if(typeof SocialMediaLinks != 'undefined' && SocialMediaLinks.length > 0) { %> 
 	<% SocialMediaLinks.forEach(link =>{ %> 
 		<a href ="<%= link.link.includes('http://') || link.link.includes('https://') ? link.link : `http://${link.link}` %>">
-		<img 
-			src ="<%= ReturnIcon(link.platform) %>" 
-			alt = "<%= link.platform %> link" 
-			class = "<%= SocialStyle %>"
-			/> 
-	<%})%></a>
+			<img 
+				src ="<%= ReturnIcon(link.platform) %>" 
+				alt = "<%= link.platform %> link" 
+				class = "<%= SocialStyle %>"
+				/>
+		</a>
+	<%})%>
 <%}%>
 </div>

@@ -44,7 +44,7 @@
                     class = "w-full h-auto" 
                     />
                 <form
-                action="/login" 
+                action="" 
                 method="POST"
                 class="[&>div>label]:text-black [&>div>label]:uppercase [&>div>label]:font-bold [&>div]:grid [&>div>input]:rounded-lg 
                 [&>div]:w-full [&>div]:my-[10px] [&>div>input]:pl-3 [&>div>input]:bg-[rgba(0,0,0,0)] 
@@ -108,20 +108,35 @@
         const FormElement = document.getElementById('form'); 
         const EmailElement = document.getElementById('emailInput');
         const ContainerElement = document.getElementById('container'); 
+        const SocialHiddenInput2 = document.querySelector('#SocialHiddenInput');
+        /*
+        const LinksMap = new Map(); 
+        LinksMap.set("facebook", "www.facebook.com"); 
+        var linkObj =  Object.fromEntries(LinksMap)
+        
+        const linkObj = [
+            {
+                platform: "facebook",
+                link: "www.facebook.com"
+             },
+            {
+                platform: "youtube",
+                link: "www.youtube.com"
+             },              
+        ]*/
 
         form.addEventListener('submit', (event) =>{
+       // SocialHiddenInput2.value = JSON.stringify(linkObj); 
+
             event.preventDefault(); 
             var isValid = true; 
             if(!checkEmail(EmailElement.value)){
                 ShowEmailErrorMessage("Error: The format of your email is incorrect. It must follow this example: user@email.com ")
                 isValid=false;
             }
-
             if(isValid){
-                //form.submit(); 
-                console.log("submitted")
+                form.submit(); 
             }
-        
         })
   
           function ShowEmailErrorMessage(message){

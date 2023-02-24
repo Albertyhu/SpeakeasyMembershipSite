@@ -844,64 +844,106 @@ video {
     border-radius: 5px;
 }
 
-.DeleteMessageFadeIn {
+.EmailErrorMessage {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    color: red;
+    padding: 1px 5px;
+    font-size: 25px;
+    font-family: inherit;
+    text-align: center;
+    margin: 10px auto;
+    transform: translateY(-40px);
     transition: opacity 1s linear, transform 1s linear;
-    opacity: 1.0;
-    transform: translateY(40px);
+    opacity: 0.0;
+    background-color: #ffffff;
+    width: -moz-fit-content;
+    width: fit-content;
+    max-width: 90%;
+    border-radius: 5px;
+    z-index: 30;
 }
 
+
 .DeleteMessageFadeOut {
-    opacity: 0.1;
+    opacity: 0.0;
     transform: translateY(-40px);
 }
+
+.DeleteMessageFadeIn {
+    opacity: 1.0;
+    transform: translateY(40px);
+    transition: opacity 1s linear, transform 1s linear;
+}
+
+
+@media screen and (max-width: 540px) {
+    .EmailErrorMessage {
+        max-width: 300px; 
+        top:150px;
+    }
+}
+
 
 .file\:rounded-lg::file-selector-button {
   border-radius: 0.5rem;
 }
+
 
 .file\:bg-\[\#99cbae\]::file-selector-button {
   --tw-bg-opacity: 1;
   background-color: rgb(153 203 174 / var(--tw-bg-opacity));
 }
 
+
 .file\:font-\[\'DecoTech\'\]::file-selector-button {
   font-family: 'DecoTech';
 }
+
 
 .file\:text-white::file-selector-button {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+
 .placeholder\:text-\[\#545454\]::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(84 84 84 / var(--tw-text-opacity));
 }
+
 
 .placeholder\:text-\[\#545454\]::placeholder {
   --tw-text-opacity: 1;
   color: rgb(84 84 84 / var(--tw-text-opacity));
 }
 
+
 .hover\:bg-\[\#d48518\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(212 133 24 / var(--tw-bg-opacity));
 }
+
 
 .hover\:bg-gray-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+
 .active\:translate-x-\[5px\]:active {
   --tw-translate-x: 5px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+
 .active\:translate-y-\[5px\]:active {
   --tw-translate-y: 5px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+
 
 @media (min-width: 640px) {
 
@@ -914,82 +956,100 @@ video {
   }
 }
 
+
 .\[\&\>\*\]\:mx-5>* {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
 }
 
+
 .\[\&\>\*\]\:inline-block>* {
   display: inline-block;
 }
+
 
 .\[\&\>div\>input\]\:rounded-lg>div>input {
   border-radius: 0.5rem;
 }
 
+
 .\[\&\>div\>input\]\:border-\[1px\]>div>input {
   border-width: 1px;
 }
+
 
 .\[\&\>div\>input\]\:border-white>div>input {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+
 .\[\&\>div\>input\]\:bg-\[rgba\(0\2c 0\2c 0\2c 0\)\]>div>input {
   background-color: rgba(0,0,0,0);
 }
 
+
 .\[\&\>div\>input\]\:pl-3>div>input {
   padding-left: 0.75rem;
 }
+
 
 .\[\&\>div\>input\]\:text-black>div>input {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+
 .\[\&\>div\>input\]\:placeholder\:text-base>div>input::-moz-placeholder {
   font-size: 1rem;
   line-height: 1.5rem;
 }
+
 
 .\[\&\>div\>input\]\:placeholder\:text-base>div>input::placeholder {
   font-size: 1rem;
   line-height: 1.5rem;
 }
 
+
 .\[\&\>div\>input\]\:placeholder\:text-\[\#545454\]>div>input::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(84 84 84 / var(--tw-text-opacity));
 }
+
 
 .\[\&\>div\>input\]\:placeholder\:text-\[\#545454\]>div>input::placeholder {
   --tw-text-opacity: 1;
   color: rgb(84 84 84 / var(--tw-text-opacity));
 }
 
+
 .\[\&\>div\>label\]\:font-bold>div>label {
   font-weight: 700;
 }
 
+
 .\[\&\>div\>label\]\:uppercase>div>label {
   text-transform: uppercase;
 }
+
 
 .\[\&\>div\>label\]\:text-black>div>label {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+
 .\[\&\>div\]\:my-\[10px\]>div {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
+
 .\[\&\>div\]\:grid>div {
   display: grid;
 }
+
 
 .\[\&\>div\]\:w-full>div {
   width: 100%;

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema; 
 const { DateTime, toLocaleStrin } = require("luxon");
+const he = require('he')
 
 const User = new Schema({
     member: { type: Boolean, required: true },
@@ -11,22 +12,11 @@ const User = new Schema({
     joinedDate: { type: Date },
     profile_pic: { data: Buffer, contentType: String },
     biography: { type: String },
-    favoriteDrink: [{ type: String }],
-    facebook: [{ type: String }],
-    twitter: [{ type: String }],
-    instagram: [{ type: String }],
-    youtube: [{ type: String }],
-    tiktok: [{ type: String }],
-    twitch: [{ type: String }],
-    pinterest: [{ type: String }], 
-    tumblr: [{ type: String }],
-    discord: [{ type: String }],
-    linkedin: [{ type: String }], 
-    website: [{ type: String }],
     SocialMediaLinks: [{
         platform: { type: String },
         link: {type: String}
-    }]
+    }],
+    
 })
 
 User.virtual("url").get(function () {
@@ -38,40 +28,24 @@ User.virtual('JoinDateFormatted').get(function () {
         : null;
 })
 
-User.virtual('CountSocialMedia').get(function () {
-    var count = 0;
-    if (this.facebook && this.facebook != "") {
-        count++;
-    }
-    if (this.twitter && this.twitter != "") {
-        count++;
-    }
-    if (this.instagram && this.instagram != "") {
-        count++;
-    }
-    if (this.youtube && this.youtube != "") {
-        count++;
-    }
-    if (this.tiktok && this.tiktok != "") {
-        count++;
-    }
-    if (this.twitch && this.twitch != "") {
-        count++;
-    }
-    if (this.pinterest && this.pinterest != "") {
-        count++;
-    }
-    if (this.tumblr && this.tumblr != "") {
-        count++;
-    }
-    if (this.discord && this.discord != "") {
-        count++;
-    }
-    if (this.linkedin && this.linkedin != "") {
-        count++;
-    }
-    return count; 
-
+User.virtual('unescaped_username').get(function () {
+    return this.username ? he.decode(this.username) : null;
 })
+
+User.virtual('unescaped_drinks').get(function () {
+    if (typeof this.favoriteDrink != 'undefined' && this.favoriteDrink.length > 0) {
+        var decodedDrinkArray = []; 
+        this.favoriteDrink.forEach(drink => {
+            decodedDrinkArray.push(he.decode(drink));
+        })
+        return decodedDrinkArray; 
+    }
+})
+
+User.virtual('unescaped_email').get(function () {
+    return this.email ? he.decode(this.email) : null; 
+})
+
+
 
 module.exports = mongoose.model('User', User )

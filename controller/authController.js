@@ -13,7 +13,6 @@ var dummyData = {
     confirm_password: "test123",
 }
 
-
 exports.Login_Get = (req, res, next) => {
     const { username, email, password, confirm_password } = dummyData;  
     res.render('login', {

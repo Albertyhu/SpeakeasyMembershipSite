@@ -20,7 +20,7 @@ class = "mt-[50px] text-black"
     <input 
         id = "SocialHiddenInput"
         type = 'hidden' 
-        name = "NewSocialMedia" 
+        name = "NewSocialMediaLinks" 
     />
     <label>Add your social media link here</label>
     <div 
@@ -67,7 +67,7 @@ class = "mt-[50px] text-black"
         var DeleteMessageField = document.getElementById('DeleteMessageField');
         //Add existing links retrived from the database 
         if(AddedSocialArray.length > 0){
-            SocialHiddenInput.value = Join(AddedSocialArray); 
+            SocialHiddenInput.value = JSON.stringify(AddedSocialArray); 
             AddedSocialArray.forEach(retrieved => {
                 SocialSelect = document.getElementById('SocialSelect');
                 const retrievedPlatform = retrieved.platform;
@@ -104,7 +104,7 @@ class = "mt-[50px] text-black"
                     AddedSocialMediaField.removeChild(NewSocialWrapper)
                     var temp = AddedSocialArray.filter(val => val.link != retrieved.link)
                     AddedSocialArray = temp; 
-                    SocialHiddenInput=Join(AddedSocialArray)
+                    SocialHiddenInput.value=JSON.stringify(AddedSocialArray)
                     ShowDeleteLinkMessage("Link has been deleted.")
                 }
                 NewSocialWrapper.addEventListener('mousedown', DeleteLink)
@@ -170,12 +170,12 @@ class = "mt-[50px] text-black"
                         link: Input.value.trim(), 
                     }
                     AddedSocialArray.push(newAddedLink); 
-                    SocialHiddenInput.value = Join(AddedSocialArray)
+                    SocialHiddenInput.value = JSON.stringify(AddedSocialArray)
                     const DeleteLink = () =>{
                         AddedSocialMediaField.removeChild(NewSocialWrapper)
                         var temp = AddedSocialArray.filter(val => val.link != UserInput)
                         AddedSocialArray = temp; 
-                        SocialHiddenInput=Join(AddedSocialArray)
+                        SocialHiddenInput.value =JSON.stringify(AddedSocialArray)
                         ShowDeleteLinkMessage("Link has been deleted.")
                     }
                     NewSocialWrapper.addEventListener('mousedown', DeleteLink)

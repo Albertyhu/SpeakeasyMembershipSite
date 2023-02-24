@@ -1,3 +1,36 @@
+2/23/23
+In a Node JS app, when you need an html form to return an array to the backend once the 
+form is submitted, you cannot pass the array from an html input element. Instead, you 
+need to convert the array into a JSON string first, in which it can converted back into
+an array in the backend with JSON.parse()
+
+For example, in the user profile form, links are stored in the array AddedSocialArray.
+The values of that array needs to be passed  to a hidden input in the form. Do the following:
+
+
+    <div 
+        id ="SocialMediaFormWrapper"
+        class = "grid grid-cols-[90%_10%]" 
+        >
+
+var SocialHiddenInput = document.getElementById('SocialHiddenInput');
+
+//Everytime you need to update SocialHiddenInput, execute the following
+
+SocialHiddenInput.value=JSON.stringify(AddedSocialArray)
+
+//Once the form has been submitted, SocialHiddenInput will send the data in form of JSON string
+
+//In the backend, run the following:
+
+        var updates = {
+            SocialMediaLinks: JSON.parse(req.body.NewSocialMediaLinks), 
+        }
+
+//JSON.parse(req.body.NewSocialMediaLinks) returns an array
+2/23/23
+To deal with issues of escaped string content, use the library 'he' to unescape the string. 
+
 2/22/23
 Social media icons are stored with the array:
 SocialMediaLinks
