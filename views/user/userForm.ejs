@@ -47,12 +47,25 @@
                 <form
                 action="" 
                 method="POST"
+                enctype="multipart/form-data"
                 class="[&>div>label]:text-black [&>div>label]:uppercase [&>div>label]:font-bold [&>div]:grid [&>div>input]:rounded-lg 
                 [&>div]:w-full [&>div]:my-[10px] [&>div>input]:pl-3 [&>div>input]:bg-[rgba(0,0,0,0)] 
                 [&>div>input]:text-black [&>div>input]:border-white [&>div>input]:border-[1px]
                 bg-[#f2e798] rounded-md p-10 [&>div>input]:placeholder:text-[#545454] text-2xl
                 [&>div>input]:placeholder:text-base" 
                 id = "form">
+                <div>
+                    <label for = "profile_pic">Profile picture</label>
+                    <input 
+                        name = "profile_pic" 
+                        id = "profile_picInput"
+                        type = "file"
+                        placeholder = "Upload an image for your your profile picture here" 
+                        class = "file:rounded-lg file:font-['DecoTech'] file:bg-[#99cbae]
+                        file:text-white cursor-pointer"
+                        value = "<%= typeof userDetail.profile_pic != 'undefined' ? userDetail.profile_pic : null %>"
+                        />
+                </div>
                 <div>
                     <label for = "username">Username</label>
                     <input 
@@ -62,7 +75,7 @@
                         placeholder = "Type your username here" 
                         required = "true"
                         class = ""
-                        value = "<%= typeof user != 'undefined' ? user.username : null %>"
+                        value = "<%= typeof userDetail.username != 'undefined' ? userDetail.username : null %>"
                         />
                 </div>
                 <div>
@@ -74,7 +87,7 @@
                         placeholder = "Type your email here" 
                         required = "true"
                         class = ""
-                        value = "<%= typeof user != 'undefined' ? user.email : null %>"
+                        value = "<%= typeof userDetail.email != 'undefined' ? userDetail.email : null %>"
                         />
                 </div>
                 <%- include('favoriteDrink')%>

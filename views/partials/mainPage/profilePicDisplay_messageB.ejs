@@ -1,0 +1,26 @@
+<div 
+onclick = "location.href='<%= mess.user.url%>'" 
+class = "cursor-pointer"
+id = "AvatarField">
+	<% var ProfilePicStyle = "w-[100px] h-[100px] m-auto rounded-full" %>
+	<div 
+	class = ""
+	id = "AvatarField">
+		<% if(user) {%>
+			<% if(typeof mess.user.profile_pic != 'undefined' && typeof mess.user.profile_pic.data != 'undefined') {%>
+				<img 
+					src="data:<%= mess.user.profile_pic.contentType %>;base64,<%= mess.user.profile_pic.data.toString('base64') %>"
+					class = "<%= ProfilePicStyle %>"
+					/>
+			<%} else {%>
+				<img src="<%= avatar %>"
+					class="<%= ProfilePicStyle %>"
+					alt="avatar" />
+			<% } %>
+		<% } else { %>
+			<img src="<%= avatar %>"
+				class="<%= ProfilePicStyle %>"
+				alt="avatar" />
+		<% }%>
+	</div>
+</div>

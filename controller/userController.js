@@ -1,12 +1,14 @@
-const User = require('../model/Users')
+const User = require('../model/Users');
 const Message = require('../model/Message');
 const async = require('async'); 
-const Join = require('../util/join')
-const { SocialMediaArray } = require("../util/socialmedia")
+const Join = require('../util/join');
+const { SocialMediaArray } = require("../util/socialmedia");
 const validUrl = require('valid-url'); 
-const ParseText = require('../util/parseText')
-const { body, validationResult } = require('express-validator')
-const he = require('he')
+const ParseText = require('../util/parseText');
+const { body, validationResult } = require('express-validator');
+const he = require('he');
+const fs = require('fs');
+const path = require('path');
 
 exports.UserList = (req, res, next) => {
     User.find({})
@@ -160,6 +162,13 @@ exports.UserUpdate_post = [
     body('drinks'),
     body('NewSocialMediaLinks'), 
     (req, res, next) => {
+        var profile_pic = null;
+        if (req.file) {
+            profile_pic = {
+                data: fs.readFileSync(path.join(__dirname, '../public/uploads/', req.file.filename)),
+                contentType: req.file.mimetype
+            };
+        }
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             async.parallel(
@@ -213,6 +222,7 @@ exports.UserUpdate_post = [
             biography: he.decode(req.body.biography), 
             favoriteDrink: JSON.parse(req.body.drinks), 
             SocialMediaLinks: JSON.parse(req.body.NewSocialMediaLinks), 
+            profile_pic: profile_pic,
             _id: req.params.id
         }
         const updatedUser = new User(updates)

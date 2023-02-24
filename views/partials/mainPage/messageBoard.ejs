@@ -11,22 +11,7 @@
 				id="wrapper"
 				class ="w-11/12 m-auto py-5 grid grid-cols-[20%_80%]"
 			>
-				<div 
-				onclick = "location.href='<%= mess.user.url%>'" 
-				class = "cursor-pointer"
-				id = "AvatarField">
-				<% var ProfilePicStyle = "w-[100px] h-[100px] m-auto rounded-full" %>
-				<% if(typeof mess.user.profile_pic != 'undefined' && typeof mess.user.profile_pic.data != 'undefined' && (user && (mess.user == user.id || user.member == true))) {%>
-					<img 
-						src="data:<%= mess.user.profile_pic.contentType %>;base64,<%= mess.user.profile_pic.data.toString('base64') %>
-						class = "<%= ProfilePicStyle %>"
-						/>
-				<%} else {%>
-				  <img src="<%= avatar %>"
-					   class="<%= ProfilePicStyle %>"
-					   alt="avatar" />
-				<% } %>
-				</div>
+				<%- include('./profilePicDisplay_messageB', {mess: mess}) %>
 				<div>
 					<% if(user && (mess.user == user.id || user.member == true)){ %> 
 						<h2 class = "text-4xl font-bold"><%= mess.user.username %></h2>
