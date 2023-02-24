@@ -199,6 +199,21 @@
     transition: opacity 1s linear, transform 1s linear;
 }
 
+.CursorDeleteMessage {
+    color: red; 
+    font-size: 30px;
+    font-family: inherit; 
+    position: absolute; 
+    transform: translateX(10px) translateY(10px);
+}
+
+.PhotoMessage {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: inherit;
+    position: absolute;
+    transform: translateX(0px) translateY(0px);
+}
 
 @media screen and (max-width: 540px) {
     .EmailErrorMessage {
@@ -206,3 +221,5 @@
         top:150px;
     }
 }
+
+

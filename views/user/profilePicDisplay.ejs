@@ -1,0 +1,47 @@
+<% var ProfilePicStyle = "w-[250px] h-[250px] m-auto rounded-full" %>
+<div 
+class = "relative"
+id = "AvatarField">
+	<% if(user) {%>
+		<% if(typeof userDetail.profile_pic != 'undefined' && typeof userDetail.profile_pic.data != 'undefined') {%>
+			<img 
+				src="data:<%= userDetail.profile_pic.contentType %>;base64,<%= userDetail.profile_pic.data.toString('base64') %>"
+				class = "<%= ProfilePicStyle %>"
+				/>
+		<%} else {%>
+			<img src="<%= avatar %>"
+				class="<%= ProfilePicStyle %>"
+				id="NoPhoto"
+				alt="no-photo" />
+		<% } %>
+	<% } else { %>
+		<img src="<%= avatar %>"
+			class="<%= ProfilePicStyle %>"
+			alt="avatar" />
+	<% }%>
+	<script>
+			const NoPhotoElem = document.getElementById('NoPhoto');
+			const Container = document.getElementById('AvatarField'); 
+
+			const PhotoMessage = document.createElement('div'); 
+
+			PhotoMessage.classList.add("PhotoMessage");
+
+			PhotoMessage.innerHTML = "The user has not uploaded a profile picture yet."
+			
+			NoPhotoElem.addEventListener('mouseover', evt =>DisplayPhotoMessage(evt) )
+			NoPhotoElem.addEventListener('mouseout', evt=>HidePhotoMessage(evt))
+
+			function DisplayPhotoMessage(evt) {
+				Container.appendChild(PhotoMessage)
+				PhotoMessage.style.left = evt.pageX + 'px';
+				PhotoMessage.style.top = evt.pageY + 'px';
+			}
+
+			function HidePhotoMessage(evt) {
+				Container.removeChild(PhotoMessage)
+			} 
+
+
+	</script>
+</div>

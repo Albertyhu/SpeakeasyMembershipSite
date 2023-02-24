@@ -3,10 +3,11 @@
 		<script>
 			var DrinksArray = [];
 			<% if( typeof userDetail.favoriteDrink != 'undefined' && userDetail.favoriteDrink.length > 0) { %>
-			userDetail.forEach(drink => {
-			DrinksArray.push(drink);
-			})
+				<% userDetail.favoriteDrink.forEach(drink => { %>
+				DrinksArray.push('<%= drink %>');
+				<% }) %>
 			<%}%>
+		    console.log("drinks: ", DrinksArray); 
 		</script>
 		<label for="drinks" class ="text-black uppercase font-bold">Favorite Drink</label>
 		<div class = "block whitespace-nowrap">
@@ -52,9 +53,7 @@
 			DrinksAnswers = document.getElementById('DrinksAnswers');
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
 
-			//Unforutnately, DrinksArray will automatically be converted as a string and not an array
-			//Thus, the method "Join" will be used combine all the values into a string to be separated by the character '|'
-			DrinksHiddenInput.value = Join(DrinksArray);
+			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
 			DrinksArray.forEach(val =>{
 			const UserInput = val;
 			const NewInput = document.createElement('div')
@@ -73,13 +72,12 @@
 
 			//This is allows users to delete item by clicking on it
 			NewInput.addEventListener('click', ()=>{
-			var tempArr = DrinksArray;
-			tempArr = DrinksArray.filter(val => val !== UserInput)
+			var tempArr = DrinksArray.filter(val => val !== UserInput)
 			DrinksArray = tempArr;
 			DrinksAnswers.removeChild(NewInput)
 			ShowDeleteDrinkMessage("Drink removed")
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
-			DrinksHiddenInput.value = Join(DrinksArray);
+			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
 			})
 
 			})
@@ -105,20 +103,20 @@
 			DeleteButton.src = "/assets/icon/cancel.png"
 			NewInput.appendChild(DeleteButton)
 			DrinksAnswers.style.display = "table"
-
+			
+			//if user clicks on added drink, the drink is delted
 			NewInput.addEventListener('click', ()=>{
 			var tempArr = DrinksArray.filter(val => val !== UserInput)
 			DrinksArray = tempArr;
 			DrinksAnswers.removeChild(NewInput)
 			ShowDeleteDrinkMessage("Drink removed")
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
-			DrinksHiddenInput.value = Join(DrinksArray);
+			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
 			})
 			DrinksInput.value = ""
 
-
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
-			DrinksHiddenInput.value = Join(DrinksArray);
+			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
 			}
 			}
 			AddDrinksButton.addEventListener('click', AddRelatedDrinks)

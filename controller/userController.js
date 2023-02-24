@@ -67,11 +67,10 @@ exports.UserDetail = (req, res, next) => {
                 return next(err)
             }
             try {
-                console.log('biography: ', result.GetUser.biography)
                // result.GetUser.SocialMediaLinks = SampleSocialArray; 
                 res.render('user/userDetail', {
                     user: req.user, 
-                    title: `${result.GetUser.username}'s profile`, 
+                    title: `${result.GetUser.username}'s Profile`, 
                     userDetail: result.GetUser,
                     messageList: result.GetMessages, 
                     logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
@@ -84,7 +83,7 @@ exports.UserDetail = (req, res, next) => {
                     facebookIcon: "/assets/social_media/facebook.png",
                     discordIcon: "/assets/social_media/discord.png",
                     instagramIcon: "/assets/social_media/instagram.png",
-                    linkedinIcon: "/assets/social_media/linkedin",
+                    linkedinIcon: "/assets/social_media/linkedin.png",
                     tumblrIcon: "/assets/social_media/tumblr.png",
                     twitchIcon: "/assets/social_media/twitch.png",
                     twitterIcon: "/assets/social_media/twitter.png",
@@ -212,7 +211,7 @@ exports.UserUpdate_post = [
             username: he.decode(req.body.username), 
             email: he.decode(req.body.email), 
             biography: he.decode(req.body.biography), 
-            drinks: req.body.drinks.split("|"), 
+            favoriteDrink: JSON.parse(req.body.drinks), 
             SocialMediaLinks: JSON.parse(req.body.NewSocialMediaLinks), 
             _id: req.params.id
         }

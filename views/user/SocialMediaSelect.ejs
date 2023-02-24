@@ -60,11 +60,14 @@ class = "mt-[50px] text-black"
         >
     </div>
     <script>
+        var SocialContainer =document.getElementById('AddSocialComponent');
+        
         var SocialSelect = document.getElementById('SocialSelect');
 	    var AddSocialButton = document.getElementById('AddSocialButton');
 	    var AddedSocialMediaField = document.getElementById('AddedSocialMediaField');
 	    var SocialHiddenInput = document.getElementById('SocialHiddenInput');
         var DeleteMessageField = document.getElementById('DeleteMessageField');
+
         //Add existing links retrived from the database 
         if(AddedSocialArray.length > 0){
             SocialHiddenInput.value = JSON.stringify(AddedSocialArray); 
@@ -107,7 +110,9 @@ class = "mt-[50px] text-black"
                     SocialHiddenInput.value=JSON.stringify(AddedSocialArray)
                     ShowDeleteLinkMessage("Link has been deleted.")
                 }
-                NewSocialWrapper.addEventListener('mousedown', DeleteLink)
+                DeleteButton.addEventListener('mousedown', (evt)=>{DeleteLink(); HideCursorDeleteMessage(evt, SocialContainer);})
+                DeleteButton.addEventListener('mouseover', evt =>CursorDeleteMessage(evt, SocialContainer))
+                DeleteButton.addEventListener('mouseout', evt =>HideCursorDeleteMessage(evt, SocialContainer))
             })
         }
 
@@ -178,7 +183,10 @@ class = "mt-[50px] text-black"
                         SocialHiddenInput.value =JSON.stringify(AddedSocialArray)
                         ShowDeleteLinkMessage("Link has been deleted.")
                     }
-                    NewSocialWrapper.addEventListener('mousedown', DeleteLink)
+                    DeleteButton.addEventListener('mousedown', DeleteLink)
+                    DeleteButton.addEventListener('mouseover', evt =>CursorDeleteMessage(evt, SocialContainer))
+                    DeleteButton.addEventListener('mouseout', evt =>HideCursorDeleteMessage(evt, SocialContainer))
+
                 }
             }
             Button.addEventListener("mousedown", ConfirmLink); 
@@ -200,5 +208,6 @@ class = "mt-[50px] text-black"
                MessageDiv.classList.add("DeleteMessageFadeOut"); 
             }, 2000)
         }
+
     </script>
 </div>

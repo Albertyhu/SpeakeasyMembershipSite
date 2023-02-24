@@ -16,7 +16,7 @@ const User = new Schema({
         platform: { type: String },
         link: {type: String}
     }],
-    
+    favoriteDrink: [{type: String}],
 })
 
 User.virtual("url").get(function () {
