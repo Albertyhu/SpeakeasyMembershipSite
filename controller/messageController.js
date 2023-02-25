@@ -23,8 +23,8 @@ exports.MessageBoard = (req, res, next) => {
                 MobileMenuBackground: "/assets/images/frame.jpg",
                 //imports external script NewMessage.js into index.ejs
                 MessageScript: "/script/NewMessage.js",
-                UpperFrame: "/assets/images/frame-top.png",
-                BottomFrame: "/assets/images/frame-bottom.png",
+                UpperFrame: "/assets/images/frame-top-white.png",
+                BottomFrame: "/assets/images/frame-bottom-white.png",
                 avatar: "/assets/images/avatar2.png",
             })
         })

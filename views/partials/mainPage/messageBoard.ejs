@@ -22,6 +22,7 @@
 					<%} %>
 					<div><%= mess.UnescapedMessage %></div>
 					<div class = "text-[#f2e798]"><%= mess.DateFormatted %></div>
+					<%- include('likeForm', {mess: mess}) %>
 				</div>
 			</div>
 		</div>

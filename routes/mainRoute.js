@@ -66,6 +66,19 @@ router.get('/join', checkAuthenticated, UserController.MembershipInitiation_get)
 
 router.post('/join', UserController.MembershipInitiation_post);
 
+router.get('/about', (req, res, next) => {
+    res.render('about', { 
+        user: req.user, 
+        title: "About Us", 
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/Faint-line-background-small.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+        SpeakEasyLogo: "/assets/images/speakeasylogo.png"
+    })
+})
+
 //This function is necessary to keep the user logged in once he is authenticated 
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {

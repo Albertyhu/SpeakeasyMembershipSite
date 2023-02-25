@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Henry's Speakeasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel ="stylesheet" href='stylesheets/style.css'> 
+  <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+</head>
+<body class = "bg-[url('<%= BackgroundURL %>')] h-auto font-['DecoTech'] ">
+  <div 
+  id="container"
+  class = "w-full flex flex-col relative grow min-h-[120vh]">
+      <div 
+        id = "contentWrapper"
+        class = "pb-[6.5rem]">
+          <div class = "w-full mb-[135px]">
+            <%- include("../partials/header") %>
+            <%- include("../partials/MobileMenu") %>
+          </div>
+          <div class = "w-11/12 mx-auto sm:w-5/12 ">
+          <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+              <div 
+                id="ErrorDiv"
+                class = "my-[50px] text-black w-full">
+                  <h2 class = "font-bold">Error: </h2>
+                  <% error.errors.forEach(val => { %> 
+                  <p class = "text-white"><%= val.msg %></p>
+                  <% }) %>
+              </div>
+          <%}%>
+          </div>
+          <h1 class = "text-[#e48f1a] text-5xl text-center mb-[30px]"><%= title %></h1>
+          <%if(!user) { %>
+          <div class ="mb-[20px]">
+                <p class = "text-2xl text-[#dbdbdb] text-center my-10 mx-5">Note: If you want to see who the members are, you must have an account and become initiated as a member of Henry's Speakeasy</p>
+                <div
+                    onclick ="location.href='/register'"
+                    class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                    border-white border-2 text-center w-[150px] select-none text-white mx-auto text-2xl
+                    hover:bg-gray-800 bg-[#99cbae]"
+                >Create an account</div>
+          </div>
+          <% } else if(user && !member_status) { %> 
+          <div class ="mb-[20px]">
+                <p class = "text-2xl text-[#dbdbdb] text-center my-10 mx-5">Note: If you want to see who the members are, you must become initiated as a member of Henry's Speakeasy</p>
+                <div
+                    onclick ="location.href='/join'"
+                    class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                    border-white border-2 text-center w-fit select-none text-white mx-auto text-2xl whitespace-nowrap
+                    hover:bg-gray-800 bg-[#99cbae]"
+                >Apply for membership</div>
+          </div>            
+          <%}%>
+          <div id = "ProfileGrid"
+            class = "grid mx-auto sm:grid-cols-2 lg:grid-cols-3 gap-x-[10px]"
+          >
+            <% var ProfilePicStyle = "w-[250px] h-[250px] m-auto" 
+               var FrameStyle = "w-[266px] h-auto mx-auto"
+            %>
+            <% membersList.forEach(member => { %> 
+                <div>
+                    <div 
+                        class = " w-11/12 mx-auto cursor-pointer"
+                        onclick = "location.href='/user/<%= member._id%>'">
+                         <img src="<%=UpperFrame%>" alt ="upperframe" class = "<%= FrameStyle%>"/>
+
+                        <% if(user) { %> 
+                            <%if(member_status || member._id == userid) {%>
+                                <img 
+				                    src="data:<%= member.profile_pic.contentType %>;base64,<%= member.profile_pic.data.toString('base64') %>"
+				                    class = "<%= ProfilePicStyle %>"
+				        />
+                            <%} else  { %> 
+			                    <div 
+				                    class ="<%= ProfilePicStyle %> bg-black block relative">
+				                    <div class = "text-white text-2xl text-center absolute top-[45%] left-0 right-0">User's profile picture has not been uploaded yet</div>
+			                    </div>
+                            <%} %>
+                        <%} else { %> 
+                            <img src="<%= avatar %>"
+			                class="<%= ProfilePicStyle %>"
+			                alt="avatar" />
+                        <%}%> 
+                        <% if(member_status || member._id == userid) { %>
+                            <h2 class ="text-[#e48f1a] text-5xl text-center mt-10"><%= member.username %></h2>
+                        <%} else { %> 
+                            <h2 class ="text-[#dbdbdb] text-5xl text-center mt-10">Anonymous</h2>
+                        <%}%>
+                        <img src="<%=BottomFrame%>" alt ="BottomFrame" class = "<%= FrameStyle%>"/>
+                    </div>
+                </div>
+            <%})%>
+          </div>
+      </div>
+      <%- include('../partials/footer') %>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</body>
+</html>

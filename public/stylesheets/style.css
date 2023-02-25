@@ -559,6 +559,9 @@ video {
 .h-\[2px\] {
   height: 2px;
 }
+.h-\[30px\] {
+  height: 30px;
+}
 .h-auto {
   height: auto;
 }
@@ -878,28 +881,47 @@ video {
     margin: auto;
 }
 
+/** used in initiation page*/
 .ErrorMessage {
     color: red;
-    font-size: 15px;
+    font-size: 25px;
     font-family: inherit;
     text-align: center;
-    margin: 5px 0px;
+    opacity: 0.0; 
+    position: absolute; 
+    top: -20px; 
+    left: 0; 
+    right: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease-in, transform 1s ease-in; 
 }
+
+.ErrorMessageFadeIn {
+    opacity: 1.0;
+    transform: translateY(0px);
+}
+
+.ErrorMessageFadeOut {
+    opacity: 0.0;
+    transform: translateY(-20px);
+}
+
+
 
 .DeleteMessage {
     position: absolute;
-    top: -10px; 
+    top: -10px;
     left: 0;
-    right: 0; 
-    color: #e48f1a; 
-    padding: 1px 5px; 
-    font-size: 25px; 
-    font-family: inherit; 
-    text-align: center; 
-    margin: 10px auto; 
+    right: 0;
+    color: #e48f1a;
+    padding: 1px 5px;
+    font-size: 25px;
+    font-family: inherit;
+    text-align: center;
+    margin: 10px auto;
     transform: translateY(-40px);
     transition: opacity 1s linear, transform 1s linear;
-    opacity: 0.1; 
+    opacity: 0.1;
     background-color: #ffffff;
     width: -moz-fit-content;
     width: fit-content;

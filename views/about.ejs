@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Henry's Speakeasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel ="stylesheet" href='stylesheets/style.css'> 
+  <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+</head>
+<body class = "bg-[url('<%= BackgroundURL %>')] h-auto font-['DecoTech'] ">
+  <div 
+  id="container"
+  class = "w-full flex flex-col relative grow min-h-[120vh]">
+      <div 
+        id = "contentWrapper"
+        class = "pb-[6.5rem]">
+          <div class = "w-full mb-[75px] sm:mb-[135px]">
+            <%- include("partials/header") %>
+            <%- include("partials/MobileMenu") %>
+          </div>
+          <div class = "w-11/12 mx-auto sm:w-8/12 lg:w-5/12 ">
+          <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+              <div 
+                id="ErrorDiv"
+                class = "my-[50px] text-black w-full">
+                  <h2 class = "font-bold">Error: </h2>
+                  <% error.errors.forEach(val => { %> 
+                  <p class = "text-white"><%= val.msg %></p>
+                  <% }) %>
+              </div>
+          <%}%>
+          <div class = "[&>p]:text-2xl [&>p]:text-white">
+              <h1 class = "text-[#e48f1a] text-5xl text-center">About Us</h1>
+              <img src = "<%= SpeakEasyLogo %>" alt="logo" class = "mx-auto my-10 w-[275px] h-[275px]">
+              <p class = "text-2xl text-white">
+              Welcome to Henry's Speakeasy, the ultimate destination for those seeking a one-of-a-kind experience. Step back in time to the roaring 1920s and indulge in the glamour and allure of the Prohibition era. With our hidden entrance, low-lit ambiance, and vintage decor, Henry's Speakeasy is a true throwback to a time of mystery and excitement.
+              </p><br/><p>
+              Our expert mixologists craft some of the most delicious and unique cocktails in the city. Using only the finest ingredients and spirits, they create drinks that will transport you back to the era of jazz and swing. From classic cocktails like the Old Fashioned and the Manhattan to signature drinks like the Bee's Knees and the Charleston, there's something for everyone at Henry's Speakeasy.
+              </p><br/><p>
+              But that's not all. Our live music acts, featuring some of the best local talent around, will have you tapping your toes and dancing the night away. From blues and jazz to swing and big band, we've got it all. And with our comfortable seating and cozy atmosphere, you'll feel like you're part of the action.
+              </p><br/><p>
+              But the real secret to Henry's Speakeasy is our exclusive membership program. As a member, you'll enjoy VIP access to our events, priority seating, and other special perks. You'll also get to enjoy our secret menu, which features exclusive cocktails and food items that you won't find anywhere else.
+              </p><br/>
+              <p class = "mb-10">So why should you join Henry's Speakeasy? Because it's a one-of-a-kind experience that you won't find anywhere else. Whether you're looking for a night out with friends, a romantic date, or just a place to unwind after a long day, Henry's Speakeasy is the perfect destination. Join us today and step back in time to a world of glamour, excitement, and fun.
+              </p>
+          </div>
+          </div>
+      </div>
+      <%- include('partials/footer') %>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</body>
+</html>

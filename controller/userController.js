@@ -17,15 +17,20 @@ exports.UserList = (req, res, next) => {
             if (err) {
                 return next(err)
             }
-            res.render('UserList', {
+            res.render('user/userList', {
                 user: req.user, 
+                member_status: req.member_status,
+                userid: req.userid,
                 title: "Members of Henry's Speakeasy", 
                 membersList: result, 
                 logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
                 burgerMenu: "/assets/icon/hamburger_menu_white.png",
                 searchIcon: "/assets/icon/search-white.png",
-                BackgroundURL: "/assets/images/TealVintageBackground2.jpg",
+                BackgroundURL: "/assets/images/Faint-line-background-small.jpg",
                 MobileMenuBackground: "/assets/images/frame.jpg",
+                avatar: "/assets/images/avatar2.png",
+                UpperFrame: "/assets/images/frame-top-white.png",
+                BottomFrame: "/assets/images/frame-bottom-white.png",
             })
         })
 }
