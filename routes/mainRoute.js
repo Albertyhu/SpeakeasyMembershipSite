@@ -62,7 +62,7 @@ router.get('/user/:id/update', checkCurrentUserID, UserController.UserUpdate_get
 
 router.post('/user/:id/update', upload.single('profile_pic'), UserController.UserUpdate_post); 
 
-router.get('/join', UserController.MembershipInitiation_get);
+router.get('/join', checkAuthenticated, UserController.MembershipInitiation_get);
 
 router.post('/join', UserController.MembershipInitiation_post);
 

@@ -47,10 +47,15 @@
             id = "form"
             class = "grid"> 
             <input 
+                id="PasswordInput"
                 type='text'
-                name='speakeasy_password' 
+                name='password' 
                 class = "mx-auto rounded-lg border-white border-[1px] px-1 text-[#333333] text-center my-10 w-full sm:w-7/12"
             />
+            <div 
+                id="ErrorMessageField"
+                class = "relative h-[30px]"
+            ></div>
             <button
                 type='submit' 
                 class ="rounded-full px-[5px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
@@ -61,9 +66,11 @@
           <p class = "text-[#dbdbdb] text-2xl text-center mt-10">As a member of Henry's Speakeasy, other members will no longer be anonymous to you and you have access to more exclusive content. </p>
           <p class = "text-[#dbdbdb] text-2xl text-center mt-10">Hint: The password is the answer in lowercase to the following riddle. </p>
           <p class = "text-[#dbdbdb] text-2xl text-center mt-10">"I am an odd number. Take away a letter and I become even. What number am I?""</p>
-
-
           <img src = '<%= Ornamental_bottom %>' alt = "Ornamental Line" class = "mx-center sm:mt-10"/>
+          </div>
+          <div
+            id="WelcomePanel"
+          >
           </div>
       </div>
       <%- include('partials/footer') %>
@@ -72,6 +79,42 @@
   <script>
     const Shell = document.getElementById('Shell');
     Shell.style.opacity = "1.0";
+    
+    const Form = document.querySelector('#form'); 
+    const ErrorMessageField = document.querySelector("#ErrorMessageField");
+
+    const PasswordInput = document.querySelector('#PasswordInput');
+    Form.addEventListener('submit', evt => {
+        evt.preventDefault(); 
+        if (PasswordInput.value.toLowerCase().trim() != '<%= SpeakeasyPassword%>') {
+            ShowErrorMessage("That's not the correct password.")
+        }
+        else{
+            var jazz_audio = new Audio('<%= JazzAudio %>');
+            var pub_audio = new Audio('<%= PubAudio %>');
+            jazz_audio.play();
+            pub_audio.play();
+            pub_audio.loop = true;
+            jazz_audio.loop = true;
+        }
+    })
+
+    function ShowErrorMessage(message){
+        const MessageDiv = document.createElement('div');
+        MessageDiv.innerHTML = message; 
+        MessageDiv.classList.add("ErrorMessage"); 
+        ErrorMessageField.appendChild(MessageDiv); 
+            
+        setTimeout(()=>{
+            MessageDiv.classList.add("ErrorMessageFadeIn");
+        }, 1)
+        setTimeout(()=>{ErrorMessageField.removeChild(MessageDiv)}, 8000)
+        setTimeout(()=>{
+            MessageDiv.classList.remove("ErrorMessageFadeIn"); 
+            MessageDiv.classList.add("ErrorMessageFadeOut"); 
+        }, 6000)
+    }
+
   </script>
 </body>
 </html>

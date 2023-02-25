@@ -246,7 +246,12 @@ exports.MembershipInitiation_get = (req, res, next) => {
         Ornamental: "/assets/images/OrnamentalBorderTop-2-white.png",
         Ornamental_bottom: "/assets/images/OrnamentalBorderBottom-2-white.png",
         MobileMenuBackground: "/assets/images/frame.jpg",
+        SpeakeasyPassword: process.env.SPEAKEASY_PASSWORD,
+        JazzAudio: "/sound/unsure-jazz.wav",
+        PubAudio: "/sound/pub.mp3"
     })
 }
 
-exports.MembershipInitiation_post = (req, res, next) => { }
+exports.MembershipInitiation_post = (req, res, next) => {
+      
+}
