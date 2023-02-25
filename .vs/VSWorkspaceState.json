@@ -3,14 +3,14 @@
     "",
     "\\controller",
     "\\public",
-    "\\public\\script",
-    "\\public\\stylesheets",
-    "\\util",
+    "\\public\\assets",
+    "\\public\\assets\\images",
+    "\\routes",
     "\\views",
     "\\views\\partials",
     "\\views\\partials\\mainPage",
     "\\views\\user"
   ],
-  "SelectedNode": "\\views\\user\\SocialMediaSelect.ejs",
+  "SelectedNode": "\\views\\initiatiionForm.ejs",
   "PreviewInSolutionExplorer": false
 }

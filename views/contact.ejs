@@ -6,6 +6,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel ="stylesheet" href='stylesheets/style.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 </head>
 <body 
     class = "bg-[url('<%= BackgroundURL %>')] h-auto bg-no-repeat bg-cover">
@@ -21,7 +22,7 @@
           </div>
           <div class = "text-center">
              <h1 class = "font-[Chapleau] text-3xl text-black"><%= title %></h1>
-             <div class = "w-11/12 mx-auto sm:w-5/12 ">
+             <div id = "form-wrapper" class = "w-11/12 mx-auto md:w-5/12 ">
               <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
                   <div 
                     id="ErrorDiv"

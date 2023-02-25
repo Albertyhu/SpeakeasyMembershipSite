@@ -471,6 +471,12 @@ video {
 .container {
   width: 100%;
 }
+@media (min-width: 360px) {
+
+  .container {
+    max-width: 360px;
+  }
+}
 @media (min-width: 640px) {
 
   .container {
@@ -956,6 +962,13 @@ video {
   }
 
   .sm\:w-5\/12 {
+    width: 41.666667%;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .md\:w-5\/12 {
     width: 41.666667%;
   }
 }

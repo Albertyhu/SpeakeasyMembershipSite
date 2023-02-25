@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Henry's Speakeasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel ="stylesheet" href='stylesheets/style.css'> 
+  <link rel ="stylesheet" href='stylesheets/tailwind.css'>
+  <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <style>
+  .FormFadeIn {
+    opacity: 1.0;
+    transform: translateY(20px);
+   }
+  </style>
+</head>
+<body class = "bg-[url('<%= BackgroundURL %>')] h-auto font-['DecoTech'] bg-repeat">
+  <div 
+  id="container"
+  class = "w-full flex flex-col relative grow min-h-[120vh]">
+      <div 
+        id = "contentWrapper"
+        class = "pb-[6.5rem] ">
+          <div class = "w-full mb-[25px]">
+            <%- include("partials/header") %>
+            <%- include("partials/MobileMenu") %>
+          </div>
+          <div 
+            id = "Shell"
+            class = "w-11/12 mx-auto sm:w-5/12 transition-[opacity] duration-[2000ms] opacity-0">
+          <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+              <div 
+                id="ErrorDiv"
+                class = "my-[50px] text-black w-full">
+                  <h2 class = "font-bold">Error: </h2>
+                  <% error.errors.forEach(val => { %> 
+                  <p class = "text-white"><%= val.msg %></p>
+                  <% }) %>
+              </div>
+          <%}%>
+          <img src = '<%= Ornamental%>' alt = "Ornamental Line" class = "mx-center sm:mt-10"/>
+          <h1 class ="text-center text-2xl text-white uppercase">Become a member of</h1>
+          <h1 class ="text-center text-4xl text-[#f9bb28] uppercase mb-[20px]"><%= title %></h1>
+          <p class = "text-[#dbdbdb] text-2xl text-center">Psst... What is the password? </p>
+          <form 
+            id = "form"
+            class = "grid"> 
+            <input 
+                type='text'
+                name='speakeasy_password' 
+                class = "mx-auto rounded-lg border-white border-[1px] px-1 text-[#333333] text-center my-10 w-full sm:w-7/12"
+            />
+            <button
+                type='submit' 
+                class ="rounded-full px-[5px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                border-white border-2 text-center w-[150px] select-none text-white mx-auto
+                hover:bg-gray-800 bg-[#99cbae] text-2xl"
+            >Enter</button>
+          </form>
+          <p class = "text-[#dbdbdb] text-2xl text-center mt-10">As a member of Henry's Speakeasy, other members will no longer be anonymous to you and you have access to more exclusive content. </p>
+          <p class = "text-[#dbdbdb] text-2xl text-center mt-10">Hint: The password is the answer in lowercase to the following riddle. </p>
+          <p class = "text-[#dbdbdb] text-2xl text-center mt-10">"I am an odd number. Take away a letter and I become even. What number am I?""</p>
+
+
+          <img src = '<%= Ornamental_bottom %>' alt = "Ornamental Line" class = "mx-center sm:mt-10"/>
+          </div>
+      </div>
+      <%- include('partials/footer') %>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script>
+    const Shell = document.getElementById('Shell');
+    Shell.style.opacity = "1.0";
+  </script>
+</body>
+</html>

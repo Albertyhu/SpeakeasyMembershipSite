@@ -1,3 +1,9 @@
+2/24/23
+It turns out that you can pass data to an EJS partial just like a React component.
+For example,
+
+<%- include('partials/somefile', {data: data })%>
+
 2/23/23
 In a Node JS app, when you need an html form to return an array to the backend once the 
 form is submitted, you cannot pass the array from an html input element. Instead, you 

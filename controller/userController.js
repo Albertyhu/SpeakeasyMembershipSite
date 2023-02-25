@@ -233,3 +233,20 @@ exports.UserUpdate_post = [
         })
     }
 ]
+
+
+exports.MembershipInitiation_get = (req, res, next) => {
+    res.render("initiationForm", {
+        user: req.user,
+        title: "Henry's Speakeasy",
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/Faint-line-background-small.jpg",
+        Ornamental: "/assets/images/OrnamentalBorderTop-2-white.png",
+        Ornamental_bottom: "/assets/images/OrnamentalBorderBottom-2-white.png",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+    })
+}
+
+exports.MembershipInitiation_post = (req, res, next) => { }
