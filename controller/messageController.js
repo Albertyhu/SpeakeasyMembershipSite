@@ -26,6 +26,7 @@ exports.MessageBoard = (req, res, next) => {
                 UpperFrame: "/assets/images/frame-top-white.png",
                 BottomFrame: "/assets/images/frame-bottom-white.png",
                 avatar: "/assets/images/avatar2.png",
+                DownArrow: '/assets/icon/down.png',
             })
         })
 }
@@ -54,7 +55,8 @@ exports.Message_post = [
                 UpperFrame: "/assets/images/frame-top.png",
                 BottomFrame: "/assets/images/frame-bottom.png",
                 avatar: "/assets/images/avatar2.png",
-                errors:errors, 
+                errors: errors, 
+                DownArrow: '/assets/icon/down.png',
             })
             return; 
         }

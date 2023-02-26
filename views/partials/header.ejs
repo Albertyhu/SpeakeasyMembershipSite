@@ -72,17 +72,64 @@
 				class = "hover:underline hover:font-bold"
 				onclick="location.href='/contact'">Contact</div>
 			<% if(user) { %>
-				<div
-					class = "hover:underline hover:font-bold"
-					onclick="location.href='/logout'">Log Out</div>
+				<div>
+					<div
+						id="AccountLink"
+						class = "hover:underline hover:font-bold flex">
+						Account
+						<div
+							class ="border-white
+							rounded-full border-[1px] p-1 mx-1 my-auto">
+							<img
+								src ="<%=DownArrow %>"
+								class="w-[15px] h-[15px]  "
+								alt ="arrow"/>
+						</div>
+					</div>
+					<ul 
+						id="AccountMenu"
+						class="hidden grid absolute [&>li]:my-5 [&>li]:whitespace-nowrap
+						">
+						<li class ="hover:underline">Your profile</li>
+						<li class ="hover:underline">Edit profile</li>
+						<li class ="hover:underline">Log Out</li>
+					</ul>
+				</div>
 			<% } else { %>
 				<div
 					class = "hover:underline hover:font-bold"
 					onclick="location.href='/login'">Log In</div>
 			<% } %>
 		</div>
-</div>
 <script>
-	
+	const AccountLink = document.getElementById('AccountLink');
+	const AccountMenu = document.getElementById('AccountMenu');
+	AccountLink.addEventListener("mousedown", ToggleAccountMenu);
+
+	function ToggleAccountMenu(){
+	if(AccountMenu.classList.contains('hidden')){
+	AccountMenu.classList.remove('hidden');
+	AccountMenu.classList.add('grid');
+	}
+	else{
+	CloseAccountMenu();
+	}
+	}
+
+	function CloseAccountMenu(){
+	AccountMenu.classList.remove('grid');
+	AccountMenu.classList.add('hidden');
+	}
+
+	function CheckIfClickedOutside(evt){
+		if(AccountMenu.classList.contains('grid')){
+			if(evt.target != AccountMenu){
+			CloseAccountMenu();
+			}
+		}
+	}
+
+//	document.addEventListener('mousedown', CheckIfClickedOutside);
 
 </script>
+</div>

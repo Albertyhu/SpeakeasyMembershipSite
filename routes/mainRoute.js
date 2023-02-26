@@ -5,6 +5,7 @@ const AuthController = require('../controller/authController.js');
 const UserController = require('../controller/userController.js');
 const path = require('path')
 const multer = require('multer');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/uploads');

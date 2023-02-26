@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\controller",
+    "\\model",
     "\\public",
     "\\public\\assets",
-    "\\public\\script",
-    "\\public\\sound",
+    "\\public\\assets\\images",
+    "\\public\\uploads",
+    "\\routes",
     "\\views",
-    "\\views\\partials",
-    "\\views\\partials\\mainPage",
-    "\\views\\user"
+    "\\views\\user",
+    "\\writtenContent"
   ],
-  "SelectedNode": "\\public\\sound\\pub.mp3",
   "PreviewInSolutionExplorer": false
 }

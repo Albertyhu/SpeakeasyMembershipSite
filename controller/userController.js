@@ -31,6 +31,7 @@ exports.UserList = (req, res, next) => {
                 avatar: "/assets/images/avatar2.png",
                 UpperFrame: "/assets/images/frame-top-white.png",
                 BottomFrame: "/assets/images/frame-bottom-white.png",
+                DownArrow: '/assets/icon/down.png',
             })
         })
 }
@@ -98,7 +99,7 @@ exports.UserDetail = (req, res, next) => {
                     defaultIcon: "/assets/social_media/networking.png",
                     //for testing purposes
                     SocialMediaLinks: result.GetUser.SocialMediaLinks,
-
+                    DownArrow: '/assets/icon/down.png',
                 })
             } catch (e) {
                 return next(e)
@@ -144,6 +145,7 @@ exports.UserUpdate_get = (req, res, next) => {
                     BackgroundImageURL: "/assets/images/embroidery.png", 
                     stringDrinks: result.GetUser.favoriteDrink && result.GetUser.favoriteDrink.length > 0 ? Join(result.GetUser.favoriteDrink) : null,
                     SocialMediaArray: SocialMediaArray,
+                    DownArrow: '/assets/icon/down.png',
                 })
             } catch (e) {
                 return next(e)
@@ -253,7 +255,8 @@ exports.MembershipInitiation_get = (req, res, next) => {
         MobileMenuBackground: "/assets/images/frame.jpg",
         SpeakeasyPassword: process.env.SPEAKEASY_PASSWORD,
         JazzAudio: "/sound/unsure-jazz.wav",
-        PubAudio: "/sound/pub.mp3"
+        PubAudio: "/sound/pub.mp3",
+        DownArrow: '/assets/icon/down.png',
     })
 }
 

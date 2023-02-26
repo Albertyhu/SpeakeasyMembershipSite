@@ -67,7 +67,7 @@
                          <img src="<%=UpperFrame%>" alt ="upperframe" class = "<%= FrameStyle%>"/>
 
                         <% if(user) { %> 
-                            <%if(member_status || member._id == userid) {%>
+                            <%if(user.member || member._id == user.id) {%>
                                 <img 
 				                    src="data:<%= member.profile_pic.contentType %>;base64,<%= member.profile_pic.data.toString('base64') %>"
 				                    class = "<%= ProfilePicStyle %>"
@@ -83,7 +83,7 @@
 			                class="<%= ProfilePicStyle %>"
 			                alt="avatar" />
                         <%}%> 
-                        <% if(member_status || member._id == userid) { %>
+                        <% if(user  && (user.member || member._id == user.id)) { %>
                             <h2 class ="text-[#e48f1a] text-5xl text-center mt-10"><%= member.username %></h2>
                         <%} else { %> 
                             <h2 class ="text-[#dbdbdb] text-5xl text-center mt-10">Anonymous</h2>
