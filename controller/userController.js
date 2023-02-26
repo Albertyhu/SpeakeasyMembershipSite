@@ -214,7 +214,8 @@ exports.UserUpdate_post = [
                             BackgroundImageURL: "/assets/images/embroidery.png",
                             stringDrinks: result.GetUser.favoriteDrink && result.GetUser.favoriteDrink.length > 0 ? Join(result.GetUser.favoriteDrink) : null,
                             SocialMediaArray: SocialMediaArray,
-                            errors: errors.array(), 
+                            errors: errors.array(),
+                            DownArrow: '/assets/icon/down.png'
                         })
                         return; 
                     } catch (e) {

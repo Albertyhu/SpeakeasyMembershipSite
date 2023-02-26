@@ -83,6 +83,7 @@ app.use(function (err, req, res, next) {
         searchIcon: "/assets/icon/search-white.png",
         BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
         MobileMenuBackground: "/assets/images/frame.jpg",
+        DownArrow: '/assets/icon/down.png',
     });
 });
 

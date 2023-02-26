@@ -88,11 +88,17 @@
 					</div>
 					<ul 
 						id="AccountMenu"
-						class="hidden grid absolute [&>li]:my-5 [&>li]:whitespace-nowrap
+						class="hidden grid absolute [&>a>li]:my-5 [&>a>li]:whitespace-nowrap
 						">
-						<li class ="hover:underline">Your profile</li>
-						<li class ="hover:underline">Edit profile</li>
-						<li class ="hover:underline">Log Out</li>
+						<a href ="/user/<%= user.id%>">
+							<li class ="hover:underline">Your profile</li>
+						</a>
+						<a href ="/user/<%= user.id%>/update">
+							<li class ="hover:underline">Edit profile</li>
+						</a>
+						<a href ="/logout">
+							<li class ="hover:underline">Log Out</li>
+						</a>
 					</ul>
 				</div>
 			<% } else { %>
@@ -104,7 +110,7 @@
 <script>
 	const AccountLink = document.getElementById('AccountLink');
 	const AccountMenu = document.getElementById('AccountMenu');
-	AccountLink.addEventListener("mousedown", ToggleAccountMenu);
+	AccountLink.addEventListener("click", ToggleAccountMenu);
 
 	function ToggleAccountMenu(){
 	if(AccountMenu.classList.contains('hidden')){
@@ -124,12 +130,12 @@
 	function CheckIfClickedOutside(evt){
 		if(AccountMenu.classList.contains('grid')){
 			if(evt.target != AccountMenu){
-			CloseAccountMenu();
+				CloseAccountMenu();
 			}
 		}
 	}
 
-//	document.addEventListener('mousedown', CheckIfClickedOutside);
+	document.addEventListener('mousedown', CheckIfClickedOutside);
 
 </script>
 </div>
