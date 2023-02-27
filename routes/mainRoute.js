@@ -52,6 +52,7 @@ router.get('/contact', (req, res, next) => {
         MobileMenuBackground: "/assets/images/frame.jpg",
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
+        DownArrow: '/assets/icon/down.png',
     })
 })
 
@@ -76,7 +77,8 @@ router.get('/about', (req, res, next) => {
         searchIcon: "/assets/icon/search-white.png",
         BackgroundURL: "/assets/images/Faint-line-background-small.jpg",
         MobileMenuBackground: "/assets/images/frame.jpg",
-        SpeakEasyLogo: "/assets/images/speakeasylogo.png"
+        SpeakEasyLogo: "/assets/images/speakeasylogo.png",
+        DownArrow: '/assets/icon/down.png',
     })
 })
 

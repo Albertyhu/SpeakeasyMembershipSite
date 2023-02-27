@@ -4,12 +4,14 @@
     "\\model",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\images",
-    "\\public\\uploads",
+    "\\public\\assets\\icon",
+    "\\public\\script",
     "\\routes",
     "\\views",
-    "\\views\\user",
+    "\\views\\partials",
+    "\\views\\partials\\mainPage",
     "\\writtenContent"
   ],
+  "SelectedNode": "\\public\\script\\NewMessage.js",
   "PreviewInSolutionExplorer": false
 }

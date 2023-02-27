@@ -53,7 +53,9 @@
                 hover:bg-gray-800 bg-[#99cbae] text-3xl"
                 onclick = "" 
                 >Send Message</div>
-                <%- include('partials/mainPage/newMessage')%>
+                <%if(typeof user.username != 'undefined'){%>
+                    <%- include('partials/mainPage/newMessage')%>
+                <% } %>
           </div>
           <% } %>
           <% if(typeof messageList != 'undefined' && messageList.length > 0) { %> 
