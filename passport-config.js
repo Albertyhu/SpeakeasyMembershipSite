@@ -14,10 +14,7 @@ function initialize(passport) {
                 //The input password from the log in form should always be in the first argument
                 //The password stored in the database should be in the second argument of bcrypt.compare
                 if (await bcrypt.compare(password, user.password)) {
-                    const username = user.username;
-                    const member_status = user.member; 
-                    const userid = user.id;
-                    return done(null, user, username, member_status, userid);
+                    return done(null, user);
                 }
                 else {
                     console.log('Incorrect password')
@@ -38,10 +35,7 @@ function initialize(passport) {
             if (err) {
                 return done(err)
             }
-            const username = user.username;
-            const member_status = user.member;
-            const userid = user.id;
-            done(err, user, username, member_status, userid);
+            done(err, user);
         })
     })
 }

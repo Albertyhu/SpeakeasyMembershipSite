@@ -60,154 +60,177 @@ class = "mt-[50px] text-black"
         >
     </div>
     <script>
-        var SocialContainer =document.getElementById('AddSocialComponent');
-        
-        var SocialSelect = document.getElementById('SocialSelect');
-	    var AddSocialButton = document.getElementById('AddSocialButton');
-	    var AddedSocialMediaField = document.getElementById('AddedSocialMediaField');
-	    var SocialHiddenInput = document.getElementById('SocialHiddenInput');
-        var DeleteMessageField = document.getElementById('DeleteMessageField');
+		var SocialContainer =document.getElementById('AddSocialComponent');
 
-        //Add existing links retrived from the database 
-        if(AddedSocialArray.length > 0){
-            SocialHiddenInput.value = JSON.stringify(AddedSocialArray); 
-            AddedSocialArray.forEach(retrieved => {
-                SocialSelect = document.getElementById('SocialSelect');
-                const retrievedPlatform = retrieved.platform;
+		var SocialSelect = document.getElementById('SocialSelect');
+		var AddSocialButton = document.getElementById('AddSocialButton');
+		var AddedSocialMediaField = document.getElementById('AddedSocialMediaField');
+		var SocialHiddenInput = document.getElementById('SocialHiddenInput');
+		var DeleteMessageField = document.getElementById('DeleteMessageField');
 
-                const NewSocialWrapper =document.createElement('div')
-                NewSocialWrapper.style.margin= "20px 0px"
-                AddedSocialMediaField.appendChild(NewSocialWrapper); 
-            
-                const InputWrapper = document.createElement('div'); 
-                NewSocialWrapper.appendChild(InputWrapper); 
+		//Add existing links retrived from the database
+		if(AddedSocialArray.length > 0){
 
-                InputWrapper.classList.add("SocialMediaLinkInput"); 
+		if (AddedSocialArray.length > 0) {
+		SocialHiddenInput.value = JSON.stringify(AddedSocialArray);
+		} else {
+		SocialHiddenInput.value = "";
+		}
+		AddedSocialArray.forEach(retrieved => {
+		SocialSelect = document.getElementById('SocialSelect');
+		const retrievedPlatform = retrieved.platform;
 
-                //this is for the title of the input 
-                const Label = document.createElement('div'); 
-                Label.innerHTML = `${retrievedPlatform}: `; 
-                Label.classList.add("SocialInputLabel")
-                InputWrapper.appendChild(Label)
+		const NewSocialWrapper =document.createElement('div')
+		NewSocialWrapper.style.margin= "20px 0px"
+		AddedSocialMediaField.appendChild(NewSocialWrapper);
 
-                const ConfirmedLinkText = document.createElement('div');
-                ConfirmedLinkText.classList.add('ConfirmedText'); 
-                ConfirmedLinkText.innerHTML = retrieved.link; 
+		const InputWrapper = document.createElement('div');
+		NewSocialWrapper.appendChild(InputWrapper);
 
-                //delete button 
-                const DeleteButton = document.createElement('img')
-	            DeleteButton.alt = "Delete";
-	            DeleteButton.classList.add("MiniDeleteButton")
-	            DeleteButton.src = "/assets/icon/cancel.png"
-                InputWrapper.appendChild(ConfirmedLinkText)
-                InputWrapper.appendChild(DeleteButton)
+		InputWrapper.classList.add("SocialMediaLinkInput");
 
-                //Add socialmedia type and link to array 
-                const DeleteLink = () =>{
-                    AddedSocialMediaField.removeChild(NewSocialWrapper)
-                    var temp = AddedSocialArray.filter(val => val.link != retrieved.link)
-                    AddedSocialArray = temp; 
-                    SocialHiddenInput.value=JSON.stringify(AddedSocialArray)
-                    ShowDeleteLinkMessage("Link has been deleted.")
-                }
-                DeleteButton.addEventListener('mousedown', (evt)=>{DeleteLink(); HideCursorDeleteMessage(evt, SocialContainer);})
-                DeleteButton.addEventListener('mouseover', evt =>CursorDeleteMessage(evt, SocialContainer))
-                DeleteButton.addEventListener('mouseout', evt =>HideCursorDeleteMessage(evt, SocialContainer))
-            })
-        }
+		//this is for the title of the input
+		const Label = document.createElement('div');
+		Label.innerHTML = `${retrievedPlatform}: `;
+		Label.classList.add("SocialInputLabel")
+		InputWrapper.appendChild(Label)
 
-        const AddSocialInput = () =>{
-            SocialSelect = document.getElementById('SocialSelect');
-            //social media
-            const UserInput = SocialSelect.value.trim(); 
-            
-            const NewSocialWrapper =document.createElement('div')
-            NewSocialWrapper.style.margin= "20px 0px"
-            AddedSocialMediaField.appendChild(NewSocialWrapper); 
-            
-            const InputWrapper = document.createElement('div'); 
-            NewSocialWrapper.appendChild(InputWrapper); 
+		const ConfirmedLinkText = document.createElement('div');
+		ConfirmedLinkText.classList.add('ConfirmedText');
+		ConfirmedLinkText.innerHTML = retrieved.link;
 
-            InputWrapper.classList.add("SocialMediaLinkInput"); 
+		//delete button
+		const DeleteButton = document.createElement('img')
+		DeleteButton.alt = "Delete";
+		DeleteButton.classList.add("MiniDeleteButton")
+		DeleteButton.src = "/assets/icon/cancel.png"
+		InputWrapper.appendChild(ConfirmedLinkText)
+		InputWrapper.appendChild(DeleteButton)
 
-            //this is for the title of the input 
-            const Label = document.createElement('div'); 
-            Label.innerHTML = `${UserInput}: `; 
-            Label.classList.add("SocialInputLabel")
-            InputWrapper.appendChild(Label)
+		//Add socialmedia type and link to array
+		const DeleteLink = () =>{
+		AddedSocialMediaField.removeChild(NewSocialWrapper)
+		var temp = AddedSocialArray.filter(val => val.link != retrieved.link)
+		AddedSocialArray = temp;
 
-            //text input for the link 
-            const Input = document.createElement('input');
-            Input.type="text"
-            Input.placeholder=`Add ${UserInput} link here`; 
-            const InputID = `${UserInput}-input`
-            Input.setAttribute('id', InputID); 
-            Input.classList.add('SocialInput'); 
-            InputWrapper.appendChild(Input); 
+		if (AddedSocialArray.length > 0) {
+		SocialHiddenInput.value = JSON.stringify(AddedSocialArray);
+		} else {
+		SocialHiddenInput.value = "";
+		}
 
-            //Button 
-            const Button = document.createElement('button');
-            Button.classList.add('AddLinkButton')
-            InputWrapper.appendChild(Button);
-            Button.innerHTML = "Add Link"
-            Button.type='button'
-            
-            const ConfirmLink = () =>{
-                if(Input.value == ""){
-                    Input.placeholder = "This field cannot be empty"
-                }
-                else {
-                    const ConfirmedLinkText = document.createElement('div');
-                    ConfirmedLinkText.classList.add('ConfirmedText'); 
-                    ConfirmedLinkText.innerHTML = Input.value.trim(); 
+		ShowDeleteLinkMessage("Link has been deleted.")
+		}
+		DeleteButton.addEventListener('mousedown', (evt)=>{DeleteLink(); HideCursorDeleteMessage(evt, SocialContainer);})
+		DeleteButton.addEventListener('mouseover', evt =>CursorDeleteMessage(evt, SocialContainer))
+		DeleteButton.addEventListener('mouseout', evt =>HideCursorDeleteMessage(evt, SocialContainer))
+		})
+		}
 
-                    //delete button 
-                    const DeleteButton = document.createElement('img')
-	                DeleteButton.alt = "Delete";
-	                DeleteButton.classList.add("MiniDeleteButton")
-	                DeleteButton.src = "/assets/icon/cancel.png"
-                    InputWrapper.replaceChild(ConfirmedLinkText, Input)
-                    InputWrapper.replaceChild(DeleteButton, Button)
+		const AddSocialInput = () =>{
+		SocialSelect = document.getElementById('SocialSelect');
+		//social media
+		const UserInput = SocialSelect.value.trim();
 
-                    //Add socialmedia type and link to array 
-                    const newAddedLink = {
-                        platform: UserInput,
-                        link: Input.value.trim(), 
-                    }
-                    AddedSocialArray.push(newAddedLink); 
-                    SocialHiddenInput.value = JSON.stringify(AddedSocialArray)
-                    const DeleteLink = () =>{
-                        AddedSocialMediaField.removeChild(NewSocialWrapper)
-                        var temp = AddedSocialArray.filter(val => val.link != UserInput)
-                        AddedSocialArray = temp; 
-                        SocialHiddenInput.value =JSON.stringify(AddedSocialArray)
-                        ShowDeleteLinkMessage("Link has been deleted.")
-                    }
-                    DeleteButton.addEventListener('mousedown', DeleteLink)
-                    DeleteButton.addEventListener('mouseover', evt =>CursorDeleteMessage(evt, SocialContainer))
-                    DeleteButton.addEventListener('mouseout', evt =>HideCursorDeleteMessage(evt, SocialContainer))
+		const NewSocialWrapper =document.createElement('div')
+		NewSocialWrapper.style.margin= "20px 0px"
+		AddedSocialMediaField.appendChild(NewSocialWrapper);
 
-                }
-            }
-            Button.addEventListener("mousedown", ConfirmLink); 
-        }
-        AddSocialButton.addEventListener('mousedown', AddSocialInput)
+		const InputWrapper = document.createElement('div');
+		NewSocialWrapper.appendChild(InputWrapper);
 
-        function ShowDeleteLinkMessage(message){
-            const MessageDiv = document.createElement('div');
-            MessageDiv.innerHTML = message; 
-            MessageDiv.classList.add("DeleteMessage"); 
-            DeleteMessageField.appendChild(MessageDiv); 
-            
-            setTimeout(()=>{
-                MessageDiv.classList.add("DeleteMessageFadeIn");
-            }, 1)
-            setTimeout(()=>{DeleteMessageField.removeChild(MessageDiv)}, 4000)
-            setTimeout(()=>{
-               MessageDiv.classList.remove("DeleteMessageFadeIn"); 
-               MessageDiv.classList.add("DeleteMessageFadeOut"); 
-            }, 2000)
-        }
+		InputWrapper.classList.add("SocialMediaLinkInput");
 
-    </script>
+		//this is for the title of the input
+		const Label = document.createElement('div');
+		Label.innerHTML = `${UserInput}: `;
+		Label.classList.add("SocialInputLabel")
+		InputWrapper.appendChild(Label)
+
+		//text input for the link
+		const Input = document.createElement('input');
+		Input.type="text"
+		Input.placeholder=`Add ${UserInput} link here`;
+		const InputID = `${UserInput}-input`
+		Input.setAttribute('id', InputID);
+		Input.classList.add('SocialInput');
+		InputWrapper.appendChild(Input);
+
+		//Button
+		const Button = document.createElement('button');
+		Button.classList.add('AddLinkButton')
+		InputWrapper.appendChild(Button);
+		Button.innerHTML = "Add Link"
+		Button.type='button'
+
+		const ConfirmLink = () =>{
+		if(Input.value == ""){
+		Input.placeholder = "This field cannot be empty"
+		}
+		else {
+		const ConfirmedLinkText = document.createElement('div');
+		ConfirmedLinkText.classList.add('ConfirmedText');
+		ConfirmedLinkText.innerHTML = Input.value.trim();
+
+		//delete button
+		const DeleteButton = document.createElement('img')
+		DeleteButton.alt = "Delete";
+		DeleteButton.classList.add("MiniDeleteButton")
+		DeleteButton.src = "/assets/icon/cancel.png"
+		InputWrapper.replaceChild(ConfirmedLinkText, Input)
+		InputWrapper.replaceChild(DeleteButton, Button)
+
+		//Add socialmedia type and link to array
+		const newAddedLink = {
+		platform: UserInput,
+		link: Input.value.trim(),
+		}
+		AddedSocialArray.push(newAddedLink);
+
+		if (AddedSocialArray.length > 0) {
+		SocialHiddenInput.value = JSON.stringify(AddedSocialArray);
+		} else {
+		SocialHiddenInput.value = "";
+		}
+
+		const DeleteLink = () =>{
+		AddedSocialMediaField.removeChild(NewSocialWrapper)
+		var temp = AddedSocialArray.filter(val => val.link != UserInput)
+		AddedSocialArray = temp;
+
+		if (AddedSocialArray.length > 0) {
+		SocialHiddenInput.value = JSON.stringify(AddedSocialArray);
+		} else {
+		SocialHiddenInput.value = "";
+		}
+
+		ShowDeleteLinkMessage("Link has been deleted.")
+		}
+		DeleteButton.addEventListener('mousedown', DeleteLink)
+		DeleteButton.addEventListener('mouseover', evt =>CursorDeleteMessage(evt, SocialContainer))
+		DeleteButton.addEventListener('mouseout', evt =>HideCursorDeleteMessage(evt, SocialContainer))
+
+		}
+		}
+		Button.addEventListener("mousedown", ConfirmLink);
+		}
+		AddSocialButton.addEventListener('mousedown', AddSocialInput)
+
+		function ShowDeleteLinkMessage(message){
+		const MessageDiv = document.createElement('div');
+		MessageDiv.innerHTML = message;
+		MessageDiv.classList.add("DeleteMessage");
+		DeleteMessageField.appendChild(MessageDiv);
+
+		setTimeout(()=>{
+		MessageDiv.classList.add("DeleteMessageFadeIn");
+		}, 1)
+		setTimeout(()=>{DeleteMessageField.removeChild(MessageDiv)}, 4000)
+		setTimeout(()=>{
+		MessageDiv.classList.remove("DeleteMessageFadeIn");
+		MessageDiv.classList.add("DeleteMessageFadeOut");
+		}, 2000)
+		}
+
+	</script>
 </div>

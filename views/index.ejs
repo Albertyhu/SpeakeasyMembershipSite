@@ -20,7 +20,7 @@
             <%- include("partials/MobileMenu") %>
           </div>
           <div class = "text-center mt-[100px]">
-            <div class = "[&>*]:inline-block [&>*]:mx-5 justify-between text-3xl">
+            <div class = "[&>*]:inline-block [&>*]:mx-3 [&>*]:sm:mx-5 justify-between text-3xl whitespace-nowrap">
                 <p class = "">EST.</p>
                  <img 
                     src = "/assets/images/HexagonShape.png" 
@@ -57,7 +57,16 @@
                     <%- include('partials/mainPage/newMessage')%>
                 <% } %>
           </div>
-          <% } %>
+          <% } else { %>
+                <h2 class = "text-white text-center text-2xl mt-10">New user?</h2>
+                <div
+                id="CreateAccountButton"
+                class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                border-white border-2 text-center w-fit select-none text-white mx-auto
+                hover:bg-gray-800 bg-[#99cbae] text-3xl whitespace-nowrap"
+                onclick = "location.href='/register'" 
+                >Create an account</div>
+          <% }%>
           <% if(typeof messageList != 'undefined' && messageList.length > 0) { %> 
             <%- include('partials/mainPage/messageBoard')%>
           <%}%>

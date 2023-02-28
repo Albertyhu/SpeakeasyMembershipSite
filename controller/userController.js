@@ -19,7 +19,6 @@ exports.UserList = (req, res, next) => {
             }
             res.render('user/userList', {
                 user: req.user, 
-                member_status: req.member_status,
                 userid: req.userid,
                 title: "Members of Henry's Speakeasy", 
                 membersList: result, 
@@ -225,11 +224,11 @@ exports.UserUpdate_post = [
             )
         }
         var updates = {
-            username: he.decode(req.body.username), 
+            username: he.decode(req.body.username.replace(/\s/g, '')), 
             email: he.decode(req.body.email), 
             biography: he.decode(req.body.biography), 
-            favoriteDrink: JSON.parse(req.body.drinks), 
-            SocialMediaLinks: JSON.parse(req.body.NewSocialMediaLinks), 
+            favoriteDrink: req.body.drinks != '' ? JSON.parse(req.body.drinks) : [], 
+            SocialMediaLinks: req.body.NewSocialMediaLinks != '' ? JSON.parse(req.body.NewSocialMediaLinks) : [], 
             profile_pic: profile_pic,
             _id: req.params.id
         }
@@ -265,5 +264,14 @@ exports.MembershipInitiation_get = (req, res, next) => {
 }
 
 exports.MembershipInitiation_post = (req, res, next) => {
-      
+    const updateUser = new User({
+        member: true,
+        _id: req.user.id,
+    })
+    User.findByIdAndUpdate(req.user.id, updateUser, (err) => {
+        if (err)
+            return next(err)
+        console.log("Member has been successfully initiated.")
+        res.redirect('/');
+    })
 }

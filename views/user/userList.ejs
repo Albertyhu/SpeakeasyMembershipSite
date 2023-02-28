@@ -42,7 +42,7 @@
                     hover:bg-gray-800 bg-[#99cbae]"
                 >Create an account</div>
           </div>
-          <% } else if(user && !member_status) { %> 
+          <% } else if(user && !user.member) { %> 
           <div class ="mb-[20px]">
                 <p class = "text-2xl text-[#dbdbdb] text-center my-10 mx-5">Note: If you want to see who the members are, you must become initiated as a member of Henry's Speakeasy</p>
                 <div
@@ -66,23 +66,24 @@
                         onclick = "location.href='/user/<%= member._id%>'">
                          <img src="<%=UpperFrame%>" alt ="upperframe" class = "<%= FrameStyle%>"/>
 
-                        <% if(user) { %> 
-                            <%if(user.member || member._id == user.id) {%>
-                                <img 
-				                    src="data:<%= member.profile_pic.contentType %>;base64,<%= member.profile_pic.data.toString('base64') %>"
-				                    class = "<%= ProfilePicStyle %>"
-				        />
-                            <%} else  { %> 
-			                    <div 
-				                    class ="<%= ProfilePicStyle %> bg-black block relative">
-				                    <div class = "text-white text-2xl text-center absolute top-[45%] left-0 right-0">User's profile picture has not been uploaded yet</div>
-			                    </div>
-                            <%} %>
-                        <%} else { %> 
+                        <%if(user && (user.member || member._id == user.id)) {%>
+                            <% if(typeof member.profile_pic.contentType != 'undefined') {%>
+                            <img 
+				                src="data:<%= member.profile_pic.contentType %>;base64,<%= member.profile_pic.data.toString('base64') %>"
+				                class = "<%= ProfilePicStyle %>"
+				            />
+                            <% } else { %>
+			                <div 
+				                class ="<%= ProfilePicStyle %> bg-black block relative">
+				                <div class = "text-white text-2xl text-center absolute top-[45%] left-0 right-0">User's profile picture has not been uploaded yet</div>
+			                </div>                                    
+                           <% }%>
+                        <%} else  { %> 
                             <img src="<%= avatar %>"
 			                class="<%= ProfilePicStyle %>"
 			                alt="avatar" />
-                        <%}%> 
+                        <%} %>
+
                         <% if(user  && (user.member || member._id == user.id)) { %>
                             <h2 class ="text-[#e48f1a] text-5xl text-center mt-10"><%= member.username %></h2>
                         <%} else { %> 

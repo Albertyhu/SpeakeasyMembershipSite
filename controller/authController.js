@@ -52,10 +52,6 @@ exports.Register_get = (req, res, next) => {
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
         DownArrow: '/assets/icon/down.png',
-        //username: username,
-        //email: email,
-        //password: password,
-        //confirm_password: confirm_password, 
     })
 }
 
@@ -126,7 +122,7 @@ exports.Register_post = [
         try {
             const hashedPassword = await bcrypt.hash(req.body.password, 10)
             const obj = {
-                username: username,
+                username: username.replace(/\s/g, ''),
                 email: email,
                 password: hashedPassword,
                 profile_pic: profile_pic, 
@@ -141,7 +137,7 @@ exports.Register_post = [
                     return next(err);
                 }
                 console.log("User is successfully created.")
-                res.redirect("/");
+                res.redirect("/join");
             })
         } catch (e) {
             console.log("Error in trying to create new user: ", e.message)

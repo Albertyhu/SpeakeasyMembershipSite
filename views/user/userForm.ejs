@@ -124,25 +124,9 @@
         const EmailElement = document.getElementById('emailInput');
         const ContainerElement = document.getElementById('container'); 
         const SocialHiddenInput2 = document.querySelector('#SocialHiddenInput');
-        /*
-        const LinksMap = new Map(); 
-        LinksMap.set("facebook", "www.facebook.com"); 
-        var linkObj =  Object.fromEntries(LinksMap)
-        
-        const linkObj = [
-            {
-                platform: "facebook",
-                link: "www.facebook.com"
-             },
-            {
-                platform: "youtube",
-                link: "www.youtube.com"
-             },              
-        ]*/
 
         form.addEventListener('submit', (event) =>{
        // SocialHiddenInput2.value = JSON.stringify(linkObj); 
-
             event.preventDefault(); 
             var isValid = true; 
             if(!checkEmail(EmailElement.value)){

@@ -35,7 +35,7 @@
                   <% }) %>
               </div>
           <%}%>
-          <% if(user) { %>
+          <% if(user && (user.member || userDetail._id == user.id)) { %>
           <h1
             class = "text-center text-white text-5xl"
           ><%= title %></h1>
@@ -50,7 +50,7 @@
                     onclick = "location.href='/user/<%= user.id %>/update'"
                     class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
                     border-white border-2 text-center w-[150px] select-none text-white mx-auto
-                    hover:bg-gray-800 bg-[#f9bb28] mt-[50px] text-2xl"
+                    hover:bg-gray-800 bg-[#f9bb28] mt-[10px] text-2xl"
                 >Edit Profile</div>
             <% } %>
             <% if(typeof userDetail.joinedDate != 'undefined') {%> 
@@ -82,9 +82,9 @@
                 <%})%>
                 </ul>
             <%}%>
-            <% if(typeof userDetail.biography != 'undefined') {%> 
-            <div>
-                <h3 class = "text-3xl text-white mt-10 text-center uppercase">Biography</h3>
+            <% if(typeof userDetail.biography != 'undefined' && userDetail.biography != "") {%> 
+            <div class = "border-white border-[1px] rounded-md mt-10 py-10 px-5">
+                <h3 class = "text-3xl text-white  text-center uppercase">Biography</h3>
                 <p class = "text-[#dbdbdb] text-2xl">
                     &#09;<%= userDetail.biography %>
                 </p>

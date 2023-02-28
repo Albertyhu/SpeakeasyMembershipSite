@@ -52,7 +52,12 @@
 			DrinksAnswers = document.getElementById('DrinksAnswers');
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
 
+			if (DrinksArray.length > 0) {
 			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
+			} else {
+			DrinksHiddenInput.value = "";
+			}
+
 			DrinksArray.forEach(val =>{
 			const UserInput = val;
 			const NewInput = document.createElement('div')
@@ -76,7 +81,13 @@
 			DrinksAnswers.removeChild(NewInput)
 			ShowDeleteDrinkMessage("Drink removed")
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+
+			if (DrinksArray.length > 0) {
 			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
+			} else {
+			DrinksHiddenInput.value = "";
+			}
+
 			})
 
 			})
@@ -102,7 +113,7 @@
 			DeleteButton.src = "/assets/icon/cancel.png"
 			NewInput.appendChild(DeleteButton)
 			DrinksAnswers.style.display = "table"
-			
+
 			//if user clicks on added drink, the drink is delted
 			NewInput.addEventListener('click', ()=>{
 			var tempArr = DrinksArray.filter(val => val !== UserInput)
@@ -110,12 +121,24 @@
 			DrinksAnswers.removeChild(NewInput)
 			ShowDeleteDrinkMessage("Drink removed")
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+
+			if (DrinksArray.length > 0) {
 			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
+			} else {
+			DrinksHiddenInput.value = "";
+			}
+
 			})
 			DrinksInput.value = ""
 
 			DrinksHiddenInput = document.getElementById('DrinksHiddenInput');
+
+			if (DrinksArray.length > 0) {
 			DrinksHiddenInput.value = JSON.stringify(DrinksArray);
+			} else {
+			DrinksHiddenInput.value = "";
+			}
+
 			}
 			}
 			AddDrinksButton.addEventListener('click', AddRelatedDrinks)

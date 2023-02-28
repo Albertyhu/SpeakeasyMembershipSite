@@ -50,6 +50,8 @@
                       <h1 class ="text-center text-4xl text-[#f9bb28] uppercase mb-[20px]"><%= title %></h1>
                       <p class = "text-[#dbdbdb] text-2xl text-center">Psst... What is the password? </p>
                       <form 
+                        action=""
+                        method="POST"
                         id = "form"
                         class = "grid"> 
                         <input 
@@ -90,6 +92,7 @@
     const InitiationButton = document.querySelector("#InitiationButton");
     const ErrorMessageField = document.querySelector("#ErrorMessageField");
     const SceneTwo = document.querySelector("#scene2"); 
+    const ContinueButton = document.querySelector("#ContinueButton"); 
 
     const PasswordInput = document.querySelector('#PasswordInput');
     Form.addEventListener('submit', evt => {
@@ -108,6 +111,15 @@
             jazz_audio.loop = true;
             InitiationButton.disabled = 'true'; 
             SceneTwo.classList.add("initiated")
+
+        }
+    })
+
+    ContinueButton?.addEventListener('click', () =>{
+        try{
+            Form.submit()
+        } catch(e){
+            console.log("error: ", e.message)
         }
     })
 

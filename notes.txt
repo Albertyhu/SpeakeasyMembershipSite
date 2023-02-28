@@ -1,3 +1,9 @@
+2/28/23
+I'm getting a weird error from editing a newly created profile.
+Unexpected JSON input.
+It's likely because of the fact that the drink and social media inputs require parsing something into a string.
+Because the newly created profile has no value in those fields, the app cannot parse empty values. 
+
 2/27/23
 Created the Star Wars wipe out scene transition effect with the following tutorial:
 

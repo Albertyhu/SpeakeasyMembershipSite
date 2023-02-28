@@ -73,8 +73,8 @@
 				onclick="location.href='/contact'">Contact</div>
 			<% if(user) { %>
 				<div >
-					<% if(user.profile_pic.contentType != 'undefine') { %>
-					<div
+					<% if(user.profile_pic.contentType != 'undefine' && typeof user.profile_pic.data != 'undefined') { %>
+						<div
 						id="AccountLink"
 						class = "hover:underline hover:font-bold flex w-[50px] h-[50px]
 							m-auto relative">
@@ -109,7 +109,7 @@
 					<div 
 						id="AccountMenu"
 						class="hidden grid absolute [&>div]:my-5 [&>div]:whitespace-nowrap
-						bg-[#f2e796] [&>div]:text-black [&>div]:mx-[10px] translate-x-[-30px]">
+						bg-[#f2e796] [&>div]:text-black [&>div]:mx-[10px] translate-x-[-40px]">
 							<div 
 								class ="hover:underline">
 								<a href ="/user/<%= user.id%>">Your profile</a>
@@ -158,11 +158,13 @@
 		//This is used to complement the feature where the user clicks outside of the Account Menu to close it
 		//It is used to check if evt.target is one of the child anchor tag of Account Menu
 		function ConfirmChild(target, NodeList){
+			var confirmed = false; 
 			NodeList.forEach(node =>{
-				if(node == target)
-					return true; 
+				if(node == target){
+					confirmed = true; 
+					}
 				})
-			return false; 
+			return confirmed; 
 		}
 	
 		function CheckIfClickedOutsideAccountMenu(evt){
@@ -173,23 +175,23 @@
 			//If the user's profile picture exist, execute the following
 			//The image is chosen instead of its parent because for some reason, the image is only registered by click
 			<% if(user.profile_pic.contentType != 'undefine') { %>
-			if (!AccountMenu.classList.contains('hidden') && ConfirmChild(evt.target, childAnchors) && evt.target != AccountMenu && evt.target != ProfilePic){
-				CloseAccountMenu();
-			}
+				if (!AccountMenu.classList.contains('hidden') && !ConfirmChild(evt.target, childAnchors) && evt.target != AccountMenu && evt.target != ProfilePic){
+					CloseAccountMenu();
+					}
 			<% } else { %> 
-			if (!AccountMenu.classList.contains('hidden') && evt.target != AccountMenu && evt.target != AccountLink && ConfirmChild(evt.target, childAnchors)){
-				CloseAccountMenu();
-				}
-				<%}%>
+				if (!AccountMenu.classList.contains('hidden') && evt.target != AccountMenu && evt.target != AccountLink && !ConfirmChild(evt.target, childAnchors)){
+					CloseAccountMenu();
+					}
+			<%}%>
 		<% } %>
 		}
 	
 		Container.addEventListener("mousedown", (evt)=>{
 			if(window.innerWidth >= 640){
-			CheckIfClickedOutsideAccountMenu(evt)
+				CheckIfClickedOutsideAccountMenu(evt)
 			}
 			else{
-			CheckIfClickedOutsideMobileMenu(evt)
+				CheckIfClickedOutsideMobileMenu(evt)
 			}
 		})
 	<% } %>

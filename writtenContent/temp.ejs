@@ -1,0 +1,17 @@
+<%if (user && (user.member || member._id == user.id)) {%>
+    <% if (typeof member.profile_pic.contentType != 'undefined') {%>
+        <img 
+        src="data:<%= member.profile_pic.contentType %>;base64,<%= member.profile_pic.data.toString('base64') %>"
+        class = "<%= ProfilePicStyle %>"
+        />
+    <% } else {
+        <div
+        class="<%= ProfilePicStyle %> bg-black block relative">
+        <div class="text-white text-2xl text-center absolute top-[45%] left-0 right-0">User's profile picture has not been uploaded yet</div>
+        </div>
+    }%>
+    <%} else { %> 
+        <img src="<%= avatar %>"
+        class="<%= ProfilePicStyle %>"
+        alt="avatar" />
+<%} %>

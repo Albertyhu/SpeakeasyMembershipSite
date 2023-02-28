@@ -1,8 +1,8 @@
-<% var ProfilePicStyle = "w-[250px] h-[250px] m-auto rounded-full" %>
+<% var ProfilePicStyle = "select-none absolute w-full inset-[5%_0]" %>
 <div 
-class = ""
+class = "w-[350px] h-[300px] m-auto overflow-hidden relative"
 id = "AvatarField">
-	<% if(user) {%>
+	<% if(user && (user.member || userDetail._id == user.id)) {%>
 		<% if(typeof userDetail.profile_pic != 'undefined' && typeof userDetail.profile_pic.data != 'undefined') {%>
 			<img 
 				src="data:<%= userDetail.profile_pic.contentType %>;base64,<%= userDetail.profile_pic.data.toString('base64') %>"

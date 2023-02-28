@@ -6,7 +6,7 @@ id = "AvatarField">
 	<div 
 	class = ""
 	id = "AvatarField">
-		<% if(user) {%>
+		<% if(user && (user.member || mess.user._id == user.id)) {%>
 			<% if(typeof mess.user.profile_pic != 'undefined' && typeof mess.user.profile_pic.data != 'undefined') {%>
 				<img 
 					src="data:<%= mess.user.profile_pic.contentType %>;base64,<%= mess.user.profile_pic.data.toString('base64') %>"
