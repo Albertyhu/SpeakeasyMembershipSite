@@ -595,6 +595,10 @@ video {
 .w-\[275px\] {
   width: 275px;
 }
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
 .w-full {
   width: 100%;
 }
@@ -620,6 +624,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 .rounded-full {
   border-radius: 9999px;
@@ -1133,13 +1140,21 @@ video {
   }
 }
 
-.\[\&\>\*\]\:mx-5>* {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+.\[\&\>\*\]\:mx-3>* {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 .\[\&\>\*\]\:inline-block>* {
   display: inline-block;
+}
+
+@media (min-width: 640px) {
+
+  .\[\&\>\*\]\:sm\:mx-5>* {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
 }
 
 .\[\&\>div\>input\]\:rounded-lg>div>input {
