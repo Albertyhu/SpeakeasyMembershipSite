@@ -1,3 +1,8 @@
+2/27/23
+Created the Star Wars wipe out scene transition effect with the following tutorial:
+
+https://codersblock.com/blog/star-wars-scene-transition-effects-in-css/
+
 2/24/23
 It turns out that you can pass data to an EJS partial just like a React component.
 For example,

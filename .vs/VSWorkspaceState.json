@@ -3,14 +3,14 @@
     "",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\icon",
-    "\\public\\script",
-    "\\routes",
+    "\\public\\assets\\images",
+    "\\public\\sound",
+    "\\public\\stylesheets",
     "\\views",
     "\\views\\partials",
-    "\\views\\partials\\mainPage",
-    "\\writtenContent"
+    "\\views\\partials\\initationPage",
+    "\\views\\user"
   ],
-  "SelectedNode": "\\views\\partials\\header.ejs",
+  "SelectedNode": "\\notes.txt",
   "PreviewInSolutionExplorer": false
 }
