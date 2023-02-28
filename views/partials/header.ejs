@@ -27,10 +27,10 @@
 	} 
 	
 </script>
-<% var BackgrounColor ="black" %>
+<% var BackgroundColor ="black" %>
 <div
 	id='MobileHeader' 
-	class = "w-full bg-[<%= BackgrounColor %>] fixed top-0 left-0 right-0
+	class = "w-full bg-[<%= BackgroundColor %>] fixed top-0 left-0 right-0
 		flex sm:hidden z-30 h-[50px] justify-between"
 		>
 		<a href = "/" class = "">
@@ -51,7 +51,7 @@
 </div>
 <div
 	id='DesktopHeader' 
-	class = "w-full bg-[<%= BackgrounColor %>] fixed top-0 left-0 right-0 h-[100px]
+	class = "w-full bg-[<%= BackgroundColor %>] fixed top-0 left-0 right-0 h-[100px]
 		hidden sm:flex z-30 justify-between  font-['DecoTech'] text-2xl uppercase"
 		>
 		<% if(typeof logoURL != "undefined") {%>
@@ -128,6 +128,7 @@
 					onclick="location.href='/login'">Log In</div>
 			<% } %>
 		</div>
+
 <script>
 	<% if(typeof user != 'undefined') { %>
 		var AccountLink = document.querySelector('#AccountLink');
@@ -152,33 +153,45 @@
 		AccountMenu.classList.remove('grid');
 		AccountMenu.classList.add('hidden');
 		}
-	<% } %>
-		
+
 	
-	function CheckIfClickedOutsideAccountMenu(evt){
-	//If the user is logged in
-	<% if(typeof user != 'undefined') { %>
-		//If the user's profile picture exist, execute the following
-		//The image is chosen instead of its parent because for some reason, the image is only registered by click
-		<% if(user.profile_pic.contentType != 'undefine') { %>
-		if (!AccountMenu.classList.contains('hidden') && evt.target != AccountMenu && evt.target != ProfilePic){
-			CloseAccountMenu();
+		//This is used to complement the feature where the user clicks outside of the Account Menu to close it
+		//It is used to check if evt.target is one of the child anchor tag of Account Menu
+		function ConfirmChild(target, NodeList){
+			NodeList.forEach(node =>{
+				if(node == target)
+					return true; 
+				})
+			return false; 
 		}
-		<% } else { %> 
-		if (!AccountMenu.classList.contains('hidden') && evt.target != AccountMenu && evt.target != AccountLink){
-			CloseAccountMenu();
+	
+		function CheckIfClickedOutsideAccountMenu(evt){
+		//If the user is logged in
+		<% if(typeof user != 'undefined') { %>
+			//The following extracts all the child anchor tags of AccountMenu div
+			const childAnchors = AccountMenu.querySelectorAll('a');
+			//If the user's profile picture exist, execute the following
+			//The image is chosen instead of its parent because for some reason, the image is only registered by click
+			<% if(user.profile_pic.contentType != 'undefine') { %>
+			if (!AccountMenu.classList.contains('hidden') && ConfirmChild(evt.target, childAnchors) && evt.target != AccountMenu && evt.target != ProfilePic){
+				CloseAccountMenu();
 			}
-			<%}%>
-	<% } %>
-	}
+			<% } else { %> 
+			if (!AccountMenu.classList.contains('hidden') && evt.target != AccountMenu && evt.target != AccountLink && ConfirmChild(evt.target, childAnchors)){
+				CloseAccountMenu();
+				}
+				<%}%>
+		<% } %>
+		}
 	
-	Container.addEventListener("mousedown", (evt)=>{
-		if(window.innerWidth >= 640){
-		CheckIfClickedOutsideAccountMenu(evt)
-		}
-		else{
-		CheckIfClickedOutsideMobileMenu(evt)
-		}
-	})
-	</script>
+		Container.addEventListener("mousedown", (evt)=>{
+			if(window.innerWidth >= 640){
+			CheckIfClickedOutsideAccountMenu(evt)
+			}
+			else{
+			CheckIfClickedOutsideMobileMenu(evt)
+			}
+		})
+	<% } %>
+	</script> 
 </div>

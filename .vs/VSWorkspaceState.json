@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\model",
     "\\public",
     "\\public\\assets",
     "\\public\\assets\\icon",
@@ -12,6 +11,6 @@
     "\\views\\partials\\mainPage",
     "\\writtenContent"
   ],
-  "SelectedNode": "\\public\\script\\NewMessage.js",
+  "SelectedNode": "\\views\\partials\\header.ejs",
   "PreviewInSolutionExplorer": false
 }

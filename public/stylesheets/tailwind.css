@@ -253,4 +253,27 @@
     }
 }
 
+/**CSS code for the initiation form */
+.scenes {
+    aspect-ratio: 2.4 / 1;
+}
 
+.scene1, .scene2 {
+}
+
+.scene1 {
+   
+}
+
+.scene2 {
+    z-index: -1;
+    -webkit-mask-image: linear-gradient( to right, transparent 47.5%, #fff 52.5% );
+    -webkit-mask-size: 210%;
+    -webkit-mask-position: left;
+}
+
+.initiated {
+    z-index: 1;
+    -webkit-mask-position: right;
+    transition: -webkit-mask-position 2s linear;
+}

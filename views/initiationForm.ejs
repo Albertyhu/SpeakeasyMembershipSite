@@ -15,62 +15,68 @@
    }
   </style>
 </head>
-<body class = "bg-[url('<%= BackgroundURL %>')] h-auto font-['DecoTech'] bg-repeat">
+<body class = " h-auto font-['DecoTech'] ">
   <div 
   id="container"
-  class = "w-full flex flex-col relative grow min-h-[120vh]">
+  class = "w-full flex flex-col relative grow min-h-[120vh] bg-[url('<%= BackgroundURL %>')] bg-repeat h-full">
       <div 
         id = "contentWrapper"
-        class = "pb-[6.5rem] ">
-          <div class = "w-full mb-[25px]">
-            <%- include("partials/header") %>
-            <%- include("partials/MobileMenu") %>
-          </div>
-          <div 
-            id = "Shell"
-            class = "w-11/12 mx-auto sm:w-5/12 transition-[opacity] duration-[2000ms] opacity-0">
-          <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
-              <div 
-                id="ErrorDiv"
-                class = "my-[50px] text-black w-full">
-                  <h2 class = "font-bold">Error: </h2>
-                  <% error.errors.forEach(val => { %> 
-                  <p class = "text-white"><%= val.msg %></p>
-                  <% }) %>
+        class = "pb-[6.5rem]">
+              <div class = "w-full mb-[25px]">
+                <%- include("partials/header") %>
+                <%- include("partials/MobileMenu") %>
               </div>
-          <%}%>
-          <img src = '<%= Ornamental%>' alt = "Ornamental Line" class = "mx-center sm:mt-10"/>
-          <h1 class ="text-center text-2xl text-white uppercase">Become a member of</h1>
-          <h1 class ="text-center text-4xl text-[#f9bb28] uppercase mb-[20px]"><%= title %></h1>
-          <p class = "text-[#dbdbdb] text-2xl text-center">Psst... What is the password? </p>
-          <form 
-            id = "form"
-            class = "grid"> 
-            <input 
-                id="PasswordInput"
-                type='text'
-                name='password' 
-                class = "mx-auto rounded-lg border-white border-[1px] px-1 text-[#333333] text-center my-10 w-full sm:w-7/12"
-            />
-            <div 
-                id="ErrorMessageField"
-                class = "relative h-[30px]"
-            ></div>
-            <button
-                type='submit' 
-                class ="rounded-full px-[5px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
-                border-white border-2 text-center w-[150px] select-none text-white mx-auto
-                hover:bg-gray-800 bg-[#99cbae] text-2xl"
-            >Enter</button>
-          </form>
-          <p class = "text-[#dbdbdb] text-2xl text-center mt-10">As a member of Henry's Speakeasy, other members will no longer be anonymous to you and you have access to more exclusive content. </p>
-          <p class = "text-[#dbdbdb] text-2xl text-center mt-10">Hint: The password is the answer in lowercase to the following riddle. </p>
-          <p class = "text-[#dbdbdb] text-2xl text-center mt-10">"I am an odd number. Take away a letter and I become even. What number am I?""</p>
-          <img src = '<%= Ornamental_bottom %>' alt = "Ornamental Line" class = "mx-center sm:mt-10"/>
-          </div>
-          <div
-            id="WelcomePanel"
-          >
+              <div id = "Scenes"
+                class = "relative scenes"
+              >
+                  <div id = "Scene1"
+                    class = " w-full h-auto scene1"
+                  >
+                      <div 
+                        id = "Shell"
+                        class = "w-11/12 mx-auto sm:w-5/12 transition-[opacity] duration-[2000ms] opacity-0">
+                      <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+                          <div 
+                            id="ErrorDiv"
+                            class = "my-[50px] text-black w-full">
+                              <h2 class = "font-bold">Error: </h2>
+                              <% error.errors.forEach(val => { %> 
+                              <p class = "text-white"><%= val.msg %></p>
+                              <% }) %>
+                          </div>
+                      <%}%>
+                      <img src = '<%= Ornamental%>' alt = "Ornamental Line" class = "mx-auto sm:mt-10"/>
+                      <h1 class ="text-center text-2xl text-white uppercase">Become a member of</h1>
+                      <h1 class ="text-center text-4xl text-[#f9bb28] uppercase mb-[20px]"><%= title %></h1>
+                      <p class = "text-[#dbdbdb] text-2xl text-center">Psst... What is the password? </p>
+                      <form 
+                        id = "form"
+                        class = "grid"> 
+                        <input 
+                            id="PasswordInput"
+                            type='text'
+                            name='password' 
+                            class = "mx-auto rounded-lg border-white border-[1px] px-1 text-[#333333] text-center my-10 w-full sm:w-7/12"
+                        />
+                        <div 
+                            id="ErrorMessageField"
+                            class = "relative h-[30px]"
+                        ></div>
+                        <button
+                            id="InitiationButton"
+                            type='submit' 
+                            class ="rounded-full px-[5px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                            border-white border-2 text-center w-[150px] select-none text-white mx-auto
+                            hover:bg-gray-800 bg-[#99cbae] text-2xl"
+                        >Enter</button>
+                      </form>
+                      <p class = "text-[#dbdbdb] text-2xl text-center mt-10">As a member of Henry's Speakeasy, other members will no longer be anonymous to you and you have access to more exclusive content. </p>
+                      <p class = "text-[#dbdbdb] text-2xl text-center mt-10">Hint: The password is the answer in lowercase to the following riddle. </p>
+                      <p class = "text-[#dbdbdb] text-2xl text-center mt-10">"I am an odd number. Take away a letter and I become even. What number am I?""</p>
+                      <img src = '<%= Ornamental_bottom %>' alt = "Ornamental Line" class = "mx-auto sm:mt-10"/>
+                  </div>
+                  <%- include('partials/initationPage/InitiatedScene')%>
+              </div>
           </div>
       </div>
       <%- include('partials/footer') %>
@@ -81,7 +87,9 @@
     Shell.style.opacity = "1.0";
     
     const Form = document.querySelector('#form'); 
+    const InitiationButton = document.querySelector("#InitiationButton");
     const ErrorMessageField = document.querySelector("#ErrorMessageField");
+    const SceneTwo = document.querySelector("#scene2"); 
 
     const PasswordInput = document.querySelector('#PasswordInput');
     Form.addEventListener('submit', evt => {
@@ -90,12 +98,16 @@
             ShowErrorMessage("That's not the correct password.")
         }
         else{
+            window.scrollTo({top: 0, behavior: 'smooth'});
             var jazz_audio = new Audio('<%= JazzAudio %>');
             var pub_audio = new Audio('<%= PubAudio %>');
             jazz_audio.play();
             pub_audio.play();
+            pub_audio.volume = ".75";
             pub_audio.loop = true;
             jazz_audio.loop = true;
+            InitiationButton.disabled = 'true'; 
+            SceneTwo.classList.add("initiated")
         }
     })
 

@@ -255,9 +255,12 @@ exports.MembershipInitiation_get = (req, res, next) => {
         Ornamental_bottom: "/assets/images/OrnamentalBorderBottom-2-white.png",
         MobileMenuBackground: "/assets/images/frame.jpg",
         SpeakeasyPassword: process.env.SPEAKEASY_PASSWORD,
-        JazzAudio: "/sound/unsure-jazz.wav",
+        JazzAudio: "/sound/full-jazz-mix.wav",
         PubAudio: "/sound/pub.mp3",
         DownArrow: '/assets/icon/down.png',
+        InitiationImage: "/assets/images/initiation.png",
+        GoldOrnamentalTop: "/assets/images/OrnamentalBorderTop-Gold.png",
+        GoldOrnamentalBottom: "/assets/images/OrnamentalBorderBottom-Gold.png",
     })
 }
 
