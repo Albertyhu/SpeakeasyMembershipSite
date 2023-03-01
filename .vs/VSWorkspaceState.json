@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\model",
+    "\\controller",
     "\\public",
-    "\\public\\assets",
-    "\\public\\assets\\social_media",
-    "\\public\\script",
+    "\\public\\stylesheets",
+    "\\routes",
     "\\views",
     "\\views\\partials",
-    "\\views\\partials\\mainPage",
-    "\\writtenContent"
+    "\\views\\partials\\authentication",
+    "\\views\\partials\\initationPage",
+    "\\views\\user"
   ],
-  "SelectedNode": "\\views\\user\\userList.ejs",
+  "SelectedNode": "\\views\\error.ejs",
   "PreviewInSolutionExplorer": false
 }

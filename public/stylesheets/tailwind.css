@@ -41,6 +41,8 @@
     .profile-pic {
         @apply w-[250px] h-[250px] m-auto rounded-full;
     }
+
+
 }
 
 
@@ -207,12 +209,12 @@
 }
 
 
-.DeleteMessageFadeOut {
+.DeleteMessageFadeOut, .SuccessMessageFadeOut {
     opacity: 0.0;
     transform: translateY(-40px);
 }
 
-.DeleteMessageFadeIn {
+.DeleteMessageFadeIn, .SuccessMessageFadeIn {
     opacity: 1.0;
     transform: translateY(40px);
     transition: opacity 1s linear, transform 1s linear;
@@ -243,6 +245,25 @@
 .FormFadeOut {
     opacity: 0.0;
     transition: opacity 2s ease-in;
+}
+
+/*Success message used form passwordForm.ejs*/
+.SuccessMessage {
+    color: #ffffff;
+    background-color: #99cbae;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center; 
+    font-size: 25px;
+    font-family: inherit;
+    opacity: 0.0;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
 
@@ -276,4 +297,10 @@
     z-index: 1;
     -webkit-mask-position: right;
     transition: -webkit-mask-position 2s linear;
+}
+
+/**Theme for the entire site*/
+
+.ContentWrapper {
+    padding-bottom:12.5rem;
 }

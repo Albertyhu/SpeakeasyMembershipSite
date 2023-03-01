@@ -27,9 +27,6 @@ exports.Login_Get = (req, res, next) => {
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
         DownArrow: '/assets/icon/down.png',
-        username: "Tery",
-        password: password,
-        confirm_password: confirm_password,
     })
 }
 
@@ -81,7 +78,6 @@ exports.Register_post = [
         .trim()
         .isLength({ min: 4 })
         .withMessage("Your password must be at least 4 characters long."),
-   
     async (req, res, next) => {
         var profile_pic = null; 
         if (req.file) {
@@ -161,3 +157,70 @@ exports.LogOut = (req, res, next) => {
         res.redirect("/");
     });
 }
+
+exports.ChangePassword_get = (req, res, next) => {
+    res.render('user/passwordForm', {
+        user: req.user,
+        title: "Change your password",
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+        UpperFrame: "/assets/images/frame-top.png",
+        BottomFrame: "/assets/images/frame-bottom.png",
+        DownArrow: '/assets/icon/down.png',
+    })
+}
+
+
+exports.ChangePassword_post = [
+    body("password")
+        .trim()
+        .isLength({ min: 4 })
+        .withMessage("Your password must be at least 4 characters long."),
+    body("confirm_password")
+        .trim()
+        .isLength({ min: 4 })
+        .withMessage("Your password must be at least 4 characters long."),
+    async (req, res, next) => {
+        const errors = validationResult(req)
+        if (errors) {
+            console.log("error in changing password: ", errors.array())
+            res.render('user/passwordForm', {
+                user: req.user,
+                title: "Change your password",
+                logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+                burgerMenu: "/assets/icon/hamburger_menu_white.png",
+                searchIcon: "/assets/icon/search-white.png",
+                BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
+                MobileMenuBackground: "/assets/images/frame.jpg",
+                UpperFrame: "/assets/images/frame-top.png",
+                BottomFrame: "/assets/images/frame-bottom.png",
+                DownArrow: '/assets/icon/down.png',
+                error: errors.array(), 
+            })
+            return; 
+        }
+        try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
+            const obj = {
+                password: hashedPassword,
+                _id: req.params.id,
+            }
+            const updateUser = new User(obj);
+            User.findByIdAndUpdate(req.params.id, updateUser, {}, (err, result) => {
+                if (err) {
+                    console.log("Error in trying to update password of user: ", err.message)
+                    return next(err);
+                }
+                console.log("User is successfully created.")
+                res.redirect(`/`);
+            })
+        } catch (e) {
+            console.log("Error in trying to create new user: ", e.message)
+            res.status(500).json({ error: 'Server error' });
+        }
+    }
+    
+]

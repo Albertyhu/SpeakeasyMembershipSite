@@ -19,12 +19,12 @@ exports.ContactForm_get = (req, res, next) => {
 exports.ContactForm_post = (req, res, next) => {
     const { email, subject, message } = req.body; 
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: false,
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT * 1,
+        secure: true,
         auth: {
-            user: 'hualbert.y@gmail.com',
-            pass: `${process.env.GMAIL_PASSWORD}`,
+            user: process.env.SMTP_USERNAME,
+            pass: process.env.SMTP_PASSWORD,
         },
         tls: {
             rejectUnauthorized: false,
@@ -35,8 +35,8 @@ exports.ContactForm_post = (req, res, next) => {
     const mailOptions = {
         from: email,
         to: 'hualbert.y@gmail.com',
-        subject: 'New message from contact form',
-        text: 'Hello, you have received a new message from the contact form on your website:'
+        subject: `Henry\'s Speakeasy: ${subject}`,
+        text: `Hello, you have received a new message from the contact form on your website: \n\n email: ${email} \n\n ${message}`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

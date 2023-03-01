@@ -69,12 +69,16 @@ router.get('/user/:id/update', checkCurrentUserID, UserController.UserUpdate_get
 
 router.post('/user/:id/update', upload.single('profile_pic'), UserController.UserUpdate_post); 
 
+router.get('/user/:id/changepassword', checkCurrentUserID, AuthController.ChangePassword_get); 
+
+router.post('/user/:id/changepassword', AuthController.ChangePassword_post);
+
 router.get('/join/:id', checkAuthenticated, UserController.MembershipInitiation_get);
 
 router.post('/join/:id', UserController.MembershipInitiation_post);
 
 router.get('/about', (req, res, next) => {
-    res.render('about', { 
+    res.render('static/about', { 
         user: req.user, 
         title: "About Us", 
         logoURL: "/assets/images/SpeakeasyLogo-JustText.png",

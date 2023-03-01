@@ -526,9 +526,6 @@ video {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
 .mb-\[120px\] {
   margin-bottom: 120px;
 }
@@ -544,8 +541,8 @@ video {
 .mb-\[50px\] {
   margin-bottom: 50px;
 }
-.mb-\[75px\] {
-  margin-bottom: 75px;
+.mb-\[70px\] {
+  margin-bottom: 70px;
 }
 .mt-10 {
   margin-top: 2.5rem;
@@ -559,14 +556,8 @@ video {
 .grid {
   display: grid;
 }
-.hidden {
-  display: none;
-}
 .h-\[100px\] {
   height: 100px;
-}
-.h-\[275px\] {
-  height: 275px;
 }
 .h-\[2px\] {
   height: 2px;
@@ -591,9 +582,6 @@ video {
 }
 .w-\[150px\] {
   width: 150px;
-}
-.w-\[275px\] {
-  width: 275px;
 }
 .w-fit {
   width: -moz-fit-content;
@@ -669,6 +657,15 @@ video {
 .bg-\[rgba\(0\2c 0\2c 0\2c 0\)\] {
   background-color: rgba(0,0,0,0);
 }
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.3\)\] {
+  background-color: rgba(255,255,255,0.3);
+}
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.5\)\] {
+  background-color: rgba(255,255,255,0.5);
+}
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.75\)\] {
+  background-color: rgba(255,255,255,0.75);
+}
 .bg-cover {
   background-size: cover;
 }
@@ -684,6 +681,9 @@ video {
 .p-10 {
   padding: 2.5rem;
 }
+.p-3 {
+  padding: 0.75rem;
+}
 .p-\[10px\] {
   padding: 10px;
 }
@@ -695,8 +695,9 @@ video {
   padding-left: 5px;
   padding-right: 5px;
 }
-.pb-\[6\.5rem\] {
-  padding-bottom: 6.5rem;
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 .text-center {
   text-align: center;
@@ -743,10 +744,6 @@ video {
 .text-\[\#dbdbdb\] {
   --tw-text-opacity: 1;
   color: rgb(219 219 219 / var(--tw-text-opacity));
-}
-.text-\[\#e48f1a\] {
-  --tw-text-opacity: 1;
-  color: rgb(228 143 26 / var(--tw-text-opacity));
 }
 .text-\[\#f2e796\] {
   --tw-text-opacity: 1;
@@ -980,12 +977,12 @@ video {
 }
 
 
-.DeleteMessageFadeOut {
+.DeleteMessageFadeOut, .SuccessMessageFadeOut {
     opacity: 0.0;
     transform: translateY(-40px);
 }
 
-.DeleteMessageFadeIn {
+.DeleteMessageFadeIn, .SuccessMessageFadeIn {
     opacity: 1.0;
     transform: translateY(40px);
     transition: opacity 1s linear, transform 1s linear;
@@ -1016,6 +1013,25 @@ video {
 .FormFadeOut {
     opacity: 0.0;
     transition: opacity 2s ease-in;
+}
+
+/*Success message used form passwordForm.ejs*/
+.SuccessMessage {
+    color: #ffffff;
+    background-color: #99cbae;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center; 
+    font-size: 25px;
+    font-family: inherit;
+    opacity: 0.0;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
 
@@ -1049,6 +1065,12 @@ video {
     z-index: 1;
     -webkit-mask-position: right;
     transition: -webkit-mask-position 2s linear;
+}
+
+/**Theme for the entire site*/
+
+.ContentWrapper {
+    padding-bottom:12.5rem;
 }
 
 .file\:rounded-lg::file-selector-button {
@@ -1121,21 +1143,18 @@ video {
     width: 58.333333%;
   }
 
-  .sm\:w-8\/12 {
-    width: 66.666667%;
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:bg-transparent {
+    background-color: transparent;
   }
 }
 
 @media (min-width: 768px) {
 
   .md\:w-5\/12 {
-    width: 41.666667%;
-  }
-}
-
-@media (min-width: 1024px) {
-
-  .lg\:w-5\/12 {
     width: 41.666667%;
   }
 }
@@ -1172,6 +1191,11 @@ video {
 
 .\[\&\>div\>input\]\:bg-\[rgba\(0\2c 0\2c 0\2c 0\)\]>div>input {
   background-color: rgba(0,0,0,0);
+}
+
+.\[\&\>div\>input\]\:px-1>div>input {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .\[\&\>div\>input\]\:pl-3>div>input {
@@ -1216,6 +1240,11 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.\[\&\>div\]\:mx-auto>div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .\[\&\>div\]\:my-\[10px\]>div {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1225,16 +1254,10 @@ video {
   display: grid;
 }
 
+.\[\&\>div\]\:w-11\/12>div {
+  width: 91.666667%;
+}
+
 .\[\&\>div\]\:w-full>div {
   width: 100%;
-}
-
-.\[\&\>p\]\:text-2xl>p {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.\[\&\>p\]\:text-white>p {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }

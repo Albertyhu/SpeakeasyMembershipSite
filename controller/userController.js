@@ -264,7 +264,6 @@ exports.MembershipInitiation_get = (req, res, next) => {
 }
 
 exports.MembershipInitiation_post = (req, res, next) => {
-    console.log("id: ", req.params.id)
     const updateUser = new User({
         member: true,
         _id: req.params.id,

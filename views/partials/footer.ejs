@@ -1,8 +1,14 @@
 <div 
 	id="footer"
-	class = "w-full h-[100px] absolute bottom-0 left-0 right-0
+	class = "w-full min-h-[100px] absolute bottom-0 left-0 right-0
 	bg-black"
 >	
-	<% var year = new Date().getFullYear();%>
-	<div class = "text-center text-[#e48f1a] mt-5 text-2xl">Henry's Speakeasy &copy;<%=year %></div>
+	<img 
+		src = "/assets/images/SpeakeasyLogo-text.png" 
+		alt = "logo"
+		class = "mx-auto my-10 w-[100px] h-auto"/>
+	<div class = "block whitespace-nowrap mx-auto text-center">
+		<% var year = new Date().getFullYear();%>
+		<div class = "text-center text-[#e48f1a] mt-5 text-2xl">Henry's Speakeasy &copy;<%=year %></div>
+	</div>
 </div>

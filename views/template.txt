@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <title>Henry's Speakeasy</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel ="stylesheet" href='stylesheets/style.css'> 
+  <link rel ="stylesheet" href='/stylesheets/style.css'> 
+  <link rel ="stylesheet" href='/stylesheets/tailwind.css'> 
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 </head>
@@ -14,7 +15,7 @@
   class = "w-full flex flex-col relative grow min-h-[120vh]">
       <div 
         id = "contentWrapper"
-        class = "pb-[6.5rem]">
+        class = "ContentWrapper">
           <div class = "w-full mb-[135px]">
             <%- include("partials/header") %>
             <%- include("partials/MobileMenu") %>
