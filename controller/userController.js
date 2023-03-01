@@ -264,11 +264,12 @@ exports.MembershipInitiation_get = (req, res, next) => {
 }
 
 exports.MembershipInitiation_post = (req, res, next) => {
+    console.log("id: ", req.params.id)
     const updateUser = new User({
         member: true,
-        _id: req.user.id,
+        _id: req.params.id,
     })
-    User.findByIdAndUpdate(req.user.id, updateUser, (err) => {
+    User.findByIdAndUpdate(req.params.id, updateUser, (err) => {
         if (err)
             return next(err)
         console.log("Member has been successfully initiated.")

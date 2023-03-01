@@ -3,6 +3,7 @@ const router = express.Router();
 const MessageController = require('../controller/messageController.js'); 
 const AuthController = require('../controller/authController.js'); 
 const UserController = require('../controller/userController.js');
+const ContactController = require('../controller/contactController.js'); 
 const path = require('path')
 const multer = require('multer');
 
@@ -41,10 +42,13 @@ router.post("/login", AuthController.Login_Post);
 
 router.get("/logout", AuthController.LogOut)
 
-router.get('/contact', (req, res, next) => {
-    res.render('contact', {
-        user: req.user, 
-        title: "Have something in mind. Send us a message.",
+router.get('/contact', ContactController.ContactForm_get);
+
+router.post('/contact', ContactController.ContactForm_post);
+
+router.get('/contact/thankyou', (req, res, next) => {
+    res.render("contact-PostSubmittion", {
+        user: req.user,
         logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
         burgerMenu: "/assets/icon/hamburger_menu_white.png",
         searchIcon: "/assets/icon/search-white.png",
@@ -52,6 +56,7 @@ router.get('/contact', (req, res, next) => {
         MobileMenuBackground: "/assets/images/frame.jpg",
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
+        SpeakEasyLogo: "/assets/images/speakeasylogo.png",
         DownArrow: '/assets/icon/down.png',
     })
 })
@@ -64,9 +69,9 @@ router.get('/user/:id/update', checkCurrentUserID, UserController.UserUpdate_get
 
 router.post('/user/:id/update', upload.single('profile_pic'), UserController.UserUpdate_post); 
 
-router.get('/join', checkAuthenticated, UserController.MembershipInitiation_get);
+router.get('/join/:id', checkAuthenticated, UserController.MembershipInitiation_get);
 
-router.post('/join', UserController.MembershipInitiation_post);
+router.post('/join/:id', UserController.MembershipInitiation_post);
 
 router.get('/about', (req, res, next) => {
     res.render('about', { 

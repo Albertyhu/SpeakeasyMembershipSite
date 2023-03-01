@@ -1,4 +1,11 @@
 2/28/23
+To make sure images don't look stretched, the following css property:
+object-fit: cover; 
+
+Tailwind version 
+object-cover
+
+2/28/23
 I'm getting a weird error from editing a newly created profile.
 Unexpected JSON input.
 It's likely because of the fact that the drink and social media inputs require parsing something into a string.

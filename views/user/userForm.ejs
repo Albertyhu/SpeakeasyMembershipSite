@@ -7,7 +7,6 @@
   <link rel ="stylesheet" href='../../stylesheets/style.css'> 
   <link rel ="stylesheet" href='../../stylesheets/tailwind.css'> 
   <script type="text/javascript" src="../../script/join.js"></script>
-  <script type="text/javascript" src="../../script/checkEmail.js"></script>
   <script type="text/javascript" src="../../script/cursorDeleteMessage.js"></script>
   <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
@@ -119,41 +118,6 @@
       <%- include('../partials/footer') %>
   </div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script>
-        const FormElement = document.getElementById('form'); 
-        const EmailElement = document.getElementById('emailInput');
-        const ContainerElement = document.getElementById('container'); 
-        const SocialHiddenInput2 = document.querySelector('#SocialHiddenInput');
-
-        form.addEventListener('submit', (event) =>{
-       // SocialHiddenInput2.value = JSON.stringify(linkObj); 
-            event.preventDefault(); 
-            var isValid = true; 
-            if(!checkEmail(EmailElement.value)){
-                ShowEmailErrorMessage("Error: The format of your email is incorrect. It must follow this example: user@email.com ")
-                isValid=false;
-            }
-            if(isValid){
-                form.submit(); 
-            }
-        })
-  
-          function ShowEmailErrorMessage(message){
-            const MessageDiv = document.createElement('div');
-            MessageDiv.innerHTML = message; 
-            MessageDiv.classList.add("EmailErrorMessage"); 
-            ContainerElement.appendChild(MessageDiv); 
-            
-            setTimeout(()=>{
-                MessageDiv.classList.add("DeleteMessageFadeIn");
-            }, 1)
-            setTimeout(()=>{ContainerElement.removeChild(MessageDiv)}, 10000)
-            setTimeout(()=>{
-               MessageDiv.classList.remove("DeleteMessageFadeIn"); 
-               MessageDiv.classList.add("DeleteMessageFadeOut"); 
-            }, 8000)
-            
-        }
-  </script>
+  <%- include('validateEmail') %>
 </body>
 </html>

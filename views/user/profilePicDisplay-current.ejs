@@ -1,6 +1,6 @@
-<% var ProfilePicStyle = "select-none w-full  object-cover rounded-full w-[350px] h-[350px] mx-auto" %>
+<% var ProfilePicStyle = "select-none absolute w-full inset-[5%_0]" %>
 <div 
-class = " m-auto overflow-hidden relative"
+class = "w-[350px] h-[300px] m-auto overflow-hidden relative"
 id = "AvatarField">
 	<% if(user && (user.member || userDetail._id == user.id)) {%>
 		<% if(typeof userDetail.profile_pic != 'undefined' && typeof userDetail.profile_pic.data != 'undefined') {%>

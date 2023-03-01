@@ -34,6 +34,17 @@
                     </ul>
                   </div>
               <%}%>
+              <% console.log("error message: ", message)%>
+
+              <% if(typeof message != 'undefined' && message != "") {%> 
+                  <div 
+                    id="ErrorMessageDiv"
+                    class = "my-[50px] text-black w-full text-center bg-[rgba(255,255,255,0.3)] p-3">
+                    <h2 class = "font-bold text-3xl">Error: </h2>
+                    <p class = "text-3xl"><%= message%></p>
+                  </div>
+              <%}%>
+
               <div>
                   <img 
                     src = "<%= UpperFrame %>" 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Henry's Speakeasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel ="stylesheet" href='/stylesheets/style.css'> 
+  <link rel ="stylesheet" href="/stylesheets/tailwind.css">
+  <link rel="icon" type="image/x-icon" href="/assets/images/SpeakeasyFavicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+</head>
+<body 
+    class = "bg-[url('<%= BackgroundURL %>')] h-auto bg-no-repeat bg-cover">
+  <div 
+  id="container"
+  class = "w-full flex flex-col relative grow min-h-[120vh]">
+      <div 
+        id = "contentWrapper"
+        class = "pb-[6.5rem]">
+          <div class = "w-full mb-[135px]">
+            <%- include("partials/header") %>
+            <%- include("partials/MobileMenu") %>
+          </div>
+          <div class = "text-center">
+             <div id = "form-wrapper" class = "w-11/12 mx-auto md:w-5/12 ">
+              <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
+                  <div 
+                    id="ErrorDiv"
+                    class = "my-[50px] text-black w-full">
+                    <h2 class = "font-bold">Error: </h2>
+                    <% error.errors.forEach(val => { %> 
+                        <p class = "text-white"><%= val.msg %></p>
+                    <% }) %>
+                  </div>
+              <%}%>
+                 <img 
+                    src = "<%= UpperFrame %>" 
+                     alt = "upper-frame"
+                     class = "w-full h-auto" 
+                     />
+                  <div class = "py-10 bg-[rgba(255,255,255,0.5)]">
+                      <h1 class = "font-bold">Thank you for sending us your thoughts.</h1>
+                      <p>We will do our best to respond to you at our earliest convenience.</p>
+                      <div 
+                        class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                        border-white border-2 text-center w-[150px] select-none text-white mx-auto
+                        hover:bg-gray-800 bg-[#99cbae]"
+                        onclick="location.href='/'"
+                      >Go Home</div>
+                  </div>
+                  <img 
+                    src = "<%= BottomFrame %>" 
+                    alt = "upper-frame"
+                    class = "w-full h-auto" 
+                     />
+                </div>
+          </div>
+      </div>
+      <%- include('partials/footer') %>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</body>
+</html>

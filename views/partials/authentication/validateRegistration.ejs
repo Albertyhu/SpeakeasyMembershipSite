@@ -1,0 +1,54 @@
+<script type="text/javascript" src="../../script/checkEmail.js"></script>
+<script>
+        const FormElement = document.getElementById('form'); 
+        const EmailElement = document.getElementById('emailInput');
+        const ContainerElement = document.getElementById('container'); 
+        const UsernameElement = document.getElementById('nameInput'); 
+
+        form.addEventListener('submit', (event) =>{
+            event.preventDefault(); 
+            var isValid = true; 
+            var errorMessage = "Error: <br />"; 
+            <% if(typeof existingUsers != "undefined" && existingUsers.length > 0) { %> 
+            <% existingUsers.forEach(person => { %> 
+                if(UsernameElement.value == '<%= person.username %>'){
+                    errorMessage += "The username you typed already exists. Please, try another one. <br />"
+                    isValid = false; 
+                }
+                if(EmailElement.value == '<%= person.email %>'){
+                    errorMessage += "The email you typed already exists. Please, try another one. <br />"
+                    isValid = false; 
+                }
+            
+            <%})%>
+            <%}%>
+
+            if(!checkEmail(EmailElement.value)){
+                errorMessage += "Error: The format of your email is incorrect. It must follow this example: user@email.com <br />"
+                isValid=false;
+            }
+            if(isValid){
+                form.submit(); 
+            }
+            else{
+                ShowErrorMessage(errorMessage)
+            }
+        })
+  
+        function ShowErrorMessage(message){
+        const MessageDiv = document.createElement('div');
+        MessageDiv.innerHTML = message; 
+        MessageDiv.classList.add("EmailErrorMessage"); 
+        ContainerElement.appendChild(MessageDiv); 
+            
+        setTimeout(()=>{
+            MessageDiv.classList.add("DeleteMessageFadeIn");
+        }, 1)
+        setTimeout(()=>{ContainerElement.removeChild(MessageDiv)}, 10000)
+        setTimeout(()=>{
+            MessageDiv.classList.remove("DeleteMessageFadeIn"); 
+            MessageDiv.classList.add("DeleteMessageFadeOut"); 
+        }, 8000)
+            
+        }
+</script>

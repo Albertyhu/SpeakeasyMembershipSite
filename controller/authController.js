@@ -16,7 +16,8 @@ var dummyData = {
 exports.Login_Get = (req, res, next) => {
     const { username, email, password, confirm_password } = dummyData;  
     res.render('login', {
-        user: req.user, 
+        user: req.user,
+        message: req.flash('error'), 
         title: "Log into your account",
         logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
         burgerMenu: "/assets/icon/hamburger_menu_white.png",
@@ -26,9 +27,9 @@ exports.Login_Get = (req, res, next) => {
         UpperFrame: "/assets/images/frame-top.png",
         BottomFrame: "/assets/images/frame-bottom.png",
         DownArrow: '/assets/icon/down.png',
-        //username: username,
-        //email: email,
-        //password: password,
+        username: "Tery",
+        password: password,
+        confirm_password: confirm_password,
     })
 }
 
@@ -39,20 +40,26 @@ exports.Login_Post = passport.authenticate("local", {
 })
 
 exports.Register_get = (req, res, next) => {
-    const { username, email, password, confirm_password } = dummyData;  
-
-    res.render("register", {
-        user: req.user, 
-        title: "Create an account", 
-        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
-        burgerMenu: "/assets/icon/hamburger_menu_white.png",
-        searchIcon: "/assets/icon/search-white.png",
-        BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
-        MobileMenuBackground: "/assets/images/frame.jpg",
-        UpperFrame: "/assets/images/frame-top.png",
-        BottomFrame: "/assets/images/frame-bottom.png",
-        DownArrow: '/assets/icon/down.png',
+  //  const { username, email, password, confirm_password } = dummyData; 
+    User.find({}, (err, result) => {
+        if (err)
+            return next(err); 
+        
+        res.render("register", {
+            user: req.user,
+            existingUsers: result, 
+            title: "Create an account",
+            logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+            burgerMenu: "/assets/icon/hamburger_menu_white.png",
+            searchIcon: "/assets/icon/search-white.png",
+            BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
+            MobileMenuBackground: "/assets/images/frame.jpg",
+            UpperFrame: "/assets/images/frame-top.png",
+            BottomFrame: "/assets/images/frame-bottom.png",
+            DownArrow: '/assets/icon/down.png',
+        })
     })
+
 }
 
 exports.Register_post = [
@@ -76,7 +83,6 @@ exports.Register_post = [
         .withMessage("Your password must be at least 4 characters long."),
    
     async (req, res, next) => {
-        //const profile_pic = req.file ? req.file.path : null;
         var profile_pic = null; 
         if (req.file) {
             profile_pic = {
@@ -131,13 +137,13 @@ exports.Register_post = [
                 member: false,
             }
             const newUser = new User(obj); 
-            newUser.save(err => {
+            newUser.save((err, result) => {
                 if (err) {
                     console.log("Error in trying to save user: ", err.message)
                     return next(err);
                 }
                 console.log("User is successfully created.")
-                res.redirect("/join");
+                res.redirect(`/join/${result._id}`);
             })
         } catch (e) {
             console.log("Error in trying to create new user: ", e.message)

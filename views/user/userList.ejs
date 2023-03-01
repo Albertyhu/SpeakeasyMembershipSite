@@ -46,7 +46,7 @@
           <div class ="mb-[20px]">
                 <p class = "text-2xl text-[#dbdbdb] text-center my-10 mx-5">Note: If you want to see who the members are, you must become initiated as a member of Henry's Speakeasy</p>
                 <div
-                    onclick ="location.href='/join'"
+                    onclick ="location.href='/join/<%= user.id %>'"
                     class = "rounded-full p-[10px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
                     border-white border-2 text-center w-fit select-none text-white mx-auto text-2xl whitespace-nowrap
                     hover:bg-gray-800 bg-[#99cbae]"
@@ -56,7 +56,7 @@
           <div id = "ProfileGrid"
             class = "grid mx-auto sm:grid-cols-2 lg:grid-cols-3 gap-x-[10px]"
           >
-            <% var ProfilePicStyle = "w-[250px] h-[250px] m-auto" 
+            <% var ProfilePicStyle = "w-[250px] h-[250px] m-auto  object-cover" 
                var FrameStyle = "w-[266px] h-auto mx-auto"
             %>
             <% membersList.forEach(member => { %> 

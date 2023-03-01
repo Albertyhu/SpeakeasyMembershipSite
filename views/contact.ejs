@@ -16,12 +16,13 @@
       <div 
         id = "contentWrapper"
         class = "pb-[6.5rem]">
-          <div class = "w-full mb-[135px]">
+          <div class = "w-full mb-[70px] sm:mb-[135px]">
             <%- include("partials/header") %>
             <%- include("partials/MobileMenu") %>
           </div>
           <div class = "text-center">
-             <h1 class = "font-[Chapleau] text-3xl text-black"><%= title %></h1>
+             <h1 class = "font-[Chapleau] text-3xl text-black w-11/12 mx-auto sm:w-full 
+                bg-[rgba(255,255,255,0.75)] sm:bg-transparent"><%= title %></h1>
              <div id = "form-wrapper" class = "w-11/12 mx-auto md:w-5/12 ">
               <% if(typeof error != 'undefined' && typeof error.errors != 'undefined') {%> 
                   <div 
@@ -39,12 +40,12 @@
                      class = "w-full h-auto" 
                      />
                   <form
-                    action="/login" 
+                    action="" 
                     method="POST"
                     class="[&>div>label]:text-black [&>div>label]:uppercase [&>div>label]:font-bold [&>div]:grid [&>div>input]:rounded-lg 
-                    [&>div]:w-full [&>div]:my-[10px] [&>div>input]:pl-3 [&>div>input]:bg-[rgba(0,0,0,0)] 
+                    [&>div]:w-11/12 [&>div]:mx-auto [&>div]:my-[10px] [&>div>input]:px-1 [&>div>input]:bg-[rgba(0,0,0,0)] 
                     [&>div>input]:text-black [&>div>input]:border-white [&>div>input]:border-[1px]
-                    bg-[#f2e798] rounded-md p-10 [&>div>input]:placeholder:text-[#545454] text-2xl
+                    bg-[#f2e798] rounded-md  [&>div>input]:placeholder:text-[#545454] text-2xl
                     [&>div>input]:placeholder:text-base" 
                     id = "form">
                     <div>
@@ -84,7 +85,9 @@
                             border-white placeholder:text-[#545454]"
                             /></textarea>
                     </div>
+                    <div class = "mb-30px">
                     <%- include('partials/FormButtons')%>
+                    </div>
                   </form>
                   <img 
                     src = "<%= BottomFrame %>" 

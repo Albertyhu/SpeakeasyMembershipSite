@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\model",
     "\\public",
     "\\public\\assets",
-    "\\public\\assets\\images",
-    "\\public\\sound",
-    "\\public\\stylesheets",
+    "\\public\\assets\\social_media",
+    "\\public\\script",
     "\\views",
     "\\views\\partials",
-    "\\views\\partials\\initationPage",
-    "\\views\\user"
+    "\\views\\partials\\mainPage",
+    "\\writtenContent"
   ],
-  "SelectedNode": "\\notes.txt",
+  "SelectedNode": "\\views\\user\\userList.ejs",
   "PreviewInSolutionExplorer": false
 }

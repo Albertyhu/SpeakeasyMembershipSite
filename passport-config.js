@@ -9,7 +9,7 @@ function initialize(passport) {
             if (err)
                 return done(err);
             if (!user)
-                return done(null, false, { message: "There is no user that goes by that email." });
+                return done(null, false, { message: "There is no user who goes by that username." });
             try {
                 //The input password from the log in form should always be in the first argument
                 //The password stored in the database should be in the second argument of bcrypt.compare
