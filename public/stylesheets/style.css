@@ -712,8 +712,8 @@ video {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
-.pb-\[11rem\] {
-  padding-bottom: 11rem;
+.pb-\[30rem\] {
+  padding-bottom: 30rem;
 }
 .text-center {
   text-align: center;
@@ -1180,6 +1180,10 @@ video {
 
   .sm\:bg-transparent {
     background-color: transparent;
+  }
+
+  .sm\:pb-\[19rem\] {
+    padding-bottom: 19rem;
   }
 }
 
