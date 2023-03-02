@@ -21,13 +21,13 @@
   class = "w-full flex flex-col relative grow min-h-[120vh] bg-[url('<%= BackgroundURL %>')] bg-repeat h-full">
       <div 
         id = "contentWrapper"
-        class = "ContentWrapper">
+        class = "pb-[30rem] sm:pb-[19rem]">
               <div class = "w-full mb-[25px]">
                 <%- include("partials/header") %>
                 <%- include("partials/MobileMenu") %>
               </div>
               <div id = "Scenes"
-                class = "relative scenes"
+                class = "relative scenes mt-[3.0rem] sm:mt-[6.3rem]"
               >
                   <div id = "Scene1"
                     class = " w-full h-auto scene1"
@@ -45,7 +45,7 @@
                               <% }) %>
                           </div>
                       <%}%>
-                      <img src = '<%= Ornamental%>' alt = "Ornamental Line" class = "mx-auto sm:mt-10"/>
+                      <img src = '<%= Ornamental%>' alt = "Ornamental Line" class = "mx-auto mb-10 "/>
                       <h1 class ="text-center text-2xl text-white uppercase">Become a member of</h1>
                       <h1 class ="text-center text-4xl text-[#f9bb28] uppercase mb-[20px]"><%= title %></h1>
                       <p class = "text-[#dbdbdb] text-2xl text-center">Psst... What is the password? </p>
@@ -58,6 +58,7 @@
                             id="PasswordInput"
                             type='text'
                             name='password' 
+                            placeholder='Password'
                             class = "mx-auto rounded-lg border-white border-[1px] px-1 text-[#333333] text-center my-10 w-full sm:w-7/12"
                         />
                         <div 
@@ -70,12 +71,22 @@
                             class ="rounded-full px-[5px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
                             border-white border-2 text-center w-[150px] select-none text-white mx-auto
                             hover:bg-gray-800 bg-[#99cbae] text-2xl"
-                        >Enter</button>
+                        >Submit answer</button>
                       </form>
                       <p class = "text-[#dbdbdb] text-2xl text-center mt-10">As a member of Henry's Speakeasy, other members will no longer be anonymous to you and you have access to more exclusive content. </p>
                       <p class = "text-[#dbdbdb] text-2xl text-center mt-10">Hint: The password is the answer in lowercase to the following riddle. </p>
                       <p class = "text-[#dbdbdb] text-2xl text-center mt-10">"I am an odd number. Take away a letter and I become even. What number am I?""</p>
-                      <img src = '<%= Ornamental_bottom %>' alt = "Ornamental Line" class = "mx-auto sm:mt-10"/>
+                      <hr class = "border-[1px] border-white mt-10"">
+                      <p class = "text-[#f2e796] text-2xl text-center mt-10">I don't know the answer.</p>
+                      <button
+                            id="InitiationButton"
+                            type='button' 
+                            class ="rounded-full px-[5px] active:translate-x-[5px] active:translate-y-[5px] cursor-pointer
+                            border-white border-2 text-center w-[150px] select-none text-[#555150] mx-auto
+                            hover:bg-gray-800 bg-[#f2e796] text-2xl whitespace-nowrap block"
+                            onclick = "location.href='/'"
+                        >Take me home</button>
+                      <img src = '<%= Ornamental_bottom %>' alt = "Ornamental Line" class = "mx-auto mt-10"/>
                   </div>
               </div>
               <%- include('partials/initationPage/InitiatedScene')%>

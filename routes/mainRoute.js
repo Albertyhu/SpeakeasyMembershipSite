@@ -30,7 +30,7 @@ const checkNotAuthenticated = (req, res, next) => {
 
 router.get("/", checkAuthenticated, MessageController.MessageBoard)
 
-router.post("/", MessageController.Message_post)
+router.post("/", upload.single('image'), MessageController.Message_post)
 
 router.get("/register", AuthController.Register_get)
 
@@ -73,6 +73,21 @@ router.get('/user/:id/changepassword', checkCurrentUserID, AuthController.Change
 
 router.post('/user/:id/changepassword', AuthController.ChangePassword_post);
 
+router.get('/passwordchanged', (req, res) => {
+    res.render('partials/authentication/passwordChangeResult', {
+        user: req.user,
+        title: "Your password has successfully been changed.",
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/BirdCageBackground2.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+        UpperFrame: "/assets/images/frame-top.png",
+        BottomFrame: "/assets/images/frame-bottom.png",
+        DownArrow: '/assets/icon/down.png',
+    })
+})
+
 router.get('/join/:id', checkAuthenticated, UserController.MembershipInitiation_get);
 
 router.post('/join/:id', UserController.MembershipInitiation_post);
@@ -90,6 +105,35 @@ router.get('/about', (req, res, next) => {
         DownArrow: '/assets/icon/down.png',
     })
 })
+
+router.get('/privacypolicy', (req, res) => {
+    res.render('static/privacypolicy', {
+        user: req.user,
+        title: "Privacy Policy",
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/Faint-line-background-small.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+        SpeakEasyLogo: "/assets/images/speakeasylogo.png",
+        DownArrow: '/assets/icon/down.png',
+    })
+})
+
+router.get('/terms&conditions', (req, res) => {
+    res.render('static/termsandconditions', {
+        user: req.user,
+        title: "Privacy Policy",
+        logoURL: "/assets/images/SpeakeasyLogo-JustText.png",
+        burgerMenu: "/assets/icon/hamburger_menu_white.png",
+        searchIcon: "/assets/icon/search-white.png",
+        BackgroundURL: "/assets/images/Faint-line-background-small.jpg",
+        MobileMenuBackground: "/assets/images/frame.jpg",
+        SpeakEasyLogo: "/assets/images/speakeasylogo.png",
+        DownArrow: '/assets/icon/down.png',
+    })
+})
+
 
 //This function is necessary to keep the user logged in once he is authenticated 
 function checkAuthenticated(req, res, next) {

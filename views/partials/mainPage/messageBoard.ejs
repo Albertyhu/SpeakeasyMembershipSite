@@ -21,6 +21,17 @@
 						class = "text-3xl">Anonymous</h2>
 					<%} %>
 					<div><%= mess.UnescapedMessage %></div>
+						<% if(typeof mess.image != 'undefined' && typeof mess.image.data != 'undefined') {%>
+							<div
+							class ="w-11/12 h-auto mx-auto my-10"
+							id ="ImageWrapper">
+							<img
+								src="data:<%= mess.image.contentType %>;base64,<%= mess.image.data.toString('base64') %>"
+							class = "select-none w-full h-full object-cover mx-auto"
+							alt="image"
+							/>
+						</div>
+						<% } %>
 					<div class = "text-[#f2e798]"><%= mess.DateFormatted %></div>
 					<%- include('likeForm', {mess: mess}) %>
 				</div>

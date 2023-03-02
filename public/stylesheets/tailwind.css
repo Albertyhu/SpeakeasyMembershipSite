@@ -249,6 +249,7 @@
 
 /*Success message used form passwordForm.ejs*/
 .SuccessMessage {
+    display: block; 
     color: #ffffff;
     background-color: #99cbae;
     padding: 5px;
@@ -266,6 +267,16 @@
     transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
+.SuccessMessageFadeOut {
+    opacity: 0.0;
+    transform: translateY(-40px);
+}
+
+.SuccessMessageFadeIn {
+    opacity: 1.0;
+    transform: translateY(40px);
+    transition: opacity 1s linear, transform 1s linear;
+}
 
 @media screen and (max-width: 540px) {
     .EmailErrorMessage {
@@ -302,5 +313,5 @@
 /**Theme for the entire site*/
 
 .ContentWrapper {
-    padding-bottom:12.5rem;
+    padding-bottom:32.5rem;
 }

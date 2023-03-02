@@ -14,7 +14,6 @@ var dummyData = {
 }
 
 exports.Login_Get = (req, res, next) => {
-    const { username, email, password, confirm_password } = dummyData;  
     res.render('login', {
         user: req.user,
         message: req.flash('error'), 
@@ -175,6 +174,15 @@ exports.ChangePassword_get = (req, res, next) => {
 
 
 exports.ChangePassword_post = [
+    body('current_password')
+        .trim()
+        .isLength({ min: 4 })
+        .withMessage("Your current password must be at least 4 characters long.")
+        .custom(async (val, { req }) => {
+            if (!await bcrypt.compare(val, req.user.password)) {
+                throw new Error('The current password you typed is not correct.');
+            }
+        }),
     body("password")
         .trim()
         .isLength({ min: 4 })
@@ -182,11 +190,10 @@ exports.ChangePassword_post = [
     body("confirm_password")
         .trim()
         .isLength({ min: 4 })
-        .withMessage("Your password must be at least 4 characters long."),
+        .withMessage("Your confirmation password must be at least 4 characters long."),
     async (req, res, next) => {
         const errors = validationResult(req)
-        if (errors) {
-            console.log("error in changing password: ", errors.array())
+        if (!errors.isEmpty()) {
             res.render('user/passwordForm', {
                 user: req.user,
                 title: "Change your password",
@@ -202,6 +209,7 @@ exports.ChangePassword_post = [
             })
             return; 
         }
+
         try {
             const hashedPassword = await bcrypt.hash(req.body.password, 10)
             const obj = {
@@ -215,12 +223,11 @@ exports.ChangePassword_post = [
                     return next(err);
                 }
                 console.log("User is successfully created.")
-                res.redirect(`/`);
+                res.redirect(`/passwordchanged`);
             })
         } catch (e) {
             console.log("Error in trying to create new user: ", e.message)
             res.status(500).json({ error: 'Server error' });
         }
     }
-    
 ]

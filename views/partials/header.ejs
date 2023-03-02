@@ -11,21 +11,27 @@
 </style>
 <script>
 	var MobileMenu = document.getElementById('MobileMenu')
-    
-	function openMenu(){ 
-		MobileMenu = document.getElementById('MobileMenu')
-		MobileMenu.classList.remove('closed-menu');
-		MobileMenu.classList.add('opened-menu');
+
+	function openMenu(){
+	MobileMenu = document.getElementById('MobileMenu')
+	MobileMenu.classList.remove('closed-menu');
+	MobileMenu.classList.add('opened-menu');
+	}
+
+	function closeMobileMenu(){
+	MobileMenu = document.getElementById('MobileMenu')
+	MobileMenu.classList.remove('opened-menu');
+	MobileMenu.classList.add('closed-menu');
 	}
 	const CheckIfClickedOutsideMobileMenu = event =>{
-		const targetEvent = event.target
-		MobileMenu = document.getElementById('MobileMenu')
-		if(MobileMenu != targetEvent){
-			MobileMenu.classList.remove('opened-menu');
-			MobileMenu.classList.add('closed-menu');
-		}
-	} 
-	
+	const targetEvent = event.target
+	MobileMenu = document.getElementById('MobileMenu')
+	if(MobileMenu != targetEvent){
+	MobileMenu.classList.remove('opened-menu');
+	MobileMenu.classList.add('closed-menu');
+	}
+	}
+
 </script>
 <% var BackgroundColor ="black" %>
 <div
@@ -109,7 +115,7 @@
 					<div 
 						id="AccountMenu"
 						class="hidden grid absolute [&>div]:my-5 [&>div]:whitespace-nowrap
-						bg-[#f2e796] [&>div]:text-black [&>div]:mx-[10px] translate-x-[-40px]">
+						bg-[#f2e796] [&>div]:text-black [&>div]:mx-[10px] translate-x-[-60px]">
 							<div 
 								class ="hover:underline">
 								<a href ="/user/<%= user.id%>">Your profile</a>
@@ -135,19 +141,18 @@
 		</div>
 
 <script>
-	<% if(typeof user != 'undefined') { %>
 		var AccountLink = document.querySelector('#AccountLink');
 		var AccountMenu = document.querySelector('#AccountMenu');
 		var Container = document.querySelector("#container");
 		var ProfilePic =document.querySelector("#ProfilePic"); 
 		const MobileHeader = document.getElementById('MobileHeader');
 		
-		AccountLink.addEventListener("click", ToggleAccountMenu);
+		AccountLink?.addEventListener("click", ToggleAccountMenu);
 
 		function ToggleAccountMenu(){
-		if(AccountMenu.classList.contains('hidden')){
-		AccountMenu.classList.remove('hidden');
-		AccountMenu.classList.add('grid');
+		if(AccountMenu?.classList.contains('hidden')){
+		AccountMenu?.classList.remove('hidden');
+		AccountMenu?.classList.add('grid');
 		}
 		else{
 		CloseAccountMenu();
@@ -180,18 +185,18 @@
 			//If the user's profile picture exist, execute the following
 			//The image is chosen instead of its parent because for some reason, the image is only registered by click
 			<% if(user.profile_pic.contentType != 'undefine') { %>
-				if (!AccountMenu.classList.contains('hidden') && !ConfirmChild(evt.target, childAnchors) && evt.target != AccountMenu && evt.target != ProfilePic){
+				if (!AccountMenu?.classList.contains('hidden') && !ConfirmChild(evt.target, childAnchors) && evt.target != AccountMenu && evt.target != ProfilePic){
 					CloseAccountMenu();
 					}
 			<% } else { %> 
-				if (!AccountMenu.classList.contains('hidden') && evt.target != AccountMenu && evt.target != AccountLink && !ConfirmChild(evt.target, childAnchors)){
+				if (!AccountMenu?.classList.contains('hidden') && evt.target != AccountMenu && evt.target != AccountLink && !ConfirmChild(evt.target, childAnchors)){
 					CloseAccountMenu();
 					}
 			<%}%>
 		<% } %>
 		}
 	
-		Container.addEventListener("mousedown", (evt)=>{
+		Container?.addEventListener("mousedown", (evt)=>{
 			if(window.innerWidth >= 640){
 				CheckIfClickedOutsideAccountMenu(evt)
 			}
@@ -199,6 +204,6 @@
 				CheckIfClickedOutsideMobileMenu(evt)
 			}
 		})
-	<% } %>
+
 	</script> 
 </div>

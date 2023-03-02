@@ -1,12 +1,27 @@
 <div 
 	id="footer"
 	class = "w-full min-h-[100px] absolute bottom-0 left-0 right-0
-	bg-black"
+	bg-black font-['DecoTech'] "
 >	
-	<img 
-		src = "/assets/images/SpeakeasyLogo-text.png" 
-		alt = "logo"
-		class = "mx-auto my-10 w-[100px] h-auto"/>
+	<div class = "grid sm:grid-cols-2 text-white sm:mt-10">
+		<img 
+			src = "/assets/images/SpeakeasyLogo-text.png" 
+			alt = "logo"
+			class = "mx-auto my-10 w-[200px] h-auto sm:text-right sm:ml-auto sm:mr-[40px]"
+			onclick = "location.href='/'"/>
+		<div class = "[&>div]:text-3xl [&>div]:my-3 [&>div]:mx-auto [&>div]:cursor-pointer
+		w-11/12 mx-auto text-center sm:text-left">
+			<div 
+				onclick ="location.href='/about'"
+				class ="hover:underline">About Henry's Speakeasy</div>
+			<div onclick ="location.href='/privacypolicy'"
+				class ="hover:underline">Privacy policy</div>
+			<div onclick ="location.href='/terms&conditions'"
+				class ="hover:underline">Terms and conditions</div>
+			<div onclick ="location.href='/contact'"
+				class ="hover:underline">Contact us</div>
+		</div>
+	</div>
 	<div class = "block whitespace-nowrap mx-auto text-center">
 		<% var year = new Date().getFullYear();%>
 		<div class = "text-center text-[#e48f1a] mt-5 text-2xl">Henry's Speakeasy &copy;<%=year %></div>

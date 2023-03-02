@@ -7,7 +7,8 @@ const Message = new Schema({
     content: { type: String, required: true },
     dateCreated: { type: Date, required: true }, 
     user: { type: Schema.Types.ObjectId, ref: "User", required: true }, 
-    likes: [{type: Schema.Types.ObjectId, ref: "User"}], 
+    likes: [{ type: Schema.Types.ObjectId, ref: "User" }], 
+    image: { data: Buffer, contentType: String },
 })
 
 Message.virtual("DateFormatted").get(function () {

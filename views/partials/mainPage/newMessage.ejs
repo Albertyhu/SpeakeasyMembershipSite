@@ -9,6 +9,7 @@ class = "w-11/12 mx-auto md:w-7/12 lg:w-5/12 hidden">
     <form
     action="/" 
     method="POST"
+	enctype="multipart/form-data"
     class="[&>div>label]:text-black [&>div>label]:uppercase [&>div>label]:font-bold [&>div]:grid [&>div>input]:rounded-lg 
     [&>div]:w-full [&>div]:my-[10px] [&>div>input]:pl-3 [&>div>input]:bg-[rgba(0,0,0,0)] 
     [&>div>textarea]:text-black [&>div>input]:border-white [&>div>input]:border-[1px]
@@ -28,6 +29,7 @@ class = "w-11/12 mx-auto md:w-7/12 lg:w-5/12 hidden">
             border-white placeholder:text-black"
             /></textarea>
     </div>
+	<%- include('insertImage')%>
     <div class = 'w-full !my-[50px] !flex justify-between'>
         <button 
             type = "submit"

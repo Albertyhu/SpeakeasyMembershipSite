@@ -1,6 +1,8 @@
 const Message = require('../model/Message'); 
 const User = require('../model/Users.js'); 
 const { body, validationResult } = require('express-validator'); 
+const fs = require('fs');
+const path = require('path');
 
 //This needs to be rewritten 
 exports.MessageBoard = (req, res, next) => {
@@ -39,6 +41,13 @@ exports.Message_post = [
         .trim()
         .escape(),
     (req, res, next) => {
+        var image = null;
+        if (req.file) {
+            image = {
+                data: fs.readFileSync(path.join(__dirname, '../public/uploads/', req.file.filename)),
+                contentType: req.file.mimetype
+            };
+        }
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             res.render("index", {
@@ -66,6 +75,7 @@ exports.Message_post = [
             dateCreated: Date.now(), 
             user: req.user.id, 
             likes: req.user.id,    
+            image: image, 
         }
 
         const newMessage = new Message(obj);

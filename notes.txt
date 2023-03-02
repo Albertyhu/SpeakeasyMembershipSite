@@ -1,3 +1,10 @@
+3/1/23
+problems: 
+1.) Mobile menu does not scroll when use is logged in [fixed 3/1/23]
+2.) Password Change form needs work. [fixed 3/1/23]
+3.) There are problems when the site is displayed in an actual mobile device. 
+	User keeps getting logged out for some reason despite creating a new account. 
+4.) The dates for the message posted is displaying wrong times.
 2/28/23
 To make sure images don't look stretched, the following css property:
 object-fit: cover; 

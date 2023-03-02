@@ -1,6 +1,6 @@
 <div id = "MobileMenu" class = "w-[280px] bg-[url('<%= MobileMenuBackground%>')] h-full text-center text-black z-50 fixed 
 	right-0 top-0 font-bold closed-menu [&>div]:select-none bg-[length:100%_100%] font=['MarketDeco']
-	text-2xl">
+	text-2xl overflow-y-scroll">
 
 	<% if(user) {%>
 	
@@ -21,36 +21,36 @@
 	</div>
 	<% } %>
 	<div 
-		class = "mt-10 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl" 
+		class = "mt-10 cursor-pointer hover:underline hover:text-gray-500 active:font-bold" 
 		onclick="location.href='/'">Home</div>
 	<% if(user) {%>
 	<div
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/user/<%=user.id%>'">Your profile</div>
 	<div
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/user/:id/changepassword'">Change password
 	</div>
 	<% } %>
 	<div
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/users'">Members</div>
 	<div 
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/contact'">Contact</div>
 	<% if(user) {%>
 	<div 
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/logout'">Log out</div>
 	<% } else { %>
 	<div 
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/login'">Log in</div>
 	<div
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
 		onclick="location.href='/register'">Create an account</div>
 	<% } %>
 	<div 
-		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:text-3xl"
-		onclick="CloseActorMenu">Close Menu</div>
+		class = "my-5 cursor-pointer hover:underline hover:text-gray-500 active:font-bold"
+		onclick="closeMobileMenu()">Close Menu</div>
 </div>

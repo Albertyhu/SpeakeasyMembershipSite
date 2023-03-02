@@ -526,6 +526,9 @@ video {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
 .mb-\[120px\] {
   margin-bottom: 120px;
 }
@@ -549,6 +552,12 @@ video {
 }
 .mt-\[100px\] {
   margin-top: 100px;
+}
+.mt-\[3\.0rem\] {
+  margin-top: 3.0rem;
+}
+.block {
+  display: block;
 }
 .flex {
   display: flex;
@@ -650,6 +659,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(228 143 26 / var(--tw-bg-opacity));
 }
+.bg-\[\#f2e796\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 231 150 / var(--tw-bg-opacity));
+}
 .bg-\[\#f2e798\] {
   --tw-bg-opacity: 1;
   background-color: rgb(242 231 152 / var(--tw-bg-opacity));
@@ -699,6 +712,9 @@ video {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
+.pb-\[11rem\] {
+  padding-bottom: 11rem;
+}
 .text-center {
   text-align: center;
 }
@@ -740,6 +756,10 @@ video {
 .text-\[\#333333\] {
   --tw-text-opacity: 1;
   color: rgb(51 51 51 / var(--tw-text-opacity));
+}
+.text-\[\#555150\] {
+  --tw-text-opacity: 1;
+  color: rgb(85 81 80 / var(--tw-text-opacity));
 }
 .text-\[\#dbdbdb\] {
   --tw-text-opacity: 1;
@@ -1017,6 +1037,7 @@ video {
 
 /*Success message used form passwordForm.ejs*/
 .SuccessMessage {
+    display: block; 
     color: #ffffff;
     background-color: #99cbae;
     padding: 5px;
@@ -1034,6 +1055,16 @@ video {
     transition: opacity 1s ease-in, transform 1s ease-in;
 }
 
+.SuccessMessageFadeOut {
+    opacity: 0.0;
+    transform: translateY(-40px);
+}
+
+.SuccessMessageFadeIn {
+    opacity: 1.0;
+    transform: translateY(40px);
+    transition: opacity 1s linear, transform 1s linear;
+}
 
 @media screen and (max-width: 540px) {
     .EmailErrorMessage {
@@ -1070,7 +1101,7 @@ video {
 /**Theme for the entire site*/
 
 .ContentWrapper {
-    padding-bottom:12.5rem;
+    padding-bottom:32.5rem;
 }
 
 .file\:rounded-lg::file-selector-button {
@@ -1131,8 +1162,8 @@ video {
     margin-bottom: 135px;
   }
 
-  .sm\:mt-10 {
-    margin-top: 2.5rem;
+  .sm\:mt-\[6\.3rem\] {
+    margin-top: 6.3rem;
   }
 
   .sm\:w-5\/12 {

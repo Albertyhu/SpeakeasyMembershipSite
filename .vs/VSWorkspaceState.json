@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\controller",
+    "\\.git",
+    "\\Local settings (.vs)",
     "\\public",
-    "\\public\\stylesheets",
-    "\\routes",
+    "\\public\\assets",
+    "\\public\\assets\\images",
     "\\views",
     "\\views\\partials",
-    "\\views\\partials\\authentication",
-    "\\views\\partials\\initationPage",
-    "\\views\\user"
+    "\\views\\static",
+    "\\views\\writtenContent"
   ],
-  "SelectedNode": "\\views\\error.ejs",
+  "SelectedNode": "\\views\\partials\\authentication\\validateLogin.ejs",
   "PreviewInSolutionExplorer": false
 }
