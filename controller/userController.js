@@ -271,7 +271,7 @@ exports.MembershipInitiation_post = (req, res, next) => {
     User.findByIdAndUpdate(req.params.id, updateUser, (err) => {
         if (err)
             return next(err)
-        console.log("Member has been successfully initiated.")
+        console.log("Member has successfully been initiated.")
         res.redirect('/');
     })
 }

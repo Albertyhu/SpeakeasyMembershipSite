@@ -29,6 +29,7 @@ exports.MessageBoard = (req, res, next) => {
                 BottomFrame: "/assets/images/frame-bottom-white.png",
                 avatar: "/assets/images/avatar2.png",
                 DownArrow: '/assets/icon/down.png',
+                ArtDeco: "/assets/images/art-deco-background.png",
             })
         })
 }
