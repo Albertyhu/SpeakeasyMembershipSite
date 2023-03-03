@@ -507,6 +507,9 @@ video {
     max-width: 1536px;
   }
 }
+.static {
+  position: static;
+}
 .relative {
   position: relative;
 }
@@ -1087,7 +1090,7 @@ video {
 
 .scene2 {
     z-index: -1;
-    -webkit-mask-image: linear-gradient( to right, transparent 47.5%, #fff 52.5% );
+    -webkit-mask-image: linear-gradient( to right, transparent 47.5%, #fff 52.5%);
     -webkit-mask-size: 210%;
     -webkit-mask-position: left;
 }
@@ -1102,6 +1105,21 @@ video {
 
 .ContentWrapper {
     padding-bottom:32.5rem;
+}
+
+.ArtDecoBackground {
+
+}
+
+.ArtDecoBackground::after {
+    background: linear-gradient(to bottom, #555150, 80%, transparent), url('../assets/images/art-deco-background.png') center center fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .file\:rounded-lg::file-selector-button {

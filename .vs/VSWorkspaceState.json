@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\controller",
-    "\\public",
+    "\\dist",
     "\\public\\assets",
-    "\\public\\assets\\images",
+    "\\public\\stylesheets",
     "\\public\\uploads",
+    "\\src",
     "\\views",
     "\\views\\partials",
     "\\views\\partials\\initationPage",
-    "\\views\\partials\\mainPage"
+    "\\views\\writtenContent"
   ],
-  "SelectedNode": "\\views\\login.ejs",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }
