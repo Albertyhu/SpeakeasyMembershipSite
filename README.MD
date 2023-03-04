@@ -6,6 +6,8 @@ Users can sign in as a guests, but to be a true member, they have to know the se
 
 Once users become members of the Speakeasy, they can see the names and profile pics of other members. 
 
+Users can also add their favorite drinks and add their social media links onto their on profile pages.
+
 The site uses Passport to authenticate users.
 
 Live site: https://henrys-speakeasy.onrender.com/
