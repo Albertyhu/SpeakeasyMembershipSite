@@ -2,7 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\dist",
-    "\\public\\assets",
+    "\\public",
     "\\public\\stylesheets",
     "\\public\\uploads",
     "\\src",
@@ -11,6 +11,5 @@
     "\\views\\partials\\initationPage",
     "\\views\\writtenContent"
   ],
-  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }
